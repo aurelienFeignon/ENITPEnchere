@@ -59,6 +59,7 @@
 <form action="Accueil" method="get">
 <input type="submit" value="Annuler">
 </form>
+<c:out value="${ erreur }"></c:out>
 
 </main>
 

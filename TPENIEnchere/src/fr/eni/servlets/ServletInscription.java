@@ -24,14 +24,17 @@ public class ServletInscription extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		this.getServletContext().getRequestDispatcher("/PageInscription").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// Quand je clique sur creer(un utilisateur) je veux inserer un utilisateur dans ma bdd
+		if(request.getParameter("mdp").equals(request.getParameter("confirmation"))) {
+		//Je verifie si mon mdp est identique au mdp à confirmer
 				//Je creer un objet utilisateur (via ma classe bo)
 				 Utilisateur utilisateur = new Utilisateur();
 				 UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
@@ -55,7 +58,11 @@ public class ServletInscription extends HttpServlet {
 					}
 			   //Je renvoie vers la page d'acceuil un utilisateur connecté (dupliquer code de la servlet connection)
 			        this.getServletContext().getRequestDispatcher("/Accueil").forward(request, response);
-			
+		}else {
+			String message = "Echec de l'inscription, le mot de passe saisie est différent du mot de passe confirmé.";
+			request.setAttribute("erreur", message);
+			this.getServletContext().getRequestDispatcher("/PageInscription").forward(request, response);
+		}
 	}
 
 }
