@@ -52,7 +52,6 @@ public class ServletInscription extends HttpServlet {
 						utilisateurManageur.insert(utilisateur);
 					} catch (BusinessException e) {
 						e.printStackTrace();
-						System.out.println("PB ici");
 					}
 			   //Je renvoie vers la page d'acceuil un utilisateur connecté (dupliquer code de la servlet connection)
 			        this.getServletContext().getRequestDispatcher("/Accueil").forward(request, response);

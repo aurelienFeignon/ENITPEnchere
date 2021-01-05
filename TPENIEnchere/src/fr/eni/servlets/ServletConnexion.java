@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 /**
  * Servlet implementation class ServletConnexion
  */
@@ -26,8 +28,10 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	
+		//Je recup les données saisies par l'utilisateur
+				String identifiant = request.getParameter("identifiant");
+				String mdp = request.getParameter("mdp");
+
 	}
 
 }
