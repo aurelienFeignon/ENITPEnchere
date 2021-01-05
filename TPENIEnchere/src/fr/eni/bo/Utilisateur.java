@@ -13,7 +13,7 @@ private String rue;
 private String code_postal;
 private String ville;
 private String mot_de_passe;
-private String credit;
+private Double credit;
 private boolean administrateur;
 
 
@@ -43,7 +43,7 @@ public Utilisateur() {
  * @param administrateur
  */
 public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-		String rue, String code_postal, String ville, String mot_de_passe, String credit, boolean administrateur) {
+		String rue, String code_postal, String ville, String mot_de_passe, Double credit, boolean administrateur) {
 	super();
 	this.no_utilisateur = no_utilisateur;
 	this.pseudo = pseudo;
@@ -122,10 +122,10 @@ public String getMot_de_passe() {
 public void setMot_de_passe(String mot_de_passe) {
 	this.mot_de_passe = mot_de_passe;
 }
-public String getCredit() {
+public Double getCredit() {
 	return credit;
 }
-public void setCredit(String credit) {
+public void setCredit(Double credit) {
 	this.credit = credit;
 }
 public boolean isAdministrateur() {

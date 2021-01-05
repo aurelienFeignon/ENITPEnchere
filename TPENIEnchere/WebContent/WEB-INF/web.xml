@@ -9,4 +9,33 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+   <servlet>
+  	<servlet-name>Accueil</servlet-name>
+  	<jsp-file>/WEB-INF/affichage/Accueil.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Accueil</servlet-name>
+  <url-pattern>/PageAccueil</url-pattern>
+  </servlet-mapping>
+  
+     <servlet>
+  	<servlet-name>Connexion</servlet-name>
+  	<jsp-file>/WEB-INF/affichage/Connexion.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Connexion</servlet-name>
+  <url-pattern>/PageConnexion</url-pattern>
+  </servlet-mapping>
+  
+       <servlet>
+  	<servlet-name>Inscription</servlet-name>
+  	<jsp-file>/WEB-INF/affichage/Inscription.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Inscription</servlet-name>
+  <url-pattern>/PageInscription</url-pattern>
+  </servlet-mapping>
 </web-app>
