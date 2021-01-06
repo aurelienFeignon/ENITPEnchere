@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //UTILISATION : Dirige de la jsp "affichage profil" vers la jsp "modification profil".
-//TO DO : tests
+//TO DO : tests !
 
 @WebServlet("/ServletVersModifProfil")
 public class ServletVersModifProfil extends HttpServlet {

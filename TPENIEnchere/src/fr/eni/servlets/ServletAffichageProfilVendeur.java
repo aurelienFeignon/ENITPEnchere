@@ -15,7 +15,7 @@ import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bo.Utilisateur;
 
 //UTILISATION : Récupère les infos du vendeur en fonction de l'id (récupéré via un clic sur le pseudo depuis l'accueil).
-// TO DO : Manque l'obtention de l'id depuis l'accueil + tests
+// TO DO : Manque l'obtention de l'id depuis l'accueil + tests !
 
 @WebServlet("/ServletAffichageProfilVendeur")
 public class ServletAffichageProfilVendeur extends HttpServlet {

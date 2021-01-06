@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //UTILISATION : Dirige vers la jsp "MonProfil".
-//TO DO : tests
+//TO DO : tests !
 @WebServlet("/ServletVersMonProfil")
 public class ServletVersMonProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;

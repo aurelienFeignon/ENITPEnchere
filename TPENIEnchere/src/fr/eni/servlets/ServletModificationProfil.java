@@ -18,7 +18,7 @@ import fr.eni.utils.BusinessException;
 
 
 //UTILISATION : Récupère les infos du formulaire de la jsp "modification profil" puis update la dal.
-//TO DO : ajout suite code + ajouter d'autres messages d'erreur ? + tests
+//TO DO : ajout suite code + ajouter d'autres messages d'erreur ? + tests !
 
 
 @WebServlet("/ServletModificationProfil")

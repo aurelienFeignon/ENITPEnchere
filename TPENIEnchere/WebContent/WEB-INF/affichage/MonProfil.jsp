@@ -36,4 +36,5 @@
 
 <%@ include file="FooterInclusion.jsp" %>
 </body>
+<!-- commentaire test -->
 </html>
