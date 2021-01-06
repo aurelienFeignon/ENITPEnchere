@@ -20,13 +20,13 @@
 <li>Email : <c:out value="${sessionScope.utilisateur.email}"/></li>
 <li>Téléphone : <c:out value="${sessionScope.utilisateur.telephone}" /></li>
 <li>Rue : <c:out value="${sessionScope.utilisateur.rue}" /></li>
-<li>Code postal : <c:out value="${sessionScope.utilisateur.codePostal}" /></li>
+<li>Code postal : <c:out value="${sessionScope.utilisateur.code_postal}" /></li>
 <li>Ville : <c:out value="${sessionScope.utilisateur.ville}" /></li>
 <li>Crédit : <c:out value="${sessionScope.utilisateur.credit}" /></li>
 </ul>
 
 
-<form action="http://localhost:8080/TPPersoEnchereV0.2/Servlet/ServletVersModifProfil" method="get">
+<form action="ServletVersModifProfil" method="get">
 <input type="submit" value="Modifier">
 </form>
 

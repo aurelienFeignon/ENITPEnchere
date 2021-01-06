@@ -63,7 +63,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MonProfil</servlet-name>
-    <url-pattern>/MonProfill</url-pattern>
+    <url-pattern>/MonProfil</url-pattern>
   </servlet-mapping>
   
 </web-app>

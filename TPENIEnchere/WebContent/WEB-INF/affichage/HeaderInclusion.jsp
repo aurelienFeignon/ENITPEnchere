@@ -8,7 +8,7 @@
  <!--Verifier si l'utilisateur est connecté -->
       <c:choose>
       
-       <c:when test="${ !empty sessionScope.identifiant }">
+       <c:when test="${ !empty sessionScope.utilisateur }">
 		 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a href="Accueil"><img src="images/logo.jpg" width="30" height="30" alt="logo eni"></a>
 			  	<a class="navbar-brand" href="#">ENI-Encheres</a>
@@ -25,13 +25,13 @@
 				        <a class="nav-link" href="#">Enchères</a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="#">Mon profil</a>
+				        <a class="nav-link" href="MonProfil">Mon profil</a>
 				      </li>
 						<li class="nav-item">
 				        <a class="nav-link" href="Deconnexion">Déconnexion</a>
 				      </li>
 				    </ul>
-				    <p> ${ sessionScope.identifiant } est connecté(e) </p>
+				    <p> ${ sessionScope.utilisateur.pseudo } est connecté(e) </p>
 				    <form class="form-inline my-2 my-lg-0">
 					      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 					      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

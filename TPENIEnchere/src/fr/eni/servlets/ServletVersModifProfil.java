@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //UTILISATION : Dirige de la jsp "affichage profil" vers la jsp "modification profil".
-//TO DO : tests !
 
-@WebServlet("/ServletVersModifProfil")
+@WebServlet("/ServletVersModificationProfil")
 public class ServletVersModifProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
