@@ -5,10 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page d'acceuil</title>
 
 <!-- La librairie fontawesome pour les icones -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 </head>
 <body>
 
@@ -52,5 +55,9 @@
 </main>
 
 <%@ include file="FooterInclusion.jsp" %>
+    <!-- js et bootstrap --> 
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap-4.4.1.js"></script>
 </body>
 </html>

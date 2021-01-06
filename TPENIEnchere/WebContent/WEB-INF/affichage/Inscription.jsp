@@ -7,62 +7,83 @@
 <meta charset="UTF-8">
 <title>Creer un compte</title>
 </head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+<title>Creer un compte</title>
+</head>
 <body>
-<%@ include file="HeaderSansNavInclusion.jsp" %>
-<main>
+<%@ include file="HeaderInclusion.jsp" %>
 <form action="Inscription" method="post">
-    <div>
-        <label for="pseudo">Pseudo :</label>
-        <input type="text"  name="pseudo">
-    </div>
-    <div>
-        <label for="nom">Nom :</label>
-        <input type="text" name="nom">
-    </div>
-    <div>
-        <label for="prenom">Prénom :</label>
-        <input type="text" name="prenom">
-    </div>
-    <div>
-        <label for="email">Email :</label>
-        <input type="text" name="email">
-    </div>  
-    <div>
-        <label for="telephone">Teléphone :</label>
-        <input type="text" name="telephone">
-    </div>
-    <div>
-        <label for="rue">Rue :</label>
-        <input type="text" name="rue">
-    </div>
-    <div>
-        <label for="codePostal">Code Postal :</label>
-        <input type="text" name="codePostal">
-    </div>
-
-    <div>
-        <label for="ville">Ville :</label>
-        <input type="text" name="ville">
-    </div>
-    <div>
-        <label for="mdp">Mot de passe :</label>
-        <input type="text" name="mdp">
-    </div>
-    <div>
-        <label for="confirmation">Confirmation :</label>
-        <input type="text" name="confirmation">
-    </div>
-
-<input type="submit" value="Créer">
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="pseudo">Pseudo</label>
+	      <input type="text" class="form-control" name="pseudo" placeholder="Pseudo">
+	    </div>
+	    <div class="form-group col-md-6">
+	      <label for="email">Email</label>
+	      <input type="email" class="form-control" name="email" placeholder="Email">
+	    </div>
+	   </div>
+	   <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="mdp">Mot de passe</label>
+	      <input type="text" class="form-control" name="mdp" placeholder="Mot de passe">
+	    </div>
+	     <div class="form-group col-md-6">
+		   <label for="confirmation">Confirmation</label>
+		     <input type="text" class="form-control" name="confirmation" placeholder="Mot de passe">
+		  </div>
+	   </div>
+	   <div class="form-row">
+		  <div class="form-group col-md-6">
+		    <label for="prenom">Prénom</label>
+		    <input type="text" class="form-control" name="prenom" placeholder="Prénom">
+		  </div>
+		<div class="form-row">
+		  <div class="form-group col-md-6">
+		    <label for="nom">Nom</label>
+		    <input type="text" class="form-control" name="nom" placeholder="Nom">
+		  </div>
+		  <div class="form-group col-md-6">
+		    <label for="telephone">Telephone</label>
+		    <input type="text" class="form-control" name="telephone" placeholder="Telephone">
+		  </div>
+		</div>
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="rue">Rue</label>
+	      <input type="text" class="form-control" name="rue" placeholder="Rue">
+	    </div>
+	    <div class="form-group col-md-2">
+	      <label for="codePostal">Code Postal</label>
+	      <input type="text" class="form-control" name="codePostal" placeholder="Code Postal">
+	    </div>
+	    <div class="form-group col-md-4">
+	      <label for="ville">Ville</label>
+	      <input type="text" class="form-control" name="ville" placeholder="Ville">
+	    </div>
+	    </div>
+	  <div class="form-group">
+	    <div class="form-check">
+	      <input class="form-check-input" type="checkbox" id="gridCheck">
+	      <label class="form-check-label" for="gridCheck">
+	        Se souvenir de moi
+	      </label>
+	    </div>
+	  </div>
+	  <div class="align-self-center">
+		  <button type="submit" class="btn btn-primary">Créer</button>
+		  <button type="reset" class="btn btn-primary">Annuler</button>
+	   </div>
 </form>
 
-<form action="Accueil" method="get">
-<input type="submit" value="Annuler">
-</form>
 <c:out value="${ erreur }"></c:out>
 
-</main>
-
 <%@ include file="FooterInclusion.jsp" %>
+<script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-4.4.1.js"></script>
 </body>
 </html>
