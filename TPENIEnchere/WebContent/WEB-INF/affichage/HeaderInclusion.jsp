@@ -4,7 +4,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <header>
+<a href="Accueil">
 <img alt="Logo du site ENI-Encheres" src="images/logo.jpg">
+</a>
 
  <!--Verifier si l'utilisateur est connecté -->
       <c:choose>
