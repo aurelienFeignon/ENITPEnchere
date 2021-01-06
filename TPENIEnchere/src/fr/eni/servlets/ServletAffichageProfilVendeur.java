@@ -1,4 +1,4 @@
-package src.fr.eni.servlets;
+package fr.eni.servlets;
 
 import java.io.IOException;
 
@@ -13,6 +13,7 @@ import org.apache.catalina.Session;
 
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bo.Utilisateur;
+import fr.eni.utils.BusinessException;
 
 //UTILISATION : Récupère les infos du vendeur en fonction de l'id (récupéré via un clic sur le pseudo depuis l'accueil).
 // TO DO : Manque l'obtention de l'id depuis l'accueil + tests !
@@ -25,7 +26,7 @@ public class ServletAffichageProfilVendeur extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id;
+		int id = 0;
 		// obtention id via jsp accueil - A FAIRE
 		
 		
@@ -33,7 +34,12 @@ public class ServletAffichageProfilVendeur extends HttpServlet {
 		//recupère les infos de l'utilisateur
 		 Utilisateur utilisateur = new Utilisateur();
 		 UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
-		utilisateur = utilisateurManageur.select(id);
+		try {
+			utilisateur = utilisateurManageur.selectId(id);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("utilisateur", utilisateur);
 		
 		//envoi vers la page de profil

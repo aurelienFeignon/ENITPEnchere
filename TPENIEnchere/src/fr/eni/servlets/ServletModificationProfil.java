@@ -1,6 +1,7 @@
-package src.fr.eni.servlets;
+package fr.eni.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,7 +63,7 @@ public class ServletModificationProfil extends HttpServlet {
 	 		   //update DAL
 		        try {
 					utilisateurManageur.update(utilisateur,id);
-				} catch (BusinessException e) {
+				} catch (BusinessException | SQLException e) {
 					e.printStackTrace();
 				}
 		        
@@ -95,7 +96,7 @@ public class ServletModificationProfil extends HttpServlet {
 	        
 	        try {
 	  					utilisateurManageur.update(utilisateur,id);
-	  				} catch (BusinessException e) {
+	  				} catch (BusinessException | SQLException e) {
 	  					e.printStackTrace();
 	  				}
 	  		        
