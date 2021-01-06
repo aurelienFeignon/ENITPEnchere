@@ -50,7 +50,7 @@ public class ServletConnexion extends HttpServlet {
 				if(utilisateur !=null) {
 					//On stocke dans une session
 					HttpSession session = request.getSession();
-					//session.setMaxInactiveInterval(30);   // session timeout si utilisateur inactif en seconds
+					//session.setMaxInactiveInterval(30);   // session timeout si utilisateur inactif en secondes
 					session.setAttribute("utilisateur", utilisateur);
 					//redirige vers l'acceuil
 				this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
