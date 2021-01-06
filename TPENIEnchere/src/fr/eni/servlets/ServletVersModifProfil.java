@@ -16,7 +16,7 @@ public class ServletVersModifProfil extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/ModificationProfil");
+		response.sendRedirect("ModificationProfil");
 	}
 
 

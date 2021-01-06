@@ -148,7 +148,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		utilisateur.setEmail(rs.getString("email"));
 		utilisateur.setTelephone(rs.getString("telephone"));
 		utilisateur.setRue(rs.getString("rue"));
-		utilisateur.setCode_postal(rs.getString("ville"));
+		utilisateur.setCode_postal(rs.getString("code_postal"));
+		utilisateur.setVille(rs.getString("ville"));
 		utilisateur.setMot_de_passe(rs.getString("mot_de_passe"));
 		utilisateur.setCredit((double)rs.getDouble("credit"));
 		utilisateur.setAdministrateur(rs.getBoolean("administrateur"));

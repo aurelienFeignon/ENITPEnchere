@@ -26,7 +26,7 @@
 </ul>
 
 
-<form action="ServletVersModifProfil" method="get">
+<form action="ServletVersModificationProfil" method="get">
 <input type="submit" value="Modifier">
 </form>
 
