@@ -9,16 +9,16 @@
  <!--Verifier si l'utilisateur est connecté -->
       <c:choose>
       
-       <c:when test="${ !empty sessionScope.identifiant }">
+       <c:when test="${ !empty sessionScope.utilisateur }">
         <nav>
             <ul>
                 <li><a href="#">Enchères</a></li>
                 <li><a href="#">Vendre un article</a></li>
                 <li><a href="#">Mon profil</a></li>
-                <li><a href="#">Déconnexion</a></li>
+                <li><a href="Deconnexion">Déconnexion</a></li>
             </ul>
         </nav>
-       	 <p> ${ sessionScope.identifiant } est connecté(e) </p>
+       	 <p> ${ sessionScope.utilisateur.pseudo } est connecté(e) </p>
        </c:when>
        
        <c:otherwise>

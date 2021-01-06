@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bo.Utilisateur;
@@ -56,8 +57,11 @@ public class ServletInscription extends HttpServlet {
 					} catch (BusinessException e) {
 						e.printStackTrace();
 					}
-			   //Je renvoie vers la page d'acceuil un utilisateur connecté (dupliquer code de la servlet connection)
-			        this.getServletContext().getRequestDispatcher("/Accueil").forward(request, response);
+			   //Je renvoie vers la page d'acceuil un utilisateur connecté 
+			      //On stocke dans une session
+					HttpSession session = request.getSession();
+					session.setAttribute("utilisateur", utilisateur);
+			        this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 		}else {
 			String message = "Echec de l'inscription, le mot de passe saisie est différent du mot de passe confirmé.";
 			request.setAttribute("erreur", message);
