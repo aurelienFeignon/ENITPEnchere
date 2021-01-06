@@ -51,7 +51,7 @@
         <input type="text" name="mdp" value="${sessionScope.utilisateur.mot_de_passe}">
     </div>
       <div>
-        <label for="newmdp">Nouveau mot de passe :</label>
+        <label for="newMdp">Nouveau mot de passe :</label>
         <input type="text" name="newMdp">
     </div>
     <div>
@@ -60,7 +60,8 @@
      </div>  
 
 <div>
- <br/>Crédit : ${sessionScope.utilisateur.credit}
+ <br/>Crédit : ${sessionScope.utilisateur.credit} <input type="hidden" name="credit" value="${sessionScope.utilisateur.credit}">
+  <input type="hidden" name="id" value="${sessionScope.utilisateur.no_utilisateur}">
         <br/>
 </div>    
          <div>

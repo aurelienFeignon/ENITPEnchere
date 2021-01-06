@@ -40,7 +40,7 @@ public class ServletModificationProfil extends HttpServlet {
 		
 		//on récupère la session et l'id pour la passage en parametre de update
 		HttpSession session = request.getSession(true);  
-		 int id = (int)session.getAttribute("id");
+		// int id = (int)session.getAttribute("id");
 		 
 		
 		Utilisateur utilisateur = new Utilisateur();
@@ -59,10 +59,10 @@ public class ServletModificationProfil extends HttpServlet {
 	 	        utilisateur.setCode_postal(request.getParameter("codePostal"));
 	 	        utilisateur.setVille(request.getParameter("ville"));
 	 	        utilisateur.setMot_de_passe(request.getParameter("mdp"));
-	 	        
+	 	        utilisateur.setCredit(Double.parseDouble(request.getParameter("credit")));
 	 		   //update DAL
 		        try {
-					utilisateurManageur.update(utilisateur,id);
+					utilisateurManageur.update(utilisateur,Integer.parseInt(request.getParameter("id")));
 				} catch (BusinessException | SQLException e) {
 					e.printStackTrace();
 				}
@@ -95,7 +95,7 @@ public class ServletModificationProfil extends HttpServlet {
 	        
 	        
 	        try {
-	  					utilisateurManageur.update(utilisateur,id);
+	  					utilisateurManageur.update(utilisateur,Integer.parseInt(request.getParameter("id")));
 	  				} catch (BusinessException | SQLException e) {
 	  					e.printStackTrace();
 	  				}
