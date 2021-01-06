@@ -11,7 +11,7 @@
 <%@ include file="HeaderSansNavInclusion.jsp" %>
 
 <main>
-<form action="#" method="post">
+<form action="Connexion" method="post">
     <div>
         <label for="identifiant">Identifiant :</label>
         <input type="text"  name="identifiant">

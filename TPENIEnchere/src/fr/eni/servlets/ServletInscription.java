@@ -34,8 +34,8 @@ public class ServletInscription extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// Quand je clique sur creer(un utilisateur) je veux inserer un utilisateur dans ma bdd
-		if(request.getParameter("mdp").equals(request.getParameter("confirmation"))) {
 		//Je verifie si mon mdp est identique au mdp à confirmer
+		if(request.getParameter("mdp").equals(request.getParameter("confirmation"))) {
 				//Je creer un objet utilisateur (via ma classe bo)
 				 Utilisateur utilisateur = new Utilisateur();
 				 UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
@@ -57,7 +57,7 @@ public class ServletInscription extends HttpServlet {
 					} catch (BusinessException e) {
 						e.printStackTrace();
 						//String message = String.format("Echec de l'inscription. %s", );
-						String message = "Echec de l'inscription. %s";
+						String message = "Echec de l'inscription.";
 						request.setAttribute("erreur", message);
 						this.getServletContext().getRequestDispatcher("/PageInscription").forward(request, response);
 						return;
