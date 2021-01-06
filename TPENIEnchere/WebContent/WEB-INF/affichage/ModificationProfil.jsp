@@ -11,7 +11,7 @@
 <%@ include file="HeaderSansNavInclusion.jsp" %>
 <main>
 <h1>Mon Profil</h1>
-<form action="http://localhost:8080/TPPersoEnchereV0.2/Servlet/ServletModificationProfil" method="post">
+<form action="ServletModificationProfil" method="post">
 
 
     <div>
@@ -20,38 +20,38 @@
     </div>
         <div>
         <label for="nom">Nom :</label>
-        <input type="text" name="nom" value="${sessionScope.utilisateur.nom}">>
+        <input type="text" name="nom" value="${sessionScope.utilisateur.nom}">
     </div>
     <div>
         <label for="prenom">Prénom :</label>
-        <input type="text" name="prenom" value="${sessionScope.utilisateur.prenom}">>
+        <input type="text" name="prenom" value="${sessionScope.utilisateur.prenom}">
     </div>
             <div>
         <label for="email">Email :</label>
-        <input type="text" name="email" value="${sessionScope.utilisateur.email}">>
+        <input type="text" name="email" value="${sessionScope.utilisateur.email}">
     </div> 
     <div>
         <label for="telephone">Teléphone :</label>
-        <input type="text" name="telephone" value="${sessionScope.utilisateur.telephone}">>
+        <input type="text" name="telephone" value="${sessionScope.utilisateur.telephone}">
     </div>
            <div>
         <label for="rue">Rue :</label>
-        <input type="text" name="rue" value="${sessionScope.utilisateur.rue}">>
+        <input type="text" name="rue" value="${sessionScope.utilisateur.rue}">
     </div>
     <div>
         <label for="codePostal">Code Postal :</label>
-        <input type="text" name="codePostal" value="${sessionScope.utilisateur.codePostal}">>
+        <input type="text" name="codePostal" value="${sessionScope.utilisateur.code_postal}">
     </div>
         <div>
         <label for="ville">Ville :</label>
-        <input type="text" name="ville" value="${sessionScope.utilisateur.ville}">>
+        <input type="text" name="ville" value="${sessionScope.utilisateur.ville}">
     </div>
     <div>
         <label for="mdp">Mot de passe actuel :</label>
-        <input type="text" name="mdp" value="${sessionScope.utilisateur.mdp}">>
+        <input type="text" name="mdp" value="${sessionScope.utilisateur.mot_de_passe}">
     </div>
       <div>
-        <label for="mdp">Nouveau mot de passe :</label>
+        <label for="newmdp">Nouveau mot de passe :</label>
         <input type="text" name="newMdp">
     </div>
     <div>
@@ -60,7 +60,7 @@
      </div>  
 
 <div>
- <br/>Crédit : ${sessionScope.utilisateur.mdp}
+ <br/>Crédit : ${sessionScope.utilisateur.credit}
         <br/>
 </div>    
          <div>
@@ -68,7 +68,7 @@
         </div> 
 </form>
 
-<form action="http://localhost:8080/TPPersoEnchereV0.2/Servlet/ServletSuppressionProfil" method="get">
+<form action="ServletSuppressionProfil" method="get">
 <input type="submit" value="Supprimer">
 </form>
 
