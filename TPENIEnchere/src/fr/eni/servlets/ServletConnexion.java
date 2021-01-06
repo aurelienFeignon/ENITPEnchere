@@ -37,6 +37,7 @@ public class ServletConnexion extends HttpServlet {
 				    //checkbox not checked donc on fait rien
 				}else{
 				    //checkbox checked
+					
 				}
 	}
 

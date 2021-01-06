@@ -56,6 +56,11 @@ public class ServletInscription extends HttpServlet {
 						utilisateurManageur.insert(utilisateur);
 					} catch (BusinessException e) {
 						e.printStackTrace();
+						//String message = String.format("Echec de l'inscription. %s", );
+						String message = "Echec de l'inscription. %s";
+						request.setAttribute("erreur", message);
+						this.getServletContext().getRequestDispatcher("/PageInscription").forward(request, response);
+						return;
 					}
 			   //Je renvoie vers la page d'acceuil un utilisateur connecté 
 			      //On stocke dans une session
