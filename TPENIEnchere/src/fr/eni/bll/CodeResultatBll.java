@@ -12,5 +12,7 @@ public class CodeResultatBll {
 	public static final int VILLE_INVALIDE = 20007;
 	public static final int MDP_INVALIDE = 20008;
 	public static final int CREDIT_INVALIDE = 20009;
+	public static final int EMAIL_EXISTANT = 20010;
+	public static final int PSEUDO_EXISTANT = 20011;
 
 }

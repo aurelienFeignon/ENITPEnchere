@@ -1,9 +1,14 @@
 package fr.eni.bll;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.eni.bo.Utilisateur;
 import fr.eni.dal.DAOFactory;
 import fr.eni.dal.UtilisateurDao;
 import fr.eni.utils.BusinessException;
+
 
 public class UtilisateurManageur {
 private UtilisateurDao utilisateurDao;
@@ -30,8 +35,50 @@ public void insert(Utilisateur utilisateur) throws BusinessException {
 	}
 }
 
-private void validerPseudo(Utilisateur utilisateur, BusinessException businessException) {
-	if(utilisateur.getPseudo()==null||utilisateur.getPseudo().length()>30) {
+public Utilisateur selectId(int id)throws BusinessException {
+	Utilisateur utilisateur = null;
+	utilisateur= this.utilisateurDao.selectId(id);
+	return utilisateur;
+}
+
+public Utilisateur selectPseudo(String pseudo)throws BusinessException {
+	Utilisateur utilisateur = null;
+	utilisateur= this.utilisateurDao.selectPseudo(pseudo);
+	return utilisateur;
+}
+
+public void update(Utilisateur utilisateur, int id)throws BusinessException, SQLException {
+	BusinessException businessException = new BusinessException();
+	
+	this.validerUtilisateur(utilisateur, businessException);
+	
+	if(!businessException.hasErreurs()) {
+		
+			this.utilisateurDao.update(utilisateur, id);
+		
+	}else {
+		throw businessException;
+	}
+}
+
+private void validerPseudo(Utilisateur utilisateur, BusinessException businessException) throws BusinessException {
+	//Vérification de l'existence de Pseudo
+		List<Utilisateur> utilisateurs= new ArrayList<Utilisateur>();
+		utilisateurs= this.utilisateurDao.selectAll();
+		boolean existant= false;
+		if(utilisateurs!= null) {
+			for (Utilisateur utilisateurCourant: utilisateurs ) {
+				if(utilisateurCourant.getPseudo().equals(utilisateur.getPseudo())) {
+					existant= true;
+				}
+			}
+		}
+		if(existant) {
+			businessException.ajouterErreur(CodeResultatBll.PSEUDO_EXISTANT);
+		}
+		
+		//verifie si le pseudo n'est pas null, qu'il fait moins de 30 lettres et qu'il est en charactere alphanumerique
+	if(utilisateur.getPseudo()==null||utilisateur.getPseudo().length()>30|| !utilisateur.getPseudo().matches("[A-Za-z0-9]+")) {
 		businessException.ajouterErreur(CodeResultatBll.PSEUDO_INVALIDE);
 	}
 }
@@ -48,14 +95,29 @@ private void validerPrenom(Utilisateur utilisateur, BusinessException businessEx
 	}
 }
 
-private void validerEmail(Utilisateur utilisateur, BusinessException businessException) {
-	if(utilisateur.getEmail()==null||utilisateur.getEmail().length()>20) {
+private void validerEmail(Utilisateur utilisateur, BusinessException businessException) throws BusinessException {
+	//Vérification de l'existence de l'email
+	List<Utilisateur> utilisateurs= new ArrayList<Utilisateur>();
+	utilisateurs= this.utilisateurDao.selectAll();
+	boolean existant= false;
+	if(utilisateurs!= null) {
+		for (Utilisateur utilisateurCourant: utilisateurs ) {
+			if(utilisateurCourant.getEmail().equals(utilisateur.getEmail())) {
+				existant= true;
+			}
+		}
+	}
+	if(existant) {
+		businessException.ajouterErreur(CodeResultatBll.EMAIL_EXISTANT);
+	}
+	//verifie si l'email n'est pas null, qu'il fait moins de 20 lettres et qu'il contient un @
+	if(utilisateur.getEmail()==null||utilisateur.getEmail().length()>20|| !utilisateur.getEmail().contains("@")) {
 		businessException.ajouterErreur(CodeResultatBll.EMAIL_INVALIDE);
 	}
 }
 
 private void validerTelephone(Utilisateur utilisateur, BusinessException businessException) {
-	if(utilisateur.getTelephone()==null||utilisateur.getTelephone().length()>15) {
+	if(utilisateur.getTelephone()==null||utilisateur.getEmail().length()>15) {
 		businessException.ajouterErreur(CodeResultatBll.TELEPHONE_INVALIDE);
 	}
 }
@@ -89,7 +151,8 @@ private void validerCredit(Utilisateur utilisateur, BusinessException businessEx
 	}
 }
 
-private void validerUtilisateur(Utilisateur utilisateur, BusinessException businessException) {
+private void validerUtilisateur(Utilisateur utilisateur, BusinessException businessException) throws BusinessException {
+
 	this.validerPseudo(utilisateur, businessException);
 	this.validerNom(utilisateur, businessException);
 	this.validerPrenom(utilisateur, businessException);

@@ -32,6 +32,12 @@ public class ServletConnexion extends HttpServlet {
 				String identifiant = request.getParameter("identifiant");
 				String mdp = request.getParameter("mdp");
 
+				 //On stock en cookie si "se souvenir de moi" cocher
+				if(request.getParameter("memorisation") == null){
+				    //checkbox not checked donc on fait rien
+				}else{
+				    //checkbox checked
+				}
 	}
 
 }
