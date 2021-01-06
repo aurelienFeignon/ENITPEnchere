@@ -14,5 +14,6 @@ public class CodeResultatBll {
 	public static final int CREDIT_INVALIDE = 20009;
 	public static final int EMAIL_EXISTANT = 20010;
 	public static final int PSEUDO_EXISTANT = 20011;
+	public static final int ECHEC_CONNEXION_MDP_INCORRECT = 20011;
 
 }

@@ -17,7 +17,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	private static final String INSERT="insert into UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur ) "+
 	"values(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ID="select * from UTILISATEURS where no_utilisateur=?";
-	private static final String SELECT_PSEUDO="select * from UTILISATEURS where pseudo=?";
+	private static final String SELECT_PSEUDO="select * from UTILISATEURS where pseudo=? or email=?";
 	private static final String SELECT_ALL="select * from UTILISATEURS";
 	private static final String UPDATE="update UTILISATEURS Set pseudo= ?,nom=?, prenom=?, email=?, telephone=?,rue=?, code_postal=?,ville=?, mot_de_passe=?, credit=? where no_utilisateur=?";
 	
@@ -106,6 +106,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		try (Connection cnx= ConnectionProvider.getConnection()){
 			PreparedStatement stm = cnx.prepareStatement(SELECT_PSEUDO);
 			stm.setString(1, pseudo);
+			stm.setString(2, pseudo);
 			ResultSet rs= stm.executeQuery();
 			if(rs.next()) {
 				 utilisateur=this.utilisateurConstructeur(rs);

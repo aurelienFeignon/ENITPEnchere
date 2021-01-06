@@ -41,6 +41,24 @@ public Utilisateur selectId(int id)throws BusinessException {
 	return utilisateur;
 }
 
+public Utilisateur VerifConnexion(String pseudo, String mdp) throws BusinessException{
+	Utilisateur utilisateur = null;
+	BusinessException businessException= new BusinessException();
+	boolean connexion= false;
+	utilisateur=this.selectPseudo(pseudo);
+	if(!businessException.hasErreurs()) {
+		if(utilisateur.getMot_de_passe().equals(mdp)) {
+			connexion=true;
+		}
+	}
+	if(!connexion) {
+		businessException.ajouterErreur(CodeResultatBll.ECHEC_CONNEXION_MDP_INCORRECT);
+		utilisateur=null;
+	}
+	return utilisateur;
+}
+
+
 public Utilisateur selectPseudo(String pseudo)throws BusinessException {
 	Utilisateur utilisateur = null;
 	utilisateur= this.utilisateurDao.selectPseudo(pseudo);
@@ -115,9 +133,9 @@ private void validerEmail(Utilisateur utilisateur, BusinessException businessExc
 		businessException.ajouterErreur(CodeResultatBll.EMAIL_INVALIDE);
 	}
 }
-
+	//verifie que le numero de telephone est composé de 10 chiffres
 private void validerTelephone(Utilisateur utilisateur, BusinessException businessException) {
-	if(utilisateur.getTelephone()==null||utilisateur.getEmail().length()>15) {
+	if(utilisateur.getTelephone()==null||!(utilisateur.getTelephone().length()==10)||!utilisateur.getTelephone().matches("-?\\d+(\\.\\d+)?")) {
 		businessException.ajouterErreur(CodeResultatBll.TELEPHONE_INVALIDE);
 	}
 }
@@ -127,9 +145,9 @@ private void validerRue(Utilisateur utilisateur, BusinessException businessExcep
 		businessException.ajouterErreur(CodeResultatBll.RUE_INVALIDE);
 	}
 }
-
+//verifie que le numero de telephone est composé de 5 chiffres
 private void validerCodePostal(Utilisateur utilisateur, BusinessException businessException) {
-	if(utilisateur.getCode_postal()==null||utilisateur.getCode_postal().length()>10) {
+	if(utilisateur.getCode_postal()==null||!(utilisateur.getCode_postal().length()==5)||!utilisateur.getCode_postal().matches("-?\\d+(\\.\\d+)?")) {
 		businessException.ajouterErreur(CodeResultatBll.CODE_POSTAL_INVALIDE);
 	}
 }
