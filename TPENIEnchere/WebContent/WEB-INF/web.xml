@@ -38,4 +38,32 @@
   <servlet-name>Inscription</servlet-name>
   <url-pattern>/PageInscription</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AffichageProfilVendeur</servlet-name>
+    <jsp-file>/WEB-INF/affichage/AffichageProfilVendeur.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AffichageProfilVendeur</servlet-name>
+    <url-pattern>/PageProfil</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ModificationProfil</servlet-name>
+    <jsp-file>/WEB-INF/affichage/ModificationProfil.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificationProfil</servlet-name>
+    <url-pattern>/ModificationProfil</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>MonProfil</servlet-name>
+    <jsp-file>/WEB-INF/affichage/MonProfil.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MonProfil</servlet-name>
+    <url-pattern>/MonProfill</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
