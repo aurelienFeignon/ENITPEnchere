@@ -69,7 +69,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.ajouterErreur(CodesResultatDAL.INSERTION);
+			businessException.ajouterErreur(CodesResultatDAL.INSERTION_UTILISATEUR);
 			throw businessException;
 		}
 	}

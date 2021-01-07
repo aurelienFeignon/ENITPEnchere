@@ -7,7 +7,7 @@ import java.util.List;
 import fr.eni.bo.Utilisateur;
 import fr.eni.utils.BusinessException;
 
-public interface UtilisateurDao {
+public interface UtilisateurDao extends GeneriqueDao<Utilisateur> {
 	
 	public void delete(int id) throws BusinessException;
 	public void insert(Utilisateur utilisateur) throws BusinessException;
