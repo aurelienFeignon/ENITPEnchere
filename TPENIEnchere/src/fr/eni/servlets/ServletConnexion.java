@@ -39,15 +39,18 @@ public class ServletConnexion extends HttpServlet {
 				//On crée un utilisateur qui ne doit pas être null si id et mdp present dans la bdd
 				Utilisateur utilisateur = new Utilisateur();
 				UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
+				BusinessException businessException= new BusinessException();
+				
 				try {
 					utilisateur = utilisateurManageur.VerifConnexion(identifiant, mdp);
+					businessException.getListeCodesErreur();
 				} catch (BusinessException e) {
 
 					e.printStackTrace();
 				}
 				
 				//On verifie leur existance dans la base de donnée
-				if(utilisateur!=null) {
+				if(!businessException.hasErreurs()|| utilisateur.getPseudo()!=null ) {
 					//On stocke dans une session
 					HttpSession session = request.getSession();
 					//session.setMaxInactiveInterval(30);   // session timeout si utilisateur inactif en secondes

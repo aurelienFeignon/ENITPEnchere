@@ -46,10 +46,13 @@ public Utilisateur VerifConnexion(String pseudo, String mdp) throws BusinessExce
 	BusinessException businessException= new BusinessException();
 	boolean connexion= false;
 	utilisateur=this.selectPseudo(pseudo);
-	if(!businessException.hasErreurs()) {
+	if(!utilisateur.getPseudo().isEmpty()) {
 		if(utilisateur.getMot_de_passe().equals(mdp)) {
 			connexion=true;
+			System.out.println(utilisateur);
 		}
+	}else {
+		businessException.ajouterErreur(CodeResultatBll.PSEUDO_INEXISTANT);
 	}
 	if(!connexion) {
 		businessException.ajouterErreur(CodeResultatBll.ECHEC_CONNEXION_MDP_INCORRECT);
