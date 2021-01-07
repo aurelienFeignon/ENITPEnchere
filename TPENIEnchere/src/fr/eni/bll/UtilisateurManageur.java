@@ -82,6 +82,11 @@ public void update(Utilisateur utilisateur, int id)throws BusinessException, SQL
 	}
 }
 
+private void delete(int id) throws BusinessException{
+	
+	this.utilisateurDao.delete(id);
+}
+
 private void validerPseudo(Utilisateur utilisateur, BusinessException businessException) throws BusinessException {
 	//Vérification de l'existence de Pseudo
 		List<Utilisateur> utilisateurs= new ArrayList<Utilisateur>();
