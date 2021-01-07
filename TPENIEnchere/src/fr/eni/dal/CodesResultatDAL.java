@@ -16,5 +16,6 @@ public class CodesResultatDAL {
 	public static final int INSERTION_ENCHERE = 10011;
 	public static final int SUPPRESSION_ARTICLE = 10012;
 	public static final int INSERTION_ARTICLE = 10013;
+	public static final int INSERTION_RETRAIT = 10014;
 
 }
