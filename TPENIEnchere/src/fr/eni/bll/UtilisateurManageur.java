@@ -82,7 +82,7 @@ public void update(Utilisateur utilisateur, int id)throws BusinessException, SQL
 	}
 }
 
-private void delete(int id) throws BusinessException{
+public void delete(int id) throws BusinessException{
 	
 	this.utilisateurDao.delete(id);
 }
