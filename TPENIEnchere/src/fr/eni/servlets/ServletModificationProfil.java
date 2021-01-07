@@ -36,33 +36,27 @@ public class ServletModificationProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mdp = request.getParameter("mdp");
 		String newMdp = request.getParameter("newMdp");
-		String confirmation = request.getParameter("confirmation");
+		String confirmation = request.getParameter("confirmation");		 
 		
-		//on récupère la session et l'id pour la passage en parametre de update
-		HttpSession session = request.getSession(true);  
-		// int id = (int)session.getAttribute("id");
-		 
-		
-		Utilisateur utilisateur = new Utilisateur();
-		 UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
-		 
+		Utilisateur utilisateur1 = new Utilisateur();
+		 UtilisateurManageur utilisateurManageur = new UtilisateurManageur();		 
 
 		//CAS 1 - pas de modification du mdp
 	        if(newMdp.isEmpty() && confirmation.isEmpty())
 	        {
-	        	utilisateur.setPseudo(request.getParameter("pseudo"));
-	 	        utilisateur.setNom(request.getParameter("nom"));
-	 	        utilisateur.setPrenom(request.getParameter("prenom"));
-	 	        utilisateur.setEmail(request.getParameter("email"));
-	 	        utilisateur.setTelephone(request.getParameter("telephone"));
-	 	        utilisateur.setRue(request.getParameter("rue"));
-	 	        utilisateur.setCode_postal(request.getParameter("codePostal"));
-	 	        utilisateur.setVille(request.getParameter("ville"));
-	 	        utilisateur.setMot_de_passe(request.getParameter("mdp"));
-	 	        utilisateur.setCredit(Double.parseDouble(request.getParameter("credit")));
+	        	utilisateur1.setPseudo(request.getParameter("pseudo"));
+	 	        utilisateur1.setNom(request.getParameter("nom"));
+	 	        utilisateur1.setPrenom(request.getParameter("prenom"));
+	 	        utilisateur1.setEmail(request.getParameter("email"));
+	 	        utilisateur1.setTelephone(request.getParameter("telephone"));
+	 	        utilisateur1.setRue(request.getParameter("rue"));
+	 	        utilisateur1.setCode_postal(request.getParameter("codePostal"));
+	 	        utilisateur1.setVille(request.getParameter("ville"));
+	 	        utilisateur1.setMot_de_passe(request.getParameter("mdp"));
+	 	        utilisateur1.setCredit(Double.parseDouble(request.getParameter("credit")));
 	 		   //update DAL
 		        try {
-					utilisateurManageur.update(utilisateur,Integer.parseInt(request.getParameter("id")));
+					utilisateurManageur.update(utilisateur1,Integer.parseInt(request.getParameter("id")));
 				} catch (BusinessException | SQLException e) {
 					e.printStackTrace();
 				}
@@ -70,8 +64,7 @@ public class ServletModificationProfil extends HttpServlet {
 		   //retour sur la page d'accueil + message de réussite
 		        String message ="Modification des informations réussie";
 	        	request.setAttribute("réussite", message);
-			RequestDispatcher rd = request.getRequestDispatcher("/PageAccueil");
-			rd.forward(request, response);
+	        	this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	 	        
 	        }
 	        
@@ -83,19 +76,18 @@ public class ServletModificationProfil extends HttpServlet {
 	      //vérification de la concordance entre le nouveau mot de passe et sa confirmation
 	        if(request.getParameter("newMdp").equals(request.getParameter("confirmation"))) {
 		 
-	        utilisateur.setPseudo(request.getParameter("pseudo"));
-	        utilisateur.setNom(request.getParameter("nom"));
-	        utilisateur.setPrenom(request.getParameter("prenom"));
-	        utilisateur.setEmail(request.getParameter("email"));
-	        utilisateur.setTelephone(request.getParameter("telephone"));
-	        utilisateur.setRue(request.getParameter("rue"));
-	        utilisateur.setCode_postal(request.getParameter("codePostal"));
-	        utilisateur.setVille(request.getParameter("ville"));
-	        utilisateur.setMot_de_passe(request.getParameter("newMdp"));
-	        
+	        utilisateur1.setPseudo(request.getParameter("pseudo"));
+	        utilisateur1.setNom(request.getParameter("nom"));
+	        utilisateur1.setPrenom(request.getParameter("prenom"));
+	        utilisateur1.setEmail(request.getParameter("email"));
+	        utilisateur1.setTelephone(request.getParameter("telephone"));
+	        utilisateur1.setRue(request.getParameter("rue"));
+	        utilisateur1.setCode_postal(request.getParameter("codePostal"));
+	        utilisateur1.setVille(request.getParameter("ville"));
+	        utilisateur1.setMot_de_passe(request.getParameter("newMdp"));
 	        
 	        try {
-	  					utilisateurManageur.update(utilisateur,Integer.parseInt(request.getParameter("id")));
+	  					utilisateurManageur.update(utilisateur1,Integer.parseInt(request.getParameter("id")));
 	  				} catch (BusinessException | SQLException e) {
 	  					e.printStackTrace();
 	  				}
