@@ -30,7 +30,6 @@ public class ServletVersAccueil extends HttpServlet {
 		try {
 			listeArticle = articleManager.selectAll();
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("listeArticle", listeArticle);
@@ -42,15 +41,11 @@ public class ServletVersAccueil extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//On recup les données
-		String recherche = request.getParameter("recherche"); //Il faut un select where %recherche%
+		String recherche = request.getParameter("recherche"); 
 		String categorie = request.getParameter("categorie");
 		String menu = request.getParameter("menu");
-		if(request.getParameter("encheresOuvertes") != null){
-			
-		}
-		if(request.getParameter("encheresEnCours") != null){
-			
-		}
+		//if(request.getParameter("encheresOuvertes") != null){
+
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	}
 	

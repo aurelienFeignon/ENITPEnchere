@@ -79,7 +79,15 @@
 <h5 class="card-title"><c:out value="${article.nom_article} "/></h5>
 <p class="card-text">Prix : <c:out value="${article.prix_initial} "/></p>
 <p class="card-text">Fin de l'enchère (a modifier) : <c:out value="${article.date_fin_encheres} "/></p>
+<c:choose>
+ <c:when test="${ !empty sessionScope.utilisateur }">
 <a href="#" class="btn btn-primary">Vendeur</a>
+ </c:when>
+<c:otherwise>
+<p class="card-text"> Vendeur : <c:out value="${article.no_utilisateur} "/></p>
+</c:otherwise>
+ </c:choose>
+
 </div>
 </div>
 </c:forEach>
