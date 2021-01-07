@@ -69,7 +69,8 @@
         </div> 
 </form>
 
-<form action="ServletSuppressionProfil" method="get">
+<form action="ServletSuppressionProfil" method="post">
+<input type="hidden" name="id" value="${sessionScope.utilisateur.no_utilisateur}">
 <input type="submit" value="Supprimer">
 </form>
 
