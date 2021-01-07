@@ -85,6 +85,7 @@ public class ServletModificationProfil extends HttpServlet {
 	        utilisateur1.setCode_postal(request.getParameter("codePostal"));
 	        utilisateur1.setVille(request.getParameter("ville"));
 	        utilisateur1.setMot_de_passe(request.getParameter("newMdp"));
+	        utilisateur1.setCredit(Double.parseDouble(request.getParameter("credit")));
 	        
 	        try {
 	  					utilisateurManageur.update(utilisateur1,Integer.parseInt(request.getParameter("id")));
