@@ -93,8 +93,10 @@ public class ServletModificationProfil extends HttpServlet {
 	  					utilisateurManageur.update(utilisateur1,Integer.parseInt(request.getParameter("id")));
 	  				} catch (BusinessException | SQLException e) {
 	  					e.printStackTrace();
-	  				}
-	  		        
+	  				}       
+	        //On deconnecte et reconnecte avec nouvelle modif de compte
+	        HttpSession session = request.getSession();
+			session.setAttribute("utilisateur", utilisateur1);
 	  		   //retour sur la page d'accueil + message de réussite
 	  		        String message ="Modification des informations et du mot de passe réussie";
 	  	        	request.setAttribute("réussiteMdp", message);
