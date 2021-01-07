@@ -23,7 +23,7 @@ public class ServletDeconnexion extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        /* Redirection vers le Site du Zéro ! */
+        /* Redirection vers la page d'acceuil! */
         this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
     }
 	

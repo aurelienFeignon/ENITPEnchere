@@ -60,7 +60,9 @@ public class ServletModificationProfil extends HttpServlet {
 				} catch (BusinessException | SQLException e) {
 					e.printStackTrace();
 				}
-		        
+		   //On deconnecte et reconnecte avec nouvelle modif de compte
+		        HttpSession session = request.getSession();
+				session.setAttribute("utilisateur", utilisateur1);
 		   //retour sur la page d'accueil + message de réussite
 		        String message ="Modification des informations réussie";
 	        	request.setAttribute("réussite", message);
