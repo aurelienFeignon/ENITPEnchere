@@ -66,4 +66,14 @@
     <url-pattern>/MonProfil</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+  	<servlet-name>NouvelleVente</servlet-name>
+  	<jsp-file>/WEB-INF/affichage/NouvelleVente.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>NouvelleVente</servlet-name>
+  <url-pattern>/NouvelleVente</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

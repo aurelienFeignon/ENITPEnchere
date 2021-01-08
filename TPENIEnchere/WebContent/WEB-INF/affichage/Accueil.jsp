@@ -8,7 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page d'acceuil</title>
-
 <!-- La librairie fontawesome pour les icones, fichier CSS et bootstrap -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
@@ -37,11 +36,11 @@
 <div class="mr-sm-3">
 	<label for="categorie">Categorie : </label>
 	<SELECT name="categorie">
-	<OPTION value="toutes">Toutes
-	<OPTION>Informatique
-	<OPTION>Ameublement
-	<OPTION>Vetement
-	<OPTION>Sport&Loisirs
+	<OPTION value="0">Toutes
+	<OPTION value="1">Informatique
+	<OPTION value="2">Ameublement
+	<OPTION value="3">Vetement
+	<OPTION value="4">Sport&Loisirs
 	</SELECT>
 </div>  
 <input class="btn btn-outline-success my-2 my-sm-2 col-sm-5" type="submit" value="Rechercher">

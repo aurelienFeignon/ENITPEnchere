@@ -42,11 +42,11 @@ public class ServletVersAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//On recup les données
 		String recherche = request.getParameter("recherche"); 
-		String categorie = request.getParameter("categorie");
+		int categorie = Integer.parseInt(request.getParameter("categorie"));
 		System.out.println(recherche);
 		System.out.println(categorie);
 		//Si rien dans la recherche
-		if(recherche == null && categorie == null){
+		if(recherche == null && categorie == 0){
 			//Afficher tous les articles de la base de données
 			articleManageur articleManager  = new articleManageur();
 			List<Article> listeArticle =null;
@@ -57,7 +57,7 @@ public class ServletVersAccueil extends HttpServlet {
 			}
 			request.setAttribute("listeArticle", listeArticle);
 		}
-		else if(recherche != null && categorie.equals("toutes")){ //Si seul le champs recherche est remplie
+		else if(recherche != null && categorie == 0){ //Si seul le champs recherche est remplie
 			articleManageur articleManager  = new articleManageur();
 			List<Article> listeArticle =null;
 			try {
@@ -67,10 +67,26 @@ public class ServletVersAccueil extends HttpServlet {
 			}
 			request.setAttribute("listeArticle", listeArticle);
 		}
-		//Si seul le champs categorie est remplie
-		
-		//Si les deux sont remplies
-		
+		else if(categorie != 0 && recherche.equals("")){ //Si seul le champs categorie est remplie
+			articleManageur articleManager  = new articleManageur();
+			List<Article> listeArticle =null;
+			try {
+				listeArticle = articleManager.selectCategorie(categorie);
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("listeArticle", listeArticle);
+		}
+		else if(categorie != 0 && recherche != null){ //Si les deux sont remplies
+			articleManageur articleManager  = new articleManageur();
+			List<Article> listeArticle =null;
+			try {
+				listeArticle = articleManager.selectCategorieRechercher(recherche, categorie);
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("listeArticle", listeArticle);
+		} //Ajouter un else vers une page d'erreur
 		//retour vers l'accueil
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	}
