@@ -27,7 +27,7 @@
 
 <section>
 <h2>Filtres</h2>
-<form action="#" method="post">
+<form action="Accueil" method="post">
 <div>
         <label for="recherche"> <i class="fas fa-search"></i></label>
         <input type="text" name="recherche" placeholder="Le nom de l'article contient">
@@ -41,7 +41,29 @@
 	<OPTION>Vetement
 	<OPTION>Sport&Loisirs
 	</SELECT>
-</div>    
+</div>  
+<c:if test="${ !empty sessionScope.utilisateur }">
+<div>
+	<input type="radio" id="achat" name="menu" value="achat">
+	<label for="achat">Achats</label><br>
+	<input type="checkbox" id="encheresOuvertes" name="encheresOuvertes">
+   <label for="encheresOuvertes">enchères ouvertes</label>
+	<input type="checkbox" id="encheresEnCours" name="encheresEnCours">
+   <label for="encheresEnCours">mes enchéres en cours</label>
+   <input type="checkbox" id="encheresRemportees" name="encheresRemportees">
+   <label for="encheresRemportees">mes enchères remportées</label>
+</div>
+<div>
+	<input type="radio" id="vente" name="menu" value="vente">
+	<label for="vente">Mes ventes</label><br>  
+	<input type="checkbox" id="ventesEnCours" name="ventesEnCours">
+   <label for="ventesEnCours">mes ventes en cours</label>
+	<input type="checkbox" id="ventesNonDebutees" name="ventesNonDebutees">
+   <label for="ventesNonDebutees">ventes non débutèes</label>
+   <input type="checkbox" id="venteTerminees" name="venteTerminees">
+   <label for="venteTerminees">ventes terminées</label>
+</div>	    	 
+</c:if>  
 <input type="submit" value="Rechercher">
 </form>
 </section>
@@ -50,6 +72,25 @@
 
 <section>
 
+<c:forEach items="${listeArticle}" var="article">
+<div class="card">
+<img class="card-img-top" style="height: 50px; width: 50px;" src="https://media.giphy.com/media/TKMZAVkrx2OFALkLKf/giphy.gif" alt="Card image cap">
+<div class="card-body">
+<h5 class="card-title"><c:out value="${article.nom_article} "/></h5>
+<p class="card-text">Prix : <c:out value="${article.prix_initial} "/></p>
+<p class="card-text">Fin de l'enchère (a modifier) : <c:out value="${article.date_fin_encheres} "/></p>
+<c:choose>
+ <c:when test="${ !empty sessionScope.utilisateur }">
+<a href="#" class="btn btn-primary">Vendeur</a>
+ </c:when>
+<c:otherwise>
+<p class="card-text"> Vendeur : <c:out value="${article.no_utilisateur} "/></p>
+</c:otherwise>
+ </c:choose>
+
+</div>
+</div>
+</c:forEach>
 
 </section>
 </main>
