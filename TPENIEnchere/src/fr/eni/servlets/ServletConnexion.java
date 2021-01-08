@@ -39,7 +39,7 @@ public class ServletConnexion extends HttpServlet {
 		String identifiant = request.getParameter("identifiant");
 		String mdp = request.getParameter("mdp");
 		//On crée un utilisateur qui ne doit pas être null si id et mdp present dans la bdd
-		Utilisateur utilisateur = new Utilisateur();
+		Utilisateur utilisateur = null;
 		UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
 		try {
 			utilisateur = utilisateurManageur.VerifConnexion(identifiant, mdp);
