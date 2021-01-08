@@ -30,8 +30,16 @@ public class RetraitManageur implements GeneriqueDao<Retraits> {
 
 	@Override
 	public void insert(Retraits retrait) throws BusinessException {
-		this.retraitDao.insert(retrait);
+		BusinessException businessException= new BusinessException();
+		this.validerRetrait(retrait, businessException);
+		if(!businessException.hasErreurs()) {
+			this.retraitDao.insert(retrait);
+		}
 	}
+
+	
+
+	
 
 	@Override
 	public Retraits selectId(int id) throws BusinessException {
@@ -48,7 +56,34 @@ public class RetraitManageur implements GeneriqueDao<Retraits> {
 
 	@Override
 	public void update(Retraits retrait, int id) throws BusinessException, SQLException {
-		this.retraitDao.update(retrait, id);
+		BusinessException businessException= new BusinessException();
+		this.validerRetrait(retrait, businessException);
+		if(!businessException.hasErreurs()) {
+			this.retraitDao.update(retrait, id);
+		}
 	}
 
+	private void validerRetrait(Retraits retrait, BusinessException businessException) {
+		this.validerRue(retrait, businessException);
+		this.validerCodePostal(retrait, businessException);
+		this.validerVille(retrait, businessException);
+	}
+
+	private void validerRue(Retraits retrait, BusinessException businessException) {
+		if(retrait.getRue()==null||retrait.getRue().length()>30) {
+			businessException.ajouterErreur(CodeResultatBll.RUE_INVALIDE);
+		}
+	}
+	//verifie que le numero de telephone est composé de 5 chiffres
+	private void validerCodePostal(Retraits retrait, BusinessException businessException) {
+		if(retrait.getCode_postal()==null||!(retrait.getCode_postal().length()==5)||!retrait.getCode_postal().matches("-?\\d+(\\.\\d+)?")) {
+			businessException.ajouterErreur(CodeResultatBll.CODE_POSTAL_INVALIDE);
+		}
+	}
+
+	private void validerVille(Retraits retrait, BusinessException businessException) {
+		if(retrait.getVille()==null||retrait.getVille().length()>30) {
+			businessException.ajouterErreur(CodeResultatBll.VILLE_INVALIDE);
+		}
+	}
 }

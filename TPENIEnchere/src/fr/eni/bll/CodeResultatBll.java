@@ -26,6 +26,8 @@ public class CodeResultatBll {
 	public static final int DATE_DEBUT_INFERIEUR_JOUR = 20021;
 	public static final int DESCRITPION_INVALIDE = 20022;
 	public static final int ARTICLE_NOM_INVALIDE = 20023;
+	public static final int NO_ARTICLE_INVALIDE = 20024;
+	public static final int MONTANT_INVALIDE = 20025;
 	
 
 }
