@@ -15,6 +15,17 @@ public class CodeResultatBll {
 	public static final int EMAIL_EXISTANT = 20010;
 	public static final int PSEUDO_EXISTANT = 20011;
 	public static final int ECHEC_CONNEXION_MDP_INCORRECT = 20012;
-	public static final int PSEUDO_INEXISTANT = 200013;
+	public static final int PSEUDO_INEXISTANT = 20013;
+	public static final int NO_RETRAIT_INVALIDE = 20014;
+	public static final int NO_CATEGORIE_INVALIDE = 20015;
+	public static final int NO_UTILISATEUR_INVALIDE = 20016;
+	public static final int PRIX_VENTE_INVALIDE = 20017;
+	public static final int PRIX_VENTE_INITIAL_INFERIEUR = 20018;
+	public static final int PRIX_VENTE_INITIAL_INVALIDE = 20019;
+	public static final int DATE_DEBUT_INFERIEUR = 20020;
+	public static final int DATE_DEBUT_INFERIEUR_JOUR = 20021;
+	public static final int DESCRITPION_INVALIDE = 20022;
+	public static final int ARTICLE_NOM_INVALIDE = 20023;
+	
 
 }

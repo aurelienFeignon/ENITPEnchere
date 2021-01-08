@@ -2,6 +2,7 @@ package fr.eni.bll;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.eni.bo.Article;
@@ -82,47 +83,63 @@ public class articleManageur implements GeneriqueDao<Article> {
 	}
 
 	private void validerNoRetrait(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
-		
+		if(article.getNo_retrait()<0) {
+			businessException.ajouterErreur(CodeResultatBll.NO_RETRAIT_INVALIDE);
+		}
 	}
 
 	private void validerNoCategorie(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
-		
+		if(article.getNo_categorie()<0) {
+			businessException.ajouterErreur(CodeResultatBll.NO_CATEGORIE_INVALIDE);
+		}
 	}
 
 	private void validerNoUtilisateur(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
-		
+		if(article.getNo_utilisateur()<0) {
+			businessException.ajouterErreur(CodeResultatBll.NO_UTILISATEUR_INVALIDE);
+		}
 	}
 
 	private void validerPrixVente(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
+		if(article.getPrix_vente()<0) {
+			businessException.ajouterErreur(CodeResultatBll.PRIX_VENTE_INVALIDE);
+		}
+		if(article.getPrix_initial()>article.getPrix_vente()) {
+			businessException.ajouterErreur(CodeResultatBll.PRIX_VENTE_INITIAL_INFERIEUR);
+		}
 		
 	}
 
 	private void validerPrixInitial(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
+		if(article.getPrix_initial()<0) {
+			businessException.ajouterErreur(CodeResultatBll.PRIX_VENTE_INITIAL_INVALIDE);
+		}
 		
 	}
 
 	private void validerFinEnchere(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
+		if(article.getDate_debut_encheres().after(article.getDate_fin_encheres())){
+			businessException.ajouterErreur(CodeResultatBll.DATE_DEBUT_INFERIEUR);
+		}
 		
 	}
 
 	private void validerDebutEnchere(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
-		
+		if(article.getDate_debut_encheres().before(new Date())) {
+			businessException.ajouterErreur(CodeResultatBll.DATE_DEBUT_INFERIEUR_JOUR);
+		}
 	}
 
 	private void validerDescription(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
+		if(article.getDescription().length()>300||article.getDescription()==null) {
+			businessException.ajouterErreur(CodeResultatBll.DESCRITPION_INVALIDE);
+		}
 		
 	}
 
 	private void validerNomArticle(Article article, BusinessException businessException) {
-		// TODO Auto-generated method stub
-		
+		if(article.getNom_article().length()>30) {
+			businessException.ajouterErreur(CodeResultatBll.ARTICLE_NOM_INVALIDE);
+		}
 	}
 }

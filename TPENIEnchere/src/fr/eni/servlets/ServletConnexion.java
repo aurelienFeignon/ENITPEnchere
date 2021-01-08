@@ -48,7 +48,7 @@ public class ServletConnexion extends HttpServlet {
 		
 		//On verifie leur existance dans la base de donnée
 
-		if(utilisateur.getPseudo()!= null & utilisateur.getMot_de_passe()!= null) {
+		if(utilisateur != null) {
 			//On stocke dans une session
 			HttpSession session = request.getSession();
 			//session.setMaxInactiveInterval(30);   // session timeout si utilisateur inactif en secondes
