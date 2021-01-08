@@ -75,6 +75,12 @@ public class articleManageur implements GeneriqueDao<Article> {
 		return articles;
 	}
 
+	public List<Article> selectAchatAll(int noUtilisateur) throws BusinessException {
+		List<Article> articles = new ArrayList<Article>();
+		articles = this.articleDao.selectAchatAll(noUtilisateur);
+		return articles;
+	}
+	
 	@Override
 	public void update(Article article, int id) throws BusinessException, SQLException {
 		
