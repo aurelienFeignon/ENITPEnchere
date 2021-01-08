@@ -12,7 +12,7 @@
 <title>Mon profil</title>
 </head>
 <body>
-<%@ include file="HeaderSansNavInclusion.jsp" %>
+<%@ include file="HeaderInclusion.jsp" %>
 <div class="container">
 <h1 class='text-center'>Mon Profil</h1>
 <main>

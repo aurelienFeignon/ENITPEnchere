@@ -21,38 +21,40 @@
 
 <main>
 
-<h1>Liste des Enchères</h1>
+<h1 class"row">Liste des Enchères</h1>
+
+<section >
+    <div class="container">
+        <form action="Accueil" method="post" novalidate="novalidate">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                            <input type="text" class="form-control search-slt" name="recherche" placeholder="nom de l'article">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                            <select class="form-control search-slt" id="exampleFormControlSelect1" name="categorie">
+                                <OPTION value="0">Toutes</OPTION>
+								<OPTION value="1">Informatique</OPTION>
+								<OPTION value="2">Ameublement</OPTION>
+								<OPTION value="3">Vetement</OPTION>
+								<OPTION value="4">Sport&Loisirs</OPTION>
+	
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                            <button type="submit" class="btn btn-danger wrn-btn">rechercher</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section> 
 
 <!-- Section permettant de selectionner les filtres -->
-<div class="container py-6 py-md-7 text-white z-index-20">
-        <div class="row">
-           <div class="search-bar mt-5 p-3 p-lg-1 pl-lg-4">
-              <form action="Accueil" method="post" >
-                <div class="row">
-                  <div class="col-lg-5 d-flex align-items-center form-group">
-                    <input class="form-control border-0 shadow-0" type="text" name="recherche"  placeholder="Que recherchez vous?">
-                  </div>
-                  <div class="col-lg-5 d-flex align-items-center form-group no-divider">
-                    <div class="dropdown bootstrap-select"><select class="selectpicker" name="categorie" data-style="btn-form-control"><option class="bs-title-option" value=""></option>
-                      <option value="0">Toutes</option>
-                      <option value="1">Informatique</option>
-                      <option value="2">Ameublement</option>
-                      <option value="3">Vetement</option>
-                      <option value="4">Sport&Loisirs</option>
-                    </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-form-control" data-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" title="Restaurants"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Restaurants</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                  </div>
-                  <div class="col-lg-2">
-                    <button class="btn btn-primary btn-block rounded-xl h-100" type="submit">Search </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-<div class>
 
-</div>
+
 <section class="row d-flex justify-content-center">
 
 <h2 class="col-sm-12 d-flex justify-content-center">Filtres</h2>
@@ -70,7 +72,9 @@
 	<OPTION value="3">Vetement
 	<OPTION value="4">Sport&Loisirs
 	</SELECT>
-</div>  
+</div> 
+
+
 <input class="btn btn-outline-success my-2 my-sm-2 col-sm-5" type="submit" value="Rechercher">
 </form>
 <form action="#" method="post" class="form-inline my-2 my-lg-0">
