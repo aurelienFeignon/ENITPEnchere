@@ -1,6 +1,8 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bo.Utilisateur;
+import fr.eni.message.LecteurMessage;
 import fr.eni.utils.BusinessException;
 
 
@@ -46,6 +49,14 @@ public class ServletConnexion extends HttpServlet {
 		} catch (BusinessException e) {
 
 			e.printStackTrace();
+			List<Integer> codeErreur= e.getListeCodesErreur();
+			List<String> messageErreur= new ArrayList<String>();
+			if(!codeErreur.isEmpty()) {
+				for(Integer code: codeErreur) {
+					messageErreur.add(LecteurMessage.getMessageErreur(code));
+				}
+				request.setAttribute("erreurs", messageErreur);
+			}
 		}
 		
 		//On verifie leur existance dans la base de donnée
