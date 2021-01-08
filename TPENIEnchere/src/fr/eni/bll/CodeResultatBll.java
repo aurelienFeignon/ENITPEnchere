@@ -28,6 +28,7 @@ public class CodeResultatBll {
 	public static final int ARTICLE_NOM_INVALIDE = 20023;
 	public static final int NO_ARTICLE_INVALIDE = 20024;
 	public static final int MONTANT_INVALIDE = 20025;
+	public static final int ENCHERE_INFERIEUR_PRIX_DE_VENTE = 20026;
 	
 
 }

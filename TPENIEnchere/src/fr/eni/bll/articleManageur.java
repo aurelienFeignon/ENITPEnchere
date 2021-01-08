@@ -93,6 +93,26 @@ public class articleManageur implements GeneriqueDao<Article> {
 		throw businessException;
 	}
 	}
+	
+	public void updatePrixVente(int id, int prixDeVente) throws BusinessException, SQLException {
+		
+	BusinessException businessException = new BusinessException();
+			
+	this.validerArticleModifPrixDeVente(id,prixDeVente, businessException);
+	if(!businessException.hasErreurs()) {
+		this.articleDao.updatePrixVente(prixDeVente, id);
+	}else {
+		throw businessException;
+	}
+	}
+
+	private void validerArticleModifPrixDeVente(int id, int prixDeVente, BusinessException businessException) throws BusinessException {
+		Article article= this.selectId(id);
+		if(prixDeVente< article.getPrix_vente()) {
+			businessException.ajouterErreur(CodeResultatBll.ENCHERE_INFERIEUR_PRIX_DE_VENTE);
+		}
+		
+	}
 
 	private void validerArticle(Article article, BusinessException businessException) {
 		this.validerNomArticle(article, businessException);

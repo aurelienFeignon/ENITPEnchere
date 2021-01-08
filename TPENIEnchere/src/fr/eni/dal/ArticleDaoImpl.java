@@ -21,6 +21,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like '%?%' and no_categorie=?";
 	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in ?";
 	private static final String UPDATE="update UTILISATEURS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
+	private static final String UPDATE_PRIX_DE_VENTE="update UTILISATEURS Set  prix_vente=? where no_article=?";
 
 	@Override
 	public void delete(int id) throws BusinessException {
@@ -218,6 +219,20 @@ public class ArticleDaoImpl implements ArticleDao {
 		e.printStackTrace();
 	}
 	}
+	
+	public void updatePrixVente(int id, int prixDeVente) throws BusinessException, SQLException {
+		
+		try(Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(UPDATE);
+			stm.setInt(1, prixDeVente);
+			stm.setInt(2, id);
+			stm.executeUpdate();
+					
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}}
 
 	private Article articleConstructeur(ResultSet rs) throws SQLException {
 		Article article= new Article();

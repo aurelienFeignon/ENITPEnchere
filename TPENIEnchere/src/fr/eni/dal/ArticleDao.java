@@ -29,4 +29,6 @@ public interface ArticleDao extends GeneriqueDao<Article>{
 	public List<Article> selectCategorieRechercher(String rechercher, int noCategorie)throws BusinessException;
 
 	public List<Article> selectAchatAll(int noUtilisateur) throws BusinessException;
+
+	public void updatePrixVente(int prixDeVente, int id)throws BusinessException, SQLException;
 }
