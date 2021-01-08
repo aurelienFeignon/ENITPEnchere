@@ -17,8 +17,8 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String SELECT_ID="select * from ARTICLES_VENDUS where no_article=?";
 	private static final String SELECT_ALL="select * from ARTICLES_VENDUS";
 	private static final String SELECT_NO_CATEGORIE="select * from ARTICLES_VENDUS where no_categorie=?";
-	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like '%?%'";
-	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like '%?%' and no_categorie=?";
+	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like %?%";
+	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like %?% and no_categorie=?";
 	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in ?";
 	private static final String UPDATE="update UTILISATEURS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
 	private static final String UPDATE_PRIX_DE_VENTE="update UTILISATEURS Set  prix_vente=? where no_article=?";
