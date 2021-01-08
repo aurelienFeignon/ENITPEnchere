@@ -1,6 +1,9 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bo.Utilisateur;
+import fr.eni.message.LecteurMessage;
 import fr.eni.utils.BusinessException;
 
 
@@ -57,6 +63,14 @@ public class ServletInscription extends HttpServlet {
 					} catch (BusinessException e) {
 						e.printStackTrace();
 						//String message = String.format("Echec de l'inscription. %s", );
+						List<Integer> codeErreur= e.getListeCodesErreur();
+						List<String> messageErreur= new ArrayList<String>();
+						if(!codeErreur.isEmpty()) {
+							for(Integer code: codeErreur) {
+								messageErreur.add(LecteurMessage.getMessageErreur(code));
+							}
+							request.setAttribute("erreurs", messageErreur);
+						}
 						String message = "Echec de l'inscription.";
 						request.setAttribute("erreur", message);
 						this.getServletContext().getRequestDispatcher("/PageInscription").forward(request, response);

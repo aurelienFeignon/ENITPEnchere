@@ -41,7 +41,7 @@
 		    <label for="prenom">Prénom</label>
 		    <input type="text" class="form-control" name="prenom" placeholder="Prénom">
 		  </div>
-		<div class="form-row">
+		
 		  <div class="form-group col-md-6">
 		    <label for="nom">Nom</label>
 		    <input type="text" class="form-control" name="nom" placeholder="Nom">
@@ -50,37 +50,51 @@
 		    <label for="telephone">Telephone</label>
 		    <input type="text" class="form-control" name="telephone" placeholder="Telephone">
 		  </div>
+		  <div class="form-group col-md-6">
+		      <label for="rue">Rue</label>
+		      <input type="text" class="form-control" name="rue" placeholder="Rue">
+	    </div>
 		</div>
 	  <div class="form-row">
+	    
 	    <div class="form-group col-md-6">
-	      <label for="rue">Rue</label>
-	      <input type="text" class="form-control" name="rue" placeholder="Rue">
-	    </div>
-	    <div class="form-group col-md-2">
 	      <label for="codePostal">Code Postal</label>
 	      <input type="text" class="form-control" name="codePostal" placeholder="Code Postal">
 	    </div>
-	    <div class="form-group col-md-4">
+	    <div class="form-group col-md-6">
 	      <label for="ville">Ville</label>
 	      <input type="text" class="form-control" name="ville" placeholder="Ville">
 	    </div>
 	    </div>
-	  <div class="form-group">
+	  <div class="form-group form-row">
 	    <div class="form-check">
 	      <input class="form-check-input" type="checkbox" id="gridCheck">
 	      <label class="form-check-label" for="gridCheck">
 	        Se souvenir de moi
 	      </label>
 	    </div>
-	  </div>
-	  <div class="align-self-center">
+	   </div>
+	  
+	  <div class="form-row align-self-center">
 		  <button type="submit" class="btn btn-primary">Créer</button>
 		  <button type="reset" class="btn btn-primary">Annuler</button>
 	   </div>
+	 
 </form>
 
-<c:out value="${ erreur }"></c:out>
-
+<div class="">
+<c:if test="${!empty erreurs}">
+			<div class="alert alert-danger row" role="alert">
+			  <strong>Erreur!</strong>
+			  <ul>
+			  	<c:forEach var="message" items="${erreurs}">
+			  		<li>${message}</li>
+			  	</c:forEach>
+			  </ul>
+			</div>
+		</c:if>
+</div>
+	
 <%@ include file="FooterInclusion.jsp" %>
 <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/popper.min.js"></script>
