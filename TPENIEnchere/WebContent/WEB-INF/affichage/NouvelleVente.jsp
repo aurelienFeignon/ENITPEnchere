@@ -15,9 +15,84 @@
 </head>
 <body>
 <%@ include file="HeaderInclusion.jsp" %>
-
+<main class=" d-flex justify-content-center flex-column">
+<div class="col-md-6 ">
 <img alt="Photo de l'article mis en vente." src="https://media.giphy.com/media/Zcc3ZeeZ5ztdw1oNSB/giphy.gif">
-
+</div>
+<div class="col-md-6 ">
+<form action="#" method="post">
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="article">Article</label>
+	      <input type="text" class="form-control" name="article" placeholder="article">
+	    </div>
+     </div>
+	  <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="description">Description</label>
+	      <textarea id="description" name="description" rows="4" cols="60"></textarea>
+	    </div>
+     </div>
+     <div class="mr-sm-3">
+	<label for="categorie">Categorie : </label>
+	<SELECT name="categorie">
+	<OPTION value="1">Informatique
+	<OPTION value="2">Ameublement
+	<OPTION value="3">Vetement
+	<OPTION value="4">Sport&Loisirs
+	</SELECT>
+	</div>  
+	 <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="photo">Photo de l'article</label>
+	      <input type="text" class="form-control" name="photo" value="uploader">
+	    </div>
+     </div>
+  		 <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="photo">Mise à prix</label>
+	      <input type="range" id="prixInitial" name="prixInitial" min="0" max="${utilisateur.credit }">
+	    </div>
+     </div>
+     <div class="control-group">
+        <label class="control-label input-label" for="debutEnchere">Début de l'enchère</label>
+        <div>
+            <input type="date" id="debutEnchere" name="debutEnchere" required/>
+            <i class="icon-time"></i>
+        </div>
+    </div>
+     <div class="control-group">
+        <label class="control-label input-label" for="finEnchere">Fin de l'enchère</label>
+        <div>
+            <input type="date" id="finEnchere" name="finEnchere" required/>
+            <i class="icon-time"></i>
+        </div>
+    </div>
+<fieldset>
+    <legend>Retrait</legend>
+ 	<div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="rue">Rue</label>
+	      <input type="text" class="form-control" name="rue" placeholder="${ utilisateur.rue }">
+	    </div>
+     </div>
+     <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="codePostal">Code postal</label>
+	      <input type="text" class="form-control" name="codePostal" placeholder="${ utilisateur.code_postal }">
+	    </div>
+     </div>
+          <div class="form-row">
+	    <div class="form-group col-md-6">
+	      <label for="ville">Ville</label>
+	      <input type="text" class="form-control" name="ville" placeholder="${ utilisateur.ville }">
+	    </div>
+     </div>
+</fieldset>
+     
+</form>
+</div>
+</main>
 <%@ include file="FooterInclusion.jsp" %>
     <!-- js et bootstrap --> 
 <script src="js/jquery-3.4.1.min.js"></script>
