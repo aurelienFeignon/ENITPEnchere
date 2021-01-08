@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<footer>
-	copyright-ENI-Encheres-2020 
+<footer class="text-center">
+	<p class="mt-5 mb-3 text-muted">&copy; ENI-Encheres-2021</p>
 </footer>
 
