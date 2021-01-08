@@ -43,8 +43,35 @@ public class ServletVersAccueil extends HttpServlet {
 		//On recup les données
 		String recherche = request.getParameter("recherche"); 
 		String categorie = request.getParameter("categorie");
-
-
+		System.out.println(recherche);
+		System.out.println(categorie);
+		//Si rien dans la recherche
+		if(recherche == null && categorie == null){
+			//Afficher tous les articles de la base de données
+			articleManageur articleManager  = new articleManageur();
+			List<Article> listeArticle =null;
+			try {
+				listeArticle = articleManager.selectAll();
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("listeArticle", listeArticle);
+		}
+		else if(recherche != null && categorie.equals("toutes")){ //Si seul le champs recherche est remplie
+			articleManageur articleManager  = new articleManageur();
+			List<Article> listeArticle =null;
+			try {
+				listeArticle = articleManager.selectRechercher(recherche);
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("listeArticle", listeArticle);
+		}
+		//Si seul le champs categorie est remplie
+		
+		//Si les deux sont remplies
+		
+		//retour vers l'accueil
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	}
 	

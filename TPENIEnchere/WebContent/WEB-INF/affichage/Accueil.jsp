@@ -37,14 +37,14 @@
 <div class="mr-sm-3">
 	<label for="categorie">Categorie : </label>
 	<SELECT name="categorie">
-	<OPTION>Toutes
+	<OPTION value="toutes">Toutes
 	<OPTION>Informatique
 	<OPTION>Ameublement
 	<OPTION>Vetement
 	<OPTION>Sport&Loisirs
 	</SELECT>
 </div>  
-<input class="btn btn-outline-success my-2 my-sm-0 col-sm-5" type="submit" value="Rechercher">
+<input class="btn btn-outline-success my-2 my-sm-2 col-sm-5" type="submit" value="Rechercher">
 </form>
 <form action="#" method="post" class="form-inline my-2 my-lg-0">
 <c:if test="${ !empty sessionScope.utilisateur }">
