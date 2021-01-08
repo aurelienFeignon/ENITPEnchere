@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.card{
+	width: 25rem;
+}
+.card-img-top{
+	height: 50px;
+	width: 50px;
+}
