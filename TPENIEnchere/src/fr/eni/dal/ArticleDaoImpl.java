@@ -19,6 +19,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String SELECT_NO_CATEGORIE="select * from ARTICLES_VENDUS where no_categorie=?";
 	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like ‘%?%";
 	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like ‘%?% and no_categorie=?";
+	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in ?";
 	private static final String UPDATE="update UTILISATEURS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
 
 	@Override
@@ -155,6 +156,25 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	public List<Article> selectAchatAll(int noUtilisateur) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_ACHAT_ALL);
+			stm.setInt(1, noUtilisateur);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
 	@Override
 	public List<Article> selectAll() throws BusinessException {
 		List<Article> articles= new ArrayList<Article>();
