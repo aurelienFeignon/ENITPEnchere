@@ -16,6 +16,9 @@ public class ArticleDaoImpl implements ArticleDao {
 			"values(?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ID="select * from ARTICLES_VENDUS where no_article=?";
 	private static final String SELECT_ALL="select * from ARTICLES_VENDUS";
+	private static final String SELECT_NO_CATEGORIE="select * from ARTICLES_VENDUS where no_categorie=?";
+	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like ‘%?%";
+	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like ‘%?% and no_categorie=?";
 	private static final String UPDATE="update UTILISATEURS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
 
 	@Override
@@ -92,6 +95,64 @@ public class ArticleDaoImpl implements ArticleDao {
 		}
 		
 		return article;
+	}
+	
+	public List<Article> selectCategorie(int noCategorie) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_NO_CATEGORIE);
+			stm.setInt(1, noCategorie);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	public List<Article> selectRechercher(String rechercher) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_RECHERCHER);
+			stm.setString(1, rechercher);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	public List<Article> selectCategorieRechercher(String rechercher, int noCategorie) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_RECHERCHER_CATEGORIE);
+			stm.setString(1, rechercher);
+			stm.setInt(2, noCategorie);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
 	}
 
 	@Override

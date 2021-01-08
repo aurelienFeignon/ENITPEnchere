@@ -48,7 +48,26 @@ public class articleManageur implements GeneriqueDao<Article> {
 		article= this.articleDao.selectId(id);
 		return article;
 	}
-
+	
+	
+	public List<Article> selectCategorie(int noCategorie) throws BusinessException {
+		List<Article> articles = new ArrayList<>();
+		articles= this.articleDao.selectCategorie(noCategorie);
+		return articles;
+	}
+	
+	public List<Article> selectRechercher(String rechercher) throws BusinessException {
+		List<Article> articles = new ArrayList<>();
+		articles= this.articleDao.selectRechercher(rechercher);
+		return articles;
+	}
+	
+	public List<Article> selectCategorieRechercher(String rechercher, int noCategorie) throws BusinessException {
+		List<Article> article = new ArrayList<>();
+		article= this.articleDao.selectCategorieRechercher(rechercher, noCategorie);
+		return article;
+	}
+	
 	@Override
 	public List<Article> selectAll() throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();

@@ -21,4 +21,10 @@ public interface ArticleDao extends GeneriqueDao<Article>{
 
 	@Override
 	public void update(Article t, int id) throws BusinessException, SQLException;
+
+	public List<Article> selectCategorie(int noCategorie)throws BusinessException;
+
+	public List<Article> selectRechercher(String rechercher)throws BusinessException;
+
+	public List<Article> selectCategorieRechercher(String rechercher, int noCategorie)throws BusinessException;
 }
