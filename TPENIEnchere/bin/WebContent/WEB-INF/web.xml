@@ -75,29 +75,5 @@
   <servlet-name>NouvelleVente</servlet-name>
   <url-pattern>/NouvelleVente</url-pattern>
   </servlet-mapping>
-  <servlet>
-  <servlet-name>AfficherDetailEnchere</servlet-name>
-    <jsp-file>/WEB-INF/affichage/AfficherDetailEnchere.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AfficherDetailEnchere</servlet-name>
-    <url-pattern>/DetailEnchere</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>EnchereRemportee</servlet-name>
-    <jsp-file>/WEB-INF/affichage/EnchereRemportee.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EnchereRemportee</servlet-name>
-    <url-pattern>/ResultatEnchere</url-pattern>
-    </servlet-mapping>
-      <servlet>
-    <servlet-name>VenteRemportee</servlet-name>
-    <jsp-file>/WEB-INF/affichage/VenteRemportee.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>VenteRemportee</servlet-name>
-    <url-pattern>/ResultatVente</url-pattern>
-  </servlet-mapping>
   
 </web-app>
