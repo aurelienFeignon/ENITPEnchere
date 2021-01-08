@@ -43,8 +43,7 @@ public class ServletVersAccueil extends HttpServlet {
 		//On recup les données
 		String recherche = request.getParameter("recherche"); 
 		String categorie = request.getParameter("categorie");
-		String menu = request.getParameter("menu");
-		//if(request.getParameter("encheresOuvertes") != null){
+
 
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	}
