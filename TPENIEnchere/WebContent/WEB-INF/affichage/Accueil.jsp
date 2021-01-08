@@ -24,7 +24,35 @@
 <h1>Liste des Enchères</h1>
 
 <!-- Section permettant de selectionner les filtres -->
+<div class="container py-6 py-md-7 text-white z-index-20">
+        <div class="row">
+           <div class="search-bar mt-5 p-3 p-lg-1 pl-lg-4">
+              <form action="Accueil" method="post" >
+                <div class="row">
+                  <div class="col-lg-5 d-flex align-items-center form-group">
+                    <input class="form-control border-0 shadow-0" type="text" name="recherche"  placeholder="Que recherchez vous?">
+                  </div>
+                  <div class="col-lg-5 d-flex align-items-center form-group no-divider">
+                    <div class="dropdown bootstrap-select"><select class="selectpicker" name="categorie" data-style="btn-form-control"><option class="bs-title-option" value=""></option>
+                      <option value="0">Toutes</option>
+                      <option value="1">Informatique</option>
+                      <option value="2">Ameublement</option>
+                      <option value="3">Vetement</option>
+                      <option value="4">Sport&Loisirs</option>
+                    </select><button type="button" tabindex="-1" class="btn dropdown-toggle btn-form-control" data-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" title="Restaurants"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Restaurants</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                  </div>
+                  <div class="col-lg-2">
+                    <button class="btn btn-primary btn-block rounded-xl h-100" type="submit">Search </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+<div class>
 
+</div>
 <section class="row d-flex justify-content-center">
 
 <h2 class="col-sm-12 d-flex justify-content-center">Filtres</h2>

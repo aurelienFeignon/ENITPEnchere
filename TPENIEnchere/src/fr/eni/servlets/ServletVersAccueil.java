@@ -42,11 +42,13 @@ public class ServletVersAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//On recup les données
 		String recherche = request.getParameter("recherche"); 
-		int categorie = Integer.parseInt(request.getParameter("categorie"));
-		System.out.println(recherche);
-		System.out.println(categorie);
+		Integer categorie=null;
+		if(request.getParameter("categorie")!=null) {
+		categorie = Integer.parseInt(request.getParameter("categorie"));
+		}
+		
 		//Si rien dans la recherche
-		if(recherche == null && categorie == 0){
+		if(recherche == null && categorie == null){
 			//Afficher tous les articles de la base de données
 			articleManageur articleManager  = new articleManageur();
 			List<Article> listeArticle =null;
