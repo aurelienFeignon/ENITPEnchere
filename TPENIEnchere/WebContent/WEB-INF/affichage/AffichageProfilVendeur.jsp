@@ -8,34 +8,39 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
-<link href="css/styleProfil.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
 <title>Informations du profil</title>
 </head>
 <body>
 <%@ include file="HeaderSansNavInclusion.jsp" %>
-<div class="container">
 
-<h1 class='text-center'>Informations du profil </h1>
 <main>
+<h1>Informations du profil </h1>
 
-<ul>
-<li>Pseudo : <c:out value="${utilisateur.pseudo}" /></li>
-<li>Nom : <c:out value="${utilisateur.nom}" /></li>
-<li>Prenom : <c:out value="${utilisateur.prenom}" /></li>
-<li>Email : <c:out value="${utilisateur.email}" /></li>
-<li>Téléphone : <c:out value="${utilisateur.telephone}" /></li>
-<li>Rue : <c:out value="${utilisateur.rue}" /></li>
-<li>Code postal : <c:out value="${utilisateur.code_postal}" /></li>
-<li>Ville : <c:out value="${utilisateur.ville}" /></li>
+<div class="container">
+		
+<ul class="list-group mt-5">
+<li class="list-group-item">Pseudo : <c:out value="${utilisateur.pseudo}" /></li>
+<li class="list-group-item">Nom : <c:out value="${utilisateur.nom}" /></li>
+<li class="list-group-item">Prenom : <c:out value="${utilisateur.prenom}" /></li>
+<li class="list-group-item">Email : <c:out value="${utilisateur.email}" /></li>
+<li class="list-group-item">Téléphone : <c:out value="${utilisateur.telephone}" /></li>
+<li class="list-group-item">Rue : <c:out value="${utilisateur.rue}" /></li>
+<li class="list-group-item">Code postal : <c:out value="${utilisateur.code_postal}" /></li>
+<li class="list-group-item">Ville : <c:out value="${utilisateur.ville}" /></li>
 </ul>
 
+</div>
 
 
 </main>
 
 <c:out value="${message}"></c:out>
-</div>
+
 <%@ include file="FooterInclusion.jsp" %>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap-4.4.1.js"></script>
 </body>
-<!-- commentaire test -->
+
 </html>

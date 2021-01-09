@@ -12,10 +12,12 @@ import org.apache.catalina.servlet4preview.RequestDispatcher;
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.RetraitManageur;
 import fr.eni.bll.UtilisateurManageur;
+import fr.eni.bll.articleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Categories;
 import fr.eni.bo.Encheres;
 import fr.eni.bo.Retraits;
+import fr.eni.bo.Utilisateur;
 
 
 @WebServlet("/ServletVersAfficherEnchere")
@@ -28,12 +30,12 @@ public class ServletVersAfficherEnchere extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//récupération de l'id article via clic précédent  
-		//id=??
+		int id;
 		//récupération infos article
 				Article article = new Article();
-				ArticleManageur articleVenduManageur = new ArticleManageur();
+				articleManageur articleManageur = new articleManageur();
 				
-				article = articleManageur.selectId(id)
+				article = articleManageur.selectId(id);
 						
 						request.setAttribute("article", article);
 						

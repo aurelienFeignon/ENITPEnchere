@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.RetraitManageur;
 import fr.eni.bll.UtilisateurManageur;
+import fr.eni.bll.articleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Encheres;
 import fr.eni.bo.Retraits;
+import fr.eni.bo.Utilisateur;
 
 
 @WebServlet("/ServletVersEnchereRemportee")
@@ -21,12 +23,13 @@ public class ServletVersEnchereRemportee extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//récupération id article via clic ?
+				int id;
 		//récupération infos article
 		Article article = new Article();
-		ArticleManageur articleVenduManageur = new ArticleManageur();
+		articleManageur articleManageur = new articleManageur();
 		
-		article = articleManageur.selectId(id)
+		article = articleManageur.selectId(id);
 				
 				request.setAttribute("article", article);
 		
@@ -37,7 +40,7 @@ public class ServletVersEnchereRemportee extends HttpServlet {
 		
 		request.setAttribute("retraits", retraits);
 		
-		//récupération infos vendeur
+		//récupération infos utilisateur (vendeur)
 		UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur = utilisateurManageur.selectId(article.getNo_utilisateur());
@@ -45,7 +48,7 @@ public class ServletVersEnchereRemportee extends HttpServlet {
 		request.setAttribute("utilisateur", utilisateur);
 		
 		
-		//récupération infos encherisseur
+		//récupération infos enchererisseur
 		EnchereManageur enchereManageur = new EnchereManageur();
 		Encheres encheres = new Encheres();
 		encheres = enchereManageur.selectId(article.getNo_enchere());

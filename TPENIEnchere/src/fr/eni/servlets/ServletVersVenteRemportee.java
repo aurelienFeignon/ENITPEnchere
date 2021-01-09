@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.RetraitManageur;
 import fr.eni.bll.UtilisateurManageur;
+import fr.eni.bll.articleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Encheres;
 import fr.eni.bo.Retraits;
+import fr.eni.bo.Utilisateur;
 
 
 @WebServlet("/ServletVersVenteRemportee")
@@ -22,11 +24,13 @@ public class ServletVersVenteRemportee extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//récupération id article via clic ?
+		int id;
 		//récupération infos article
 		Article article = new Article();
-		ArticleManageur articleVenduManageur = new ArticleManageur();
+		articleManageur articleManageur = new articleManageur();
 		
-		article = articleManageur.selectId(id)
+		article = articleManageur.selectId(id);
 				
 				request.setAttribute("article", article);
 		
@@ -52,7 +56,6 @@ public class ServletVersVenteRemportee extends HttpServlet {
 
 
 			
-			request.setAttribute("article", article);
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

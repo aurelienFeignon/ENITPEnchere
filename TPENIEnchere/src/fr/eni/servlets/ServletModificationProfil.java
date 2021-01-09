@@ -109,8 +109,8 @@ public class ServletModificationProfil extends HttpServlet {
 	        
 	        //message d'erreur et retour sur la page de modification
 	        else  {
-	        	String message ="Modification impossible. Le nouveau mot de passe est différent de la confirmation";
-	        	request.setAttribute("erreur", message);
+	        	String erreur ="Modification impossible. Le nouveau mot de passe est différent de la confirmation";
+	        	request.setAttribute("erreur", erreur);
 				this.getServletContext().getRequestDispatcher("/Modificationprofil").forward(request, response);
 	        }
 

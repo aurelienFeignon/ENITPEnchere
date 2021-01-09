@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
-<link href="css/styleProfil.css" rel="stylesheet">
+<link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 <title>Résultat vente</title>
 
 </head>
@@ -16,17 +16,24 @@
 <%@ include file="HeaderSansNavInclusion.jsp" %>
 <h1 class='text-center'>Vous avez remporté la vente</h1>
 <main>
+<div class="container">
+<ul class="list-group mt-5">
+<li class="list-group-item"><c:out value="${article.nomArticle}" /></li>
+<li class="list-group-item">Description : <c:out value="${article.description}" /></li>
+<li class="list-group-item">Meilleure offre : <c:out value="${article.prixVente}"  />
+<li class="list-group-item">Mise à prix : <c:out value="${article.miseAPrix}" /></li>
+<li class="list-group-item">Retrait : <c:out value="${retraits.rue}" /> <c:out value="${retraits.code_postal}" /> <c:out value="${retraits.ville}" /></li>
+<li class="list-group-item">Vendeur : <c:out value="${utilisateur.pseudo}" /></li>
+<li class="list-group-item mb-5">Téléphone : <c:out value="${utilisateur.telephone}" /></li>
 
-<ul>
-<li><c:out value="${article.nomArticle}" /></li>
-<li>Description : <c:out value="${article.description}" /></li>
-<li>Meilleure offre : <c:out value="${article.prixVente}"  />
-<li>Mise à prix : <c:out value="${article.miseAPrix}" /></li>
-<li>Retrait : <c:out value="${retraits.rue}" /> <c:out value="${retraits.code_postal}" /> <c:out value="${retraits.ville}" /></li>
-<li>Vendeur : <c:out value="${utilisateur.pseudo}" /></li>
-<li>Téléphone : <c:out value="${utilisateur.telephone}" /></li>
+<form action="PageAccueil" method="get" class="text-center">
+<input type="submit" value="Retour" name="retour" class="btn btn-primary r">
+</form>
 
 </main>
 <%@ include file="FooterInclusion.jsp" %>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap-4.4.1.js"></script>
 </body>
 </html>
