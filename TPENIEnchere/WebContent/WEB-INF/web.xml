@@ -9,37 +9,31 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-   <servlet>
-  	<servlet-name>Accueil</servlet-name>
-  	<jsp-file>/WEB-INF/affichage/Accueil.jsp</jsp-file>
+  <servlet>
+    <servlet-name>Accueil</servlet-name>
+    <jsp-file>/WEB-INF/affichage/Accueil.jsp</jsp-file>
   </servlet>
-  
   <servlet-mapping>
-  <servlet-name>Accueil</servlet-name>
-  <url-pattern>/PageAccueil</url-pattern>
+    <servlet-name>Accueil</servlet-name>
+    <url-pattern>/PageAccueil</url-pattern>
   </servlet-mapping>
-  
-     <servlet>
-  	<servlet-name>Connexion</servlet-name>
-  	<jsp-file>/WEB-INF/affichage/Connexion.jsp</jsp-file>
+  <servlet>
+    <servlet-name>Connexion</servlet-name>
+    <jsp-file>/WEB-INF/affichage/Connexion.jsp</jsp-file>
   </servlet>
-  
   <servlet-mapping>
-  <servlet-name>Connexion</servlet-name>
-  <url-pattern>/PageConnexion</url-pattern>
+    <servlet-name>Connexion</servlet-name>
+    <url-pattern>/PageConnexion</url-pattern>
   </servlet-mapping>
-  
-       <servlet>
-  	<servlet-name>Inscription</servlet-name>
-  	<jsp-file>/WEB-INF/affichage/Inscription.jsp</jsp-file>
+  <servlet>
+    <servlet-name>Inscription</servlet-name>
+    <jsp-file>/WEB-INF/affichage/Inscription.jsp</jsp-file>
   </servlet>
-  
   <servlet-mapping>
-  <servlet-name>Inscription</servlet-name>
-  <url-pattern>/PageInscription</url-pattern>
+    <servlet-name>Inscription</servlet-name>
+    <url-pattern>/PageInscription</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>AffichageProfilVendeur</servlet-name>
     <jsp-file>/WEB-INF/affichage/AffichageProfilVendeur.jsp</jsp-file>
   </servlet>
@@ -47,7 +41,6 @@
     <servlet-name>AffichageProfilVendeur</servlet-name>
     <url-pattern>/PageProfil</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>ModificationProfil</servlet-name>
     <jsp-file>/WEB-INF/affichage/ModificationProfil.jsp</jsp-file>
@@ -56,8 +49,7 @@
     <servlet-name>ModificationProfil</servlet-name>
     <url-pattern>/ModificationProfil</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <servlet-name>MonProfil</servlet-name>
     <jsp-file>/WEB-INF/affichage/MonProfil.jsp</jsp-file>
   </servlet>
@@ -65,18 +57,16 @@
     <servlet-name>MonProfil</servlet-name>
     <url-pattern>/MonProfil</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
-  	<servlet-name>NouvelleVente</servlet-name>
-  	<jsp-file>/WEB-INF/affichage/NouvelleVente.jsp</jsp-file>
+  <servlet>
+    <servlet-name>NouvelleVente</servlet-name>
+    <jsp-file>/WEB-INF/affichage/NouvelleVente.jsp</jsp-file>
   </servlet>
-  
   <servlet-mapping>
-  <servlet-name>NouvelleVente</servlet-name>
-  <url-pattern>/NouvelleVente</url-pattern>
+    <servlet-name>NouvelleVente</servlet-name>
+    <url-pattern>/NouvelleVente</url-pattern>
   </servlet-mapping>
   <servlet>
-  <servlet-name>AfficherDetailEnchere</servlet-name>
+    <servlet-name>AfficherDetailEnchere</servlet-name>
     <jsp-file>/WEB-INF/affichage/AfficherDetailEnchere.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
@@ -90,8 +80,8 @@
   <servlet-mapping>
     <servlet-name>EnchereRemportee</servlet-name>
     <url-pattern>/ResultatEnchere</url-pattern>
-    </servlet-mapping>
-      <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>VenteRemportee</servlet-name>
     <jsp-file>/WEB-INF/affichage/VenteRemportee.jsp</jsp-file>
   </servlet>
@@ -99,5 +89,12 @@
     <servlet-name>VenteRemportee</servlet-name>
     <url-pattern>/ResultatVente</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>ModificationEnchere</servlet-name>
+    <jsp-file>/WEB-INF/affichage/ModificationEnchere.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificationEnchere</servlet-name>
+    <url-pattern>/ModificationEnchere</url-pattern>
+  </servlet-mapping>
 </web-app>
