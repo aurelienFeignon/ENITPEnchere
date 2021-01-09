@@ -84,6 +84,38 @@ public void update(Utilisateur utilisateur, int id)throws BusinessException, SQL
 	}
 }
 
+public void enleveCredit(Utilisateur utilisateur, int debit) throws BusinessException, SQLException{
+	BusinessException businessException = new BusinessException();
+	double credit= utilisateur.getCredit()-debit;
+	utilisateur.setCredit(credit);
+this.validerUtilisateur(utilisateur, businessException);
+	
+	if(!businessException.hasErreurs()) {
+		
+			this.utilisateurDao.updateCredit(utilisateur);
+		
+	}else {
+		throw businessException;
+	}
+	
+}
+
+public void AjouterCredit(Utilisateur utilisateur, int debit) throws BusinessException, SQLException{
+	BusinessException businessException = new BusinessException();
+	double credit= utilisateur.getCredit()+debit;
+	utilisateur.setCredit(credit);
+this.validerUtilisateur(utilisateur, businessException);
+	
+	if(!businessException.hasErreurs()) {
+		
+			this.utilisateurDao.updateCredit(utilisateur);
+		
+	}else {
+		throw businessException;
+	}
+	
+}
+
 public void delete(int id) throws BusinessException{
 	
 	this.utilisateurDao.delete(id);

@@ -20,7 +20,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	private static final String SELECT_PSEUDO="select * from UTILISATEURS where pseudo=? or email=?";
 	private static final String SELECT_ALL="select * from UTILISATEURS";
 	private static final String UPDATE="update UTILISATEURS Set pseudo= ?,nom=?, prenom=?, email=?, telephone=?,rue=?, code_postal=?,ville=?, mot_de_passe=?, credit=? where no_utilisateur=?";
-	
+	private static final String UPDATE_CREDIT="update UTILISATEURS credit=? where no_utilisateur=?";
 	@Override
 	public void delete(int id) throws BusinessException {
 		try(Connection cnx= ConnectionProvider.getConnection()){
@@ -177,6 +177,25 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			stm.setString(9, utilisateur.getMot_de_passe());
 			stm.setDouble(10, utilisateur.getCredit());
 			stm.setInt(11, id);
+			stm.executeUpdate();
+					
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+	public void updateCredit(Utilisateur utilisateur) throws BusinessException{
+		if(utilisateur==null)
+		{
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.UPDATE_OBJET_NULL);
+			throw businessException;
+		}
+		try(Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(UPDATE_CREDIT);
+			stm.setDouble(1, utilisateur.getCredit());
+			stm.setInt(2, utilisateur.getNo_utilisateur());
 			stm.executeUpdate();
 					
 		

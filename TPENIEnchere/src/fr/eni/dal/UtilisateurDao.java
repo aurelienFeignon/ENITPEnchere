@@ -15,4 +15,5 @@ public interface UtilisateurDao extends GeneriqueDao<Utilisateur> {
 	public Utilisateur selectPseudo(String pseudo) throws BusinessException;
 	public List<Utilisateur> selectAll() throws BusinessException;
 	public void update(Utilisateur utilisateur, int id) throws BusinessException, SQLException;
+	public void updateCredit(Utilisateur utilisateur)throws BusinessException, SQLException;
 }
