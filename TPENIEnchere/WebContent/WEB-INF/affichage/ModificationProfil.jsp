@@ -18,27 +18,27 @@
 <main>
 
 <form action="ServletModificationProfil" method="post">
-
+<!--  COMMENTAIRE TEST -->
 <div class="form-row">
     <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="pseudo">Pseudo : </label>
-        <input type="text" class="form-control" name="pseudo" value="${sessionScope.utilisateur.pseudo}">
+        <input type="text" class="form-control col-auto" name="pseudo" value="${sessionScope.utilisateur.pseudo}">
     </div>
         <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="nom">Nom : </label>
-        <input type="text" class="form-control" name="nom" value="${sessionScope.utilisateur.nom}">
+        <input type="text" class="form-control col-auto" name="nom" value="${sessionScope.utilisateur.nom}">
     </div>
  </div>
     <br/>
  <div class="form-row">
     <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="prenom">Prénom : </label>
-        <input type="text" class="form-control" name="prenom" value="${sessionScope.utilisateur.prenom}">
+        <input type="text" class="form-control col-auto" name="prenom" value="${sessionScope.utilisateur.prenom}">
     </div>
     <br/>
             <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="email">Email : </label>
-        <input type="text" class="form-control" name="email" value="${sessionScope.utilisateur.email}">
+        <input type="text" class="form-control col-auto" name="email" value="${sessionScope.utilisateur.email}">
     </div> 
  </div>
        <br/>
@@ -46,12 +46,12 @@
  <div class="form-row">
     <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="telephone">Teléphone : </label>
-        <input type="text" class="form-control" name="telephone" value="${sessionScope.utilisateur.telephone}">
+        <input type="text" class="form-control col-auto" name="telephone" value="${sessionScope.utilisateur.telephone}">
     </div>
     <br/>
            <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="rue">Rue : </label>
-        <input type="text" class="form-control" name="rue" value="${sessionScope.utilisateur.rue}">
+        <input type="text" class="form-control col-auto" name="rue" value="${sessionScope.utilisateur.rue}">
     </div>
  </div>
     <br/>
@@ -59,12 +59,12 @@
  <div class="form-row">
     <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="codePostal">Code Postal : </label>
-        <input type="text" class="form-control" name="codePostal" value="${sessionScope.utilisateur.code_postal}">
+        <input type="text" class="form-control col-auto" name="codePostal" value="${sessionScope.utilisateur.code_postal}">
     </div>
     <br/>
         <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="ville">Ville : </label>
-        <input type="text" class="form-control" name="ville" value="${sessionScope.utilisateur.ville}">
+        <input type="text" class="form-control col-auto" name="ville" value="${sessionScope.utilisateur.ville}">
     </div>
  </div>
   <br/>
@@ -72,7 +72,7 @@
   <div class="form-row">
     <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="mdp">Mot de passe actuel : </label>
-        <input type="text" class="form-control" name="mdp" value="${sessionScope.utilisateur.mot_de_passe}">
+        <input type="text" class="form-control col-auto" name="mdp" value="${sessionScope.utilisateur.mot_de_passe}">
     </div>
     
  </div>
@@ -81,12 +81,12 @@
   <div class="form-row">
       <div class="form-inline col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="newMdp">Nouveau mot de passe : </label>
-        <input type="text" class="form-control" name="newMdp">
+        <input type="text" class="form-control col-auto" name="newMdp">
     </div>
    
     <div>
     <label for="confirmation">Confirmation : </label>
-    <input type="text" class="form-control" name="confirmation">
+    <input type="text" class="form-control col-auto" name="confirmation">
      </div> 
      
   </div>
