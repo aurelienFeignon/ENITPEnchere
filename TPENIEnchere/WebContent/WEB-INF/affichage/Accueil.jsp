@@ -24,6 +24,7 @@
 <h1 class"row">Liste des Enchères</h1>
 
 <section >
+<h2 class="col-sm-12 d-flex justify-content-center">Filtres</h2>
     <div class="container">
         <form action="Accueil" method="post" novalidate="novalidate">
             <div class="row">
@@ -52,31 +53,8 @@
     </div>
 </section> 
 
-<!-- Section permettant de selectionner les filtres -->
-
-
+<!-- Section permettant de selectionner plus finements les filtres -->
 <section class="row d-flex justify-content-center">
-
-<h2 class="col-sm-12 d-flex justify-content-center">Filtres</h2>
-<form action="Accueil" method="post" class="form-inline my-2 my-lg-0">
-<div>
-        <label for="recherche"> <i class="fas fa-search"></i></label>
-        <input class="form-control mr-sm-3" aria-label="Search" type="text" name="recherche" placeholder="Le nom de l'article contient">
-</div>
-<div class="mr-sm-3">
-	<label for="categorie">Categorie : </label>
-	<SELECT name="categorie">
-	<OPTION value="0">Toutes
-	<OPTION value="1">Informatique
-	<OPTION value="2">Ameublement
-	<OPTION value="3">Vetement
-	<OPTION value="4">Sport&Loisirs
-	</SELECT>
-</div> 
-
-
-<input class="btn btn-outline-success my-2 my-sm-2 col-sm-5" type="submit" value="Rechercher">
-</form>
 <form action="#" method="post" class="form-inline my-2 my-lg-0">
 <c:if test="${ !empty sessionScope.utilisateur }">
 <div class="col-sm-6" >

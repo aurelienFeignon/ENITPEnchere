@@ -33,7 +33,7 @@ public class ServletConnexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		response.sendRedirect("Connexion");
+		this.getServletContext().getRequestDispatcher("/Connexion").forward(request, response);
 	}
 
 	/**

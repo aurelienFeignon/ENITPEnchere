@@ -25,6 +25,9 @@
 				        <a class="nav-link" href="#">Enchères</a>
 				      </li>
 				      <li class="nav-item">
+				        <a class="nav-link" href="Vente">Vendre un article</a>
+				      </li>
+				      <li class="nav-item">
 				        <a class="nav-link" href="MonProfil">Mon profil</a>
 				      </li>
 						<li class="nav-item">
