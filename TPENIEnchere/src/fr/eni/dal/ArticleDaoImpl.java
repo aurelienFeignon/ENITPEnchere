@@ -1,10 +1,12 @@
 package fr.eni.dal;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.eni.bo.Article;
@@ -12,16 +14,18 @@ import fr.eni.utils.BusinessException;
 
 public class ArticleDaoImpl implements ArticleDao {
 	private static final String DELETE="delete from ARTICLES_VENDUS where no_article=?";
-	private static final String INSERT="insert into ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait ) "+
-			"values(?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT="insert into ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait, etatVente) "+
+			"values(?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ID="select * from ARTICLES_VENDUS where no_article=?";
 	private static final String SELECT_ALL="select * from ARTICLES_VENDUS";
-	private static final String SELECT_NO_CATEGORIE="select * from ARTICLES_VENDUS where no_categorie=?";
-	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' ";
-	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and no_categorie=?";
-	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in ?";
-	private static final String UPDATE="update UTILISATEURS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
-	private static final String UPDATE_PRIX_DE_VENTE="update UTILISATEURS Set  prix_vente=? where no_article=?";
+	private static final String SELECT_NO_CATEGORIE="select * from ARTICLES_VENDUS where no_categorie=? and etatVente=0";
+	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and etatVente=0";
+	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and no_categorie=? and etatVente=0";
+	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in ? and etatVente=0";
+	private static final String UPDATE="update ARTICLES_VENDUS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
+	private static final String UPDATE_PRIX_DE_VENTE="update ARTICLES_VENDUS Set  prix_vente=? where no_article=?";
+	private static final String UPDATE_ETAT_VENTE="update ARTICLES_VENDUS Set  etatVente=? where no_article=?";
+	
 
 	@Override
 	public void delete(int id) throws BusinessException {
@@ -57,6 +61,7 @@ public class ArticleDaoImpl implements ArticleDao {
 			stm.setInt(7, article.getNo_utilisateur());
 			stm.setInt(8, article.getNo_categorie());
 			stm.setInt(9, article.getNo_retrait());
+			stm.setBoolean(10, article.getEtatVente());
 			
 			stm.executeUpdate();
 			ResultSet rs = stm.getGeneratedKeys();
@@ -179,11 +184,15 @@ public class ArticleDaoImpl implements ArticleDao {
 	@Override
 	public List<Article> selectAll() throws BusinessException {
 		List<Article> articles= new ArrayList<Article>();
+		Article articleCourant= null;
 		try(Connection cnx= ConnectionProvider.getConnection()){
 			PreparedStatement stm = cnx.prepareStatement(SELECT_ALL);
 			ResultSet rs= stm.executeQuery();
 			while(rs.next()) {
-				articles.add(this.articleConstructeur(rs));
+				articleCourant=this.articleConstructeur(rs);
+				if(!articleCourant.getEtatVente()) {
+				articles.add(articleCourant);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -223,7 +232,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	public void updatePrixVente(int id, int prixDeVente) throws BusinessException, SQLException {
 		
 		try(Connection cnx= ConnectionProvider.getConnection()){
-			PreparedStatement stm = cnx.prepareStatement(UPDATE);
+			PreparedStatement stm = cnx.prepareStatement(UPDATE_PRIX_DE_VENTE);
 			stm.setInt(1, prixDeVente);
 			stm.setInt(2, id);
 			stm.executeUpdate();
@@ -234,7 +243,20 @@ public class ArticleDaoImpl implements ArticleDao {
 		e.printStackTrace();
 	}}
 
-	private Article articleConstructeur(ResultSet rs) throws SQLException {
+public void updateEtatVente(Article article) throws BusinessException, SQLException {
+		
+		try(Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(UPDATE_ETAT_VENTE);
+			stm.setBoolean(1, true);
+			stm.setInt(2, article.getNo_article());
+			stm.executeUpdate();
+					
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}}
+	private Article articleConstructeur(ResultSet rs) throws SQLException, BusinessException {
 		Article article= new Article();
 		article.setNo_article(rs.getInt("no_article"));
 		article.setNom_article(rs.getString("nom_article"));
@@ -246,6 +268,11 @@ public class ArticleDaoImpl implements ArticleDao {
 		article.setNo_utilisateur(rs.getInt("no_utilisateur"));
 		article.setNo_categorie(rs.getInt("no_categorie"));
 		article.setNo_retrait(rs.getInt("no_retrait"));
+		article.setEtatVente(rs.getBoolean("etatVente"));
+		if(article.getDate_fin_encheres().before(new Date())) {
+			this.updateEtatVente(article);
+			article.setEtatVente(true);
+		}
 		return article;
 	}
 }

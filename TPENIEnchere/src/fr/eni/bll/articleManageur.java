@@ -34,6 +34,7 @@ public class articleManageur implements GeneriqueDao<Article> {
 		
 		this.validerArticle(article, businessException);
 		if(!businessException.hasErreurs()) {
+		article.setEtatVente(false);
 		this.articleDao.insert(article);
 		}else {
 			throw businessException;
@@ -105,6 +106,8 @@ public class articleManageur implements GeneriqueDao<Article> {
 		throw businessException;
 	}
 	}
+	
+
 
 	private void validerArticleModifPrixDeVente(int id, int prixDeVente, BusinessException businessException) throws BusinessException {
 		Article article= this.selectId(id);

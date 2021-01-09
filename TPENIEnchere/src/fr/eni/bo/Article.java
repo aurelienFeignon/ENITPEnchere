@@ -13,6 +13,7 @@ int prix_vente;
 int no_utilisateur;
 int no_categorie;
 int no_retrait;
+boolean etatVente;
 /**
  * 
  */
@@ -104,6 +105,12 @@ public int getNo_retrait() {
 }
 public void setNo_retrait(int no_retrait) {
 	this.no_retrait = no_retrait;
+}
+public boolean getEtatVente() {
+	return etatVente;
+}
+public void setEtatVente(boolean etatVente) {
+	this.etatVente = etatVente;
 }
 
 
