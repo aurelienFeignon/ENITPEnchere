@@ -15,12 +15,12 @@
 </head>
 <body>
 <%@ include file="HeaderInclusion.jsp" %>
-<main class=" d-flex justify-content-center flex-column">
-<div class="col-md-6 ">
+<main class="justify-content-center">
+<div class="col-md-6">
 <img alt="Photo de l'article mis en vente." src="https://media.giphy.com/media/Zcc3ZeeZ5ztdw1oNSB/giphy.gif">
 </div>
-<div class="col-md-6 ">
-<form action="#" method="post">
+<div class="col-md-6">
+<form action="Vente" method="post">
 	  <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="article">Article</label>
@@ -51,7 +51,7 @@
   		 <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="photo">Mise à prix</label>
-	      <input type="range" id="prixInitial" name="prixInitial" min="0" max="${utilisateur.credit }">
+	      <input type="number" id="prixInitial" name="prixInitial" min="0" max="${utilisateur.credit }">
 	    </div>
      </div>
      <div class="control-group">
@@ -73,25 +73,30 @@
  	<div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="rue">Rue</label>
-	      <input type="text" class="form-control" name="rue" placeholder="${ utilisateur.rue }">
+	      <input type="text" class="form-control" name="rue" value="${ utilisateur.rue }">
 	    </div>
      </div>
      <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="codePostal">Code postal</label>
-	      <input type="text" class="form-control" name="codePostal" placeholder="${ utilisateur.code_postal }">
+	      <input type="text" class="form-control" name="codePostal" value="${ utilisateur.code_postal }">
 	    </div>
      </div>
           <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="ville">Ville</label>
-	      <input type="text" class="form-control" name="ville" placeholder="${ utilisateur.ville }">
+	      <input type="text" class="form-control" name="ville" value="${ utilisateur.ville }">
 	    </div>
      </div>
 </fieldset>
-     
+     <div class="form-row align-self-center">
+     <input type="hidden" name="numeroUtilisateur" value="${ utilisateur.no_utilisateur }">
+		  <button type="submit" class="btn btn-primary">Enregistrer</button>
+		  <button type="reset" class="btn btn-primary">Annuler</button>
+	   </div>
 </form>
 </div>
+<p> ${ erreurs } </p>
 </main>
 <%@ include file="FooterInclusion.jsp" %>
     <!-- js et bootstrap --> 

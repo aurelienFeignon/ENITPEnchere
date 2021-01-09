@@ -1,6 +1,7 @@
 package fr.eni.bll;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -173,10 +174,12 @@ public class articleManageur  {
 	}
 
 	private void validerDebutEnchere(Article article, BusinessException businessException) {
-		if(!new Date().after(article.getDate_debut_encheres())) {
+		LocalDate localDate = LocalDate.now().minusDays(1);
+		if( article.getDate_debut_encheres().equals(new Date()) || article.getDate_debut_encheres().toLocalDate().isBefore(localDate)) {
 			businessException.ajouterErreur(CodeResultatBll.DATE_DEBUT_INFERIEUR_JOUR);
-		}
-	}
+		} 
+	} 
+
 
 	private void validerDescription(Article article, BusinessException businessException) {
 		if(article.getDescription().length()>300||article.getDescription()==null) {
