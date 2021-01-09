@@ -35,7 +35,7 @@ public class RetraitDaoImpl implements RetraitDao {
 	}
 
 	@Override
-	public void insert(Retraits retrait) throws BusinessException {
+	public Retraits insert(Retraits retrait) throws BusinessException {
 		if(retrait==null)
 		{
 			BusinessException businessException = new BusinessException();
@@ -62,6 +62,7 @@ public class RetraitDaoImpl implements RetraitDao {
 			businessException.ajouterErreur(CodesResultatDAL.INSERTION_RETRAIT);
 			throw businessException;
 		}
+		return retrait;
 
 	}
 

@@ -6,11 +6,11 @@ import java.util.List;
 
 import fr.eni.bo.Retraits;
 import fr.eni.dal.DAOFactory;
-import fr.eni.dal.GeneriqueDao;
+
 import fr.eni.dal.RetraitDao;
 import fr.eni.utils.BusinessException;
 
-public class RetraitManageur implements GeneriqueDao<Retraits> {
+public class RetraitManageur  {
 	private RetraitDao retraitDao;
 	
 	
@@ -22,39 +22,40 @@ public class RetraitManageur implements GeneriqueDao<Retraits> {
 		this.retraitDao= DAOFactory.getRetrait();
 	}
 
-	@Override
+	
 	public void delete(int id) throws BusinessException {
 		
 		this.retraitDao.delete(id);
 	}
 
-	@Override
-	public void insert(Retraits retrait) throws BusinessException {
+	
+	public Retraits insert(Retraits retrait) throws BusinessException {
 		BusinessException businessException= new BusinessException();
 		this.validerRetrait(retrait, businessException);
 		if(!businessException.hasErreurs()) {
-			this.retraitDao.insert(retrait);
+			retrait=this.retraitDao.insert(retrait);
 		}
+		return retrait;
 	}
 
 	
 
 	
 
-	@Override
+	
 	public Retraits selectId(int id) throws BusinessException {
 		Retraits retrait= this.retraitDao.selectId(id);
 		return retrait;
 	}
 
-	@Override
+	
 	public List<Retraits> selectAll() throws BusinessException {
 		List<Retraits> retraits= new ArrayList<Retraits>();
 		retraits= this.retraitDao.selectAll();
 		return retraits;
 	}
 
-	@Override
+	
 	public void update(Retraits retrait, int id) throws BusinessException, SQLException {
 		BusinessException businessException= new BusinessException();
 		this.validerRetrait(retrait, businessException);

@@ -6,12 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import fr.eni.bo.Article;
+import fr.eni.bo.Retraits;
 import fr.eni.dal.ArticleDao;
 import fr.eni.dal.DAOFactory;
-import fr.eni.dal.GeneriqueDao;
+
 import fr.eni.utils.BusinessException;
 
-public class articleManageur implements GeneriqueDao<Article> {
+public class articleManageur  {
 	private ArticleDao articleDao;
 	
 
@@ -22,19 +23,19 @@ public class articleManageur implements GeneriqueDao<Article> {
 		this.articleDao= DAOFactory.getArticle();
 	}
 
-	@Override
 	public void delete(int id) throws BusinessException {
 		this.articleDao.delete(id);
 		
 	}
 
-	@Override
-	public void insert(Article article) throws BusinessException {
+	public void insert(Article article, Retraits retrait) throws BusinessException {
 		BusinessException businessException = new BusinessException();
-		
+		RetraitManageur retraitManageur= new RetraitManageur();
+		retrait = retraitManageur.insert(retrait);
 		this.validerArticle(article, businessException);
 		if(!businessException.hasErreurs()) {
 		article.setEtatVente(false);
+		article.setNo_retrait(retrait.getNo_retrait());
 		this.articleDao.insert(article);
 		}else {
 			throw businessException;
@@ -43,7 +44,6 @@ public class articleManageur implements GeneriqueDao<Article> {
 
 	
 
-	@Override
 	public Article selectId(int id) throws BusinessException {
 		Article article = new Article();
 		article= this.articleDao.selectId(id);
@@ -69,7 +69,7 @@ public class articleManageur implements GeneriqueDao<Article> {
 		return article;
 	}
 	
-	@Override
+	
 	public List<Article> selectAll() throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
 		articles = this.articleDao.selectAll();
@@ -82,7 +82,7 @@ public class articleManageur implements GeneriqueDao<Article> {
 		return articles;
 	}
 	
-	@Override
+	
 	public void update(Article article, int id) throws BusinessException, SQLException {
 		
 	BusinessException businessException = new BusinessException();
