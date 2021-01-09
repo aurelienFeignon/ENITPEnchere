@@ -173,7 +173,7 @@ public class articleManageur  {
 	}
 
 	private void validerDebutEnchere(Article article, BusinessException businessException) {
-		if(article.getDate_debut_encheres().before(new Date())) {
+		if(!new Date().after(article.getDate_debut_encheres())) {
 			businessException.ajouterErreur(CodeResultatBll.DATE_DEBUT_INFERIEUR_JOUR);
 		}
 	}
