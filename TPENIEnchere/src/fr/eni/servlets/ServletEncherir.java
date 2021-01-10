@@ -22,7 +22,7 @@ public class ServletEncherir extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 int idEncherisseur = Integer.parseInt(request.getParameter("id"));
@@ -49,9 +49,11 @@ public class ServletEncherir extends HttpServlet {
 			Utilisateur nouveauEncherisseur = new Utilisateur();
 			 UtilisateurManageur utilisateurManageur = new UtilisateurManageur();	
 			
-			 //on rend le crédit à l'ancien encherisseur
+			 if(montant_enchere > 0) {
+			 //on rend le crédit à l'ancien encherisseur s'il ya eu une enchère précédente
 			ancienEncherisseur = utilisateurManageur.selectId(enchere.getNo_utilisateur());
 			utilisateurManageur.AjouterCredit(ancienEncherisseur, (int) montant_enchere);
+			 }
 			
 			 //on enleve le crédit au nouvel encherisseur
 			nouveauEncherisseur = utilisateurManageur.selectId(idEncherisseur);
@@ -92,4 +94,4 @@ public class ServletEncherir extends HttpServlet {
 		
 	}
 
-}
+

@@ -30,12 +30,12 @@
 
 
 
-<!--   EN COURS   -->
+
 <!-- vente OUVERTE -->
 <c:choose>
 <c:when test="${article.etatVente = false }">
 
-<c:if test="${sessionScope.utilisateur.id != utilisateur.id}">
+<c:if test="${sessionScope.utilisateur.id != article.no_utilisateur}">
 <form action="ServletEncherir" method="post" class="text-center">
 <label for="proposition">Ma proposition :</label>
 <input type="number" name="proposition" id="proposition" value="${montantMin}" max="${sessionScope.utilisateur.credit}" min="${montantMin}" class="col-2 ml-4">
@@ -59,7 +59,9 @@
 <form action="ServletModifierEnchere" method="post" class="text-center">
 <input type="number" name="proposition" id="proposition" value="${montantMin}" max="${sessionScope.utilisateur.credit}" min="${montantMin}" class="col-2 ml-4">
 <input type="hidden" name="idArticle" value="${article.no_article}">
+<input type="hidden" name="idVendeur" value="${article.no_utilisateur}">
 <input type="hidden" name="idEnchere" value="${encheres.no_enchere}">
+<input type="hidden" name="idRetrait" value="${retraits.no_retrait}">
 <input type="submit" value="Modifier l'enchère" class="btn btn-primary ml-3 ">
 </form>
 <form action="ServletSupprimerEnchere" method="post" class="text-center">
@@ -69,13 +71,6 @@
 <input type="submit" value="Supprimer l'enchère" class="btn btn-danger ml-3 ">
 </form>
 
-<c:otherwise>
-<!-- cas si enchere terminée et user = gagnant de l'enchere -->
-<c:if test="${sessionScope.utilisateur.id = XXX }">
-
-
-</c:if>
-</c:otherwise>
 
 </c:if>
 </c:if>

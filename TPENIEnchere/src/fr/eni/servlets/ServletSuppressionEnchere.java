@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.articleManageur;
+import fr.eni.utils.BusinessException;
 
 @WebServlet("/ServletSuppressionEnchere")
 public class ServletSuppressionEnchere extends HttpServlet {
@@ -25,10 +26,12 @@ public class ServletSuppressionEnchere extends HttpServlet {
 		
 		//suppression article
 		articleManageur articleManageur = new articleManageur();
-		articleManageur.delete(numeroArticle);
-		//suppression enchere
-		EnchereManageur enchereManageur = new EnchereManageur();
-		enchereManageur.delete(numeroEnchere);
+		try {
+			articleManageur.delete(numeroArticle);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+	
 		
 		String message ="La suppresion de votre enchère a été réalisée avec succès.";
     	request.setAttribute("reussite", message);
