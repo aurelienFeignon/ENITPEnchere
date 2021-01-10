@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,8 +33,18 @@ public class ServletConnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		this.getServletContext().getRequestDispatcher("/Connexion").forward(request, response);
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("identifiant")) {
+                    request.setAttribute("identifiant", cookie.getValue());
+                }
+                if (cookie.getName().equals("mdp")) {
+                    request.setAttribute("mdp", cookie.getValue());
+                }     
+            }
+        }
+		this.getServletContext().getRequestDispatcher("/PageConnexion").forward(request, response);
 	}
 
 	/**
@@ -66,23 +77,24 @@ public class ServletConnexion extends HttpServlet {
 		if(utilisateur != null) {
 			//On stocke dans une session
 			HttpSession session = request.getSession();
-			//session.setMaxInactiveInterval(30);   // session timeout si utilisateur inactif en secondes
+			session.setMaxInactiveInterval(15);   // session timeout si utilisateur inactif en secondes
 			session.setAttribute("utilisateur", utilisateur);
+			 //On stock en cookie si "se souvenir de moi" cocher
+			if(request.getParameter("memorisation") != null){
+				 Cookie cookieIdentifiant = new Cookie("identifiant", identifiant);
+				 cookieIdentifiant.setMaxAge(60 * 60 * 24 * 30);
+			        response.addCookie(cookieIdentifiant);
+			     Cookie cookieMdp = new Cookie("mdp", mdp);
+			     cookieMdp.setMaxAge(60 * 60 * 24 * 30);
+			        response.addCookie(cookieMdp);	
+			}
 			//redirige vers l'acceuil
 			
 			this.getServletContext().getRequestDispatcher("/Accueil").forward(request, response);
 		} else {
 			this.getServletContext().getRequestDispatcher("/PageConnexion").forward(request, response);
 		}
-/*		
-		 //On stock en cookie si "se souvenir de moi" cocher
-		if(request.getParameter("memorisation") == null){
-		    //checkbox not checked donc on fait rien
-		}else{
-		    //checkbox checked
-			
-		}
-*/
+
 	}
 
 }

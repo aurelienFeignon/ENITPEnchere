@@ -20,9 +20,9 @@
     <img class="mb-4" src="images/logo.jpg" alt="logo eni" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">connectez vous</h1>
     <label for="identifiant" class="visually-hidden">Identifiant</label>
-    <input type="text"  name="identifiant" class="form-control" placeholder="Identifiant" required autofocus>
+    <input type="text"  name="identifiant" class="form-control" placeholder="Identifiant" value="${ identifiant }" required autofocus>
     <label for="mdp" class="visually-hidden">Mot de passe</label>
-    <input type="password"  name="mdp" class="form-control" placeholder="Mot de passe" required>
+    <input type="password"  name="mdp" class="form-control" placeholder="Mot de passe" value="${ mdp }" required>
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" name="memorisation" checked> Se souvenir de moi

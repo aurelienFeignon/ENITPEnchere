@@ -13,7 +13,6 @@ var ventesNonDebutees = document.getElementById("ventesNonDebutees");
 var venteTerminees = document.getElementById("venteTerminees");
 
 achat.checked = true;
-encheresOuvertes.checked = true;
 
 ventesEnCours.disabled = true;
 ventesNonDebutees.disabled = true;
@@ -28,7 +27,7 @@ function achatClicker(){
  encheresEnCours.disabled = false;
  encheresRemportees.disabled = false;
 	
- encheresOuvertes.checked = true;
+ encheresOuvertes.checked = false;
  encheresEnCours.checked = false;
  encheresRemportees.checked = false;
 
@@ -48,7 +47,7 @@ function venteClicker(){
  ventesNonDebutees.disabled = false;
  venteTerminees.disabled = false;
 
- ventesEnCours.checked = true;
+ ventesEnCours.checked = false;
  ventesNonDebutees.checked = false;
  venteTerminees.checked = false;
 
