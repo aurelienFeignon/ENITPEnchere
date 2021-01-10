@@ -1,7 +1,7 @@
 package fr.eni.bo;
 
 public class Retraits {
-int no_retrait;
+Integer no_retrait;
 String rue;
 String code_postal;
 String ville;
@@ -24,7 +24,7 @@ public Retraits(int no_retrait, String rue, String code_postal, String ville) {
 	this.code_postal = code_postal;
 	this.ville = ville;
 }
-public int getNo_retrait() {
+public Integer getNo_retrait() {
 	return no_retrait;
 }
 public void setNo_retrait(int no_retrait) {

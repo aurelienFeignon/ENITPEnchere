@@ -17,6 +17,7 @@ public class RetraitDaoImpl implements RetraitDao {
 			"values(?,?,?)";
 	private static final String SELECT_ALL="select * from RETRAITS";
 	private static final String SELECT_ID="select * from RETRAITS where no_retrait=?";
+	private static final String SELECT_VERIF_EXISTANCE="select * from RETRAITS where rue=? and code_postal=? and ville=? ";
 	private static final String UPDATE="update RETRAITS Set rue= ?,code_postal=?, ville=?  where no_retrait=?";
 	
 	@Override
@@ -42,6 +43,9 @@ public class RetraitDaoImpl implements RetraitDao {
 			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
 			throw businessException;
 		}
+		Retraits retraitCourant= this.selectVerifExistant(retrait);
+		
+		if(retraitCourant == null) {
 		try(Connection cnx= ConnectionProvider.getConnection()){
 			PreparedStatement stm = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			stm.setString(1, retrait.getRue());
@@ -63,6 +67,9 @@ public class RetraitDaoImpl implements RetraitDao {
 			throw businessException;
 		}
 		return retrait;
+		}else {
+			return retraitCourant;
+		}
 
 	}
 
@@ -89,6 +96,33 @@ public class RetraitDaoImpl implements RetraitDao {
 		
 		return retraits;
 	}
+	
+	public Retraits selectVerifExistant(Retraits retrait) throws BusinessException {
+		if(retrait!= null) {
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_VERIF_EXISTANCE);
+			stm.setString(1, retrait.getRue());
+			stm.setString(2, retrait.getCode_postal());
+			stm.setString(3, retrait.getVille());
+			ResultSet rs= stm.executeQuery();
+			if(rs.next()) {
+				retrait=this.retraitsConstructeur(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		if(retrait.getNo_retrait()== null) {
+			retrait= null;
+		}
+		
+	
+		
+}
+		return retrait;
+}
 
 	@Override
 	public List<Retraits> selectAll() throws BusinessException {
