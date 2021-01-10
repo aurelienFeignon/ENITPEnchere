@@ -77,7 +77,7 @@ public class ServletConnexion extends HttpServlet {
 		if(utilisateur != null) {
 			//On stocke dans une session
 			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(15);   // session timeout si utilisateur inactif en secondes
+			session.setMaxInactiveInterval(300);   // session timeout si utilisateur inactif en secondes
 			session.setAttribute("utilisateur", utilisateur);
 			 //On stock en cookie si "se souvenir de moi" cocher
 			if(request.getParameter("memorisation") != null){
