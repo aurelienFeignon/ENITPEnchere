@@ -56,9 +56,9 @@ public class ServletNouvelleVente extends HttpServlet {
 		System.out.println(numeroUtilisateur);
 	//Je cree un objet 
 		 Article unArticle = new Article();
-		 articleManageur articleManageur = new articleManageur();
 		 Retraits unRetrait = new Retraits();
-		 RetraitManageur retraitManageur = new RetraitManageur();
+		 articleManageur articleManageur = new articleManageur();
+
 		 //Je recup les données saisies dans le formulaire et je les attributs à l'objet
 		 unArticle.setNom_article(article);
 		 unArticle.setDescription(description);
@@ -68,8 +68,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		 unArticle.setPrix_vente(miseAPrix);
 		 unArticle.setNo_utilisateur(numeroUtilisateur);
 		 unArticle.setNo_categorie(categorie);
-		 unArticle.setNo_retrait(unRetrait.getNo_retrait());
-		 unArticle.setEtatVente(etat);		
 		 
 		 unRetrait.setRue(rue);
 		 unRetrait.setVille(ville);
