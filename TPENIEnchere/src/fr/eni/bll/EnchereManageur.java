@@ -50,7 +50,14 @@ public class EnchereManageur implements GeneriqueDao<Encheres> {
 		encheres= this.enchereDao.selectAll();
 		return encheres;
 	}
+	
+	public List<Encheres> selectHistoriqueArticle(int noArticle) throws BusinessException {
+		List<Encheres> encheres= new ArrayList<Encheres>();
+		encheres= this.enchereDao.selectHistoriqueArticle(noArticle);
+		return encheres;
+	}
 
+	
 	@Override
 	public void update(Encheres enchere, int id) throws BusinessException, SQLException {
 		BusinessException businessException= new BusinessException();

@@ -16,6 +16,7 @@ public class EncheresDaoImpl implements EncheresDao {
 	private static final String INSERT="insert into ENCHERES (date_enchere, montant_enchere, no_article, no_utilisateur) "+
 			"values(?,?,?,?)";
 	private static final String SELECT_ID="select * from ENCHERES where no_enchere=?";
+	private static final String SELECT_HISTORIQUE_ARTICLE="select * from ENCHERES where no_article=?";
 	private static final String SELECT_ALL="select * from ENCHERES";
 	private static final String UPDATE="update ENCHERES Set date_enchere= ?, montant_enchere=?, no_article=?, no_utilisateur=? where no_enchere=?";
 
@@ -88,6 +89,25 @@ public class EncheresDaoImpl implements EncheresDao {
 		}
 		
 		return enchere;
+	}
+	
+	public List<Encheres> selectHistoriqueArticle(int noArticle) throws BusinessException {
+		List<Encheres> encheres= new ArrayList<>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_HISTORIQUE_ARTICLE);
+			stm.setInt(1, noArticle);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+			encheres.add(this.encheresConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return encheres;
 	}
 
 	

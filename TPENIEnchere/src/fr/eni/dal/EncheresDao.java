@@ -23,5 +23,7 @@ public interface EncheresDao extends GeneriqueDao<Encheres>{
 	@Override
 	public void update(Encheres enchere, int id) throws BusinessException, SQLException ;
 	
+	public List<Encheres> selectHistoriqueArticle(int noArticle)throws BusinessException;
+	
 
 }
