@@ -14,6 +14,7 @@ int no_utilisateur;
 int no_categorie;
 int no_retrait;
 boolean etatVente;
+String CheminImg;
 /**
  * 
  */
@@ -111,6 +112,12 @@ public boolean getEtatVente() {
 }
 public void setEtatVente(boolean etatVente) {
 	this.etatVente = etatVente;
+}
+public String getCheminImg() {
+	return CheminImg;
+}
+public void setCheminImg(String cheminImg) {
+	CheminImg = cheminImg;
 }
 
 

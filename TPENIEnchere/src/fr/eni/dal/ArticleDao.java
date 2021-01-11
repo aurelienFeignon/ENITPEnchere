@@ -43,4 +43,6 @@ public interface ArticleDao extends GeneriqueDao<Article>{
 	public List<Article> selectVenteEnCour(int noUtilisateur) throws BusinessException;
 
 	public List<Article> selectVenteNonDebute(int noUtilisateur)throws BusinessException;
+
+	public void insertAvecCheminImg(Article article)throws BusinessException;
 }

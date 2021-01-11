@@ -1,20 +1,21 @@
 package fr.eni.servlets;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import fr.eni.bll.RetraitManageur;
+import javax.servlet.http.Part;
 import fr.eni.bll.articleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Retraits;
@@ -25,8 +26,18 @@ import fr.eni.utils.BusinessException;
  * Servlet implementation class ServletNouvelleVente
  */
 @WebServlet("/Vente")
+@MultipartConfig(
+		fileSizeThreshold   = 1024 * 1024 * 1,  // 1 MB
+		maxFileSize         = 1024 * 1024 * 10, // 10 MB
+		maxRequestSize      = 1024 * 1024 * 15, // 15 MB
+		location            = "C:\\tmp"
+		)
+
 public class ServletNouvelleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static final int TAILLE_TAMPON=10240;
+	
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +50,10 @@ public class ServletNouvelleVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		//Recuperer les parametres
+		
+		
 		String article = request.getParameter("article");
 		String description = request.getParameter("description");
 		int categorie = Integer.parseInt(request.getParameter("categorie"));
@@ -53,6 +67,15 @@ public class ServletNouvelleVente extends HttpServlet {
 		Boolean etat = false;
 		Date dateDebutEnchere = Date.valueOf(debutEnchere);
 		Date dateFinEnchere = Date.valueOf(finEnchere);
+		if(request.getPart("photo") != null) {
+			Part part= request.getPart("photo");
+			String nomFichier= part.getSubmittedFileName();
+			if(nomFichier!= null && !nomFichier.isEmpty()) {
+				nomFichier= nomFichier.substring(nomFichier.lastIndexOf('/')+1).substring(nomFichier.lastIndexOf('\\')+1);
+				ecrireFichier(part, nomFichier, this.getServletContext().getRealPath("/images") );
+			}
+		}
+		
 		System.out.println(numeroUtilisateur);
 	//Je cree un objet 
 		 Article unArticle = new Article();
@@ -92,5 +115,25 @@ public class ServletNouvelleVente extends HttpServlet {
 		 this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 		 
 	}
+
+	private void ecrireFichier(Part part, String nomFichier, String cheminFichiers) throws IOException {
+		BufferedInputStream entree=null;
+		BufferedOutputStream sortie = null;
+		
+		try {
+			entree= new BufferedInputStream(part.getInputStream(), TAILLE_TAMPON);
+			sortie= new BufferedOutputStream(new FileOutputStream(new File(cheminFichiers + nomFichier)), TAILLE_TAMPON);
+			
+			byte[] tampon = new byte[TAILLE_TAMPON];
+			int longeur;
+			while((longeur= entree.read(tampon))>0) {
+				sortie.write(tampon, 0, longeur);
+			}
+		
+	}finally {
+		sortie.close();
+		entree.close();
+	}}
+
 
 }

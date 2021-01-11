@@ -16,6 +16,8 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String DELETE="delete from ARTICLES_VENDUS where no_article=?";
 	private static final String INSERT="insert into ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait, etatVente) "+
 			"values(?,?,?,?,?,?,?,?,?,?)";
+	private static final String INSERT_AVEC_CHEMIN_IMG = "insert into ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie, no_retrait, etatVente, cheminImg) " + 
+			"values(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_ID="select * from ARTICLES_VENDUS where no_article=?";
 	private static final String SELECT_ALL="select * from ARTICLES_VENDUS";
 	private static final String SELECT_NO_CATEGORIE="select * from ARTICLES_VENDUS where no_categorie=? and etatVente=0";
@@ -30,6 +32,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String UPDATE="update ARTICLES_VENDUS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
 	private static final String UPDATE_PRIX_DE_VENTE="update ARTICLES_VENDUS Set  prix_vente=? where no_article=?";
 	private static final String UPDATE_ETAT_VENTE="update ARTICLES_VENDUS Set  etatVente=? where no_article=?";
+	
 	
 
 	@Override
@@ -67,6 +70,44 @@ public class ArticleDaoImpl implements ArticleDao {
 			stm.setInt(8, article.getNo_categorie());
 			stm.setInt(9, article.getNo_retrait());
 			stm.setBoolean(10, article.getEtatVente());
+			
+			stm.executeUpdate();
+			ResultSet rs = stm.getGeneratedKeys();
+			
+			if(rs.next()) {
+				article.setNo_utilisateur(rs.getInt(1));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERTION_ARTICLE);
+			throw businessException;
+		}
+	}
+	
+	public void insertAvecCheminImg(Article article) throws BusinessException {
+		if(article==null)
+		{
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.INSERT_OBJET_NULL);
+			throw businessException;
+		}
+		try(Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(INSERT_AVEC_CHEMIN_IMG, PreparedStatement.RETURN_GENERATED_KEYS);
+			stm.setString(1, article.getNom_article());
+			stm.setString(2, article.getDescription());
+			stm.setDate(3, article.getDate_debut_encheres());
+			stm.setDate(4, article.getDate_fin_encheres());
+			stm.setInt(5, article.getPrix_initial());
+			stm.setInt(6, article.getPrix_vente());
+			stm.setInt(7, article.getNo_utilisateur());
+			stm.setInt(8, article.getNo_categorie());
+			stm.setInt(9, article.getNo_retrait());
+			stm.setBoolean(10, article.getEtatVente());
+			stm.setString(11, article.getCheminImg());
 			
 			stm.executeUpdate();
 			ResultSet rs = stm.getGeneratedKeys();

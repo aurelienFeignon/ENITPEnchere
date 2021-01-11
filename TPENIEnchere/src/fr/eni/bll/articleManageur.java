@@ -33,13 +33,24 @@ public class articleManageur  {
 		BusinessException businessException = new BusinessException();
 		RetraitManageur retraitManageur= new RetraitManageur();
 		retrait = retraitManageur.insert(retrait);
-		this.validerArticle(article, businessException);
-		if(!businessException.hasErreurs()) {
-		article.setEtatVente(false);
-		article.setNo_retrait(retrait.getNo_retrait());
-		this.articleDao.insert(article);
+		if(article.getCheminImg()==null) {
+			this.validerArticle(article, businessException);
+			if(!businessException.hasErreurs()) {
+			article.setEtatVente(false);
+			article.setNo_retrait(retrait.getNo_retrait());
+			this.articleDao.insert(article);
+			}else {
+				throw businessException;
+			}
 		}else {
-			throw businessException;
+			this.validerArticle(article, businessException);
+			if(!businessException.hasErreurs()) {
+			article.setEtatVente(false);
+			article.setNo_retrait(retrait.getNo_retrait());
+			this.articleDao.insertAvecCheminImg(article);
+			}else {
+				throw businessException;
+			}
 		}
 	}
 

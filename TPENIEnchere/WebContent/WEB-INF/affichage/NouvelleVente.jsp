@@ -22,7 +22,7 @@
 	<img class="container col-md-6" alt="Photo de l'article mis en vente."  width="555" height="525" src="https://media.giphy.com/media/Zcc3ZeeZ5ztdw1oNSB/giphy.gif">
 </div>
 <div class=" container col-md-6">
-<form class="container form-horizontal" action="Vente" method="post">
+<form class="container form-horizontal" action="Vente" method="post" enctype="multipart/form-data">
 	  <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="article">Article</label>
@@ -47,7 +47,7 @@
 	 <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="photo">Photo de l'article</label>
-	      <input type="text" class="form-control" name="photo" value="uploader">
+	      <input  type="file" class="form-control" name="photo" value="uploader">
 	    </div>
      </div>
   		 <div class="form-row">
