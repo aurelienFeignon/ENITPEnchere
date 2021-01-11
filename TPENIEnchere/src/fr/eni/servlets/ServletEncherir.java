@@ -1,6 +1,10 @@
 package src.fr.eni.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +29,9 @@ public class ServletEncherir extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 int idEncherisseur = Integer.parseInt(request.getParameter("id"));
+		
+		Date date = new Date();
+		int idEncherisseur = Integer.parseInt(request.getParameter("id"));
 		 
 		 int idArticle = Integer.parseInt(request.getParameter("idArticle"));
 		
@@ -33,13 +39,19 @@ public class ServletEncherir extends HttpServlet {
 		
 		//récupération infos enchère 
 		EnchereManageur enchereManageur = new EnchereManageur();
-		Encheres enchere = new Encheres();
-		enchere = enchereManageur.selectId(article.getNo_enchere());
+		
+		Encheres derniereEnchere = new Encheres();
+		List<Encheres> listEncheres = new ArrayList<>();
+		
+		listEncheres = enchereManageur.selectHistoriqueArticle(idArticle);
+		derniereEnchere = listEncheres.get(listEncheres.size() - 1);
+		
+		
 		
 		//normalement il est impossible de miser en dessous de l'enchere actuelle via la jsp mais vérification ici aussi au ca où 
 		double proposition = Double.parseDouble(request.getParameter("proposition"));
 		double creditUser = (Double.parseDouble(request.getParameter("credit")));
-		double montant_enchere = (double)enchere.getMontant_enchere();
+		double montant_enchere = (double)derniereEnchere.getMontant_enchere();
 		
 		
 		if (proposition > montant_enchere && proposition <= creditUser)
@@ -51,7 +63,7 @@ public class ServletEncherir extends HttpServlet {
 			
 			 if(montant_enchere > 0) {
 			 //on rend le crédit à l'ancien encherisseur s'il ya eu une enchère précédente
-			ancienEncherisseur = utilisateurManageur.selectId(enchere.getNo_utilisateur());
+			ancienEncherisseur = utilisateurManageur.selectId(derniereEnchere.getNo_utilisateur());
 			utilisateurManageur.AjouterCredit(ancienEncherisseur, (int) montant_enchere);
 			 }
 			
@@ -61,12 +73,13 @@ public class ServletEncherir extends HttpServlet {
 			
 			
 			//création nouvelle enchère
-			// 	 a faire date du jour ? + generated key ?
-			enchere.setDate_enchere(date_enchere);
-			enchere.setMontant_enchere((int) proposition);
-			enchere.setNo_article(idArticle);
-			enchere.setNo_utilisateur(idEncherisseur);
-			enchereManageur.insert(enchere);
+			// 	+ generated key ?
+			Encheres nouvelleEnchere = new Encheres();
+			nouvelleEnchere.setDate_enchere((java.sql.Date) date);
+			nouvelleEnchere.setMontant_enchere((int) proposition);
+			nouvelleEnchere.setNo_article(idArticle);
+			nouvelleEnchere.setNo_utilisateur(idEncherisseur);
+			enchereManageur.insert(nouvelleEnchere);
 			
 			
 			
