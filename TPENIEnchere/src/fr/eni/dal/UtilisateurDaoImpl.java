@@ -20,7 +20,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	private static final String SELECT_PSEUDO="select * from UTILISATEURS where pseudo=? or email=?";
 	private static final String SELECT_ALL="select * from UTILISATEURS";
 	private static final String UPDATE="update UTILISATEURS Set pseudo= ?,nom=?, prenom=?, email=?, telephone=?,rue=?, code_postal=?,ville=?, mot_de_passe=?, credit=? where no_utilisateur=?";
-	private static final String UPDATE_CREDIT="update UTILISATEURS credit=? where no_utilisateur=?";
+	private static final String UPDATE_CREDIT="update UTILISATEURS Set credit=? where no_utilisateur=?";
 	@Override
 	public void delete(int id) throws BusinessException {
 		try(Connection cnx= ConnectionProvider.getConnection()){
