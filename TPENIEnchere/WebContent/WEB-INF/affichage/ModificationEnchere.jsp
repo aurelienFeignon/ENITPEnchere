@@ -24,22 +24,22 @@
 	  <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="article">Article</label>
-	      <input type="text" class="form-control" name="article" value="${aricle.nom_article}">
+	      <input type="text" class="form-control" name="article" value="${article.nom_article}">
 	    </div>
      </div>
 	  <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="description">Description</label>
-	      <textarea id="description" name="description" rows="4" cols="60" value="${aricle.description}"></textarea>
+	      <textarea id="description" name="description" rows="4" cols="60">${article.description}</textarea>
 	    </div>
      </div>
      <div class="mr-sm-3">
 	<label for="categorie">Categorie : </label>
 	<SELECT name="categorie">
-	<OPTION value="1">Informatique
-	<OPTION value="2">Ameublement
-	<OPTION value="3">Vetement
-	<OPTION value="4">Sport&Loisirs
+	<OPTION value="1" <c:if test="${article.no_categorie} == 1">selected="selected"</c:if>>Informatique </OPTION>
+	<OPTION value="2" <c:if test="${article.no_categorie} == 2">selected="selected"</c:if>>Ameublement </OPTION>
+	<OPTION value="3" <c:if test="${article.no_categorie}== 3">selected="selected"</c:if>>Vetement </OPTION>
+	<OPTION value="4" <c:if test="${article.no_categorie}== 4">selected="selected"</c:if>>Sport&Loisirs </OPTION>
 	</SELECT>
 	</div>  
 	 <div class="form-row">
@@ -51,20 +51,20 @@
   		 <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="photo">Mise à prix</label>
-	      <input type="number" id="prixInitial" name="prixInitial" min="0" max="${utilisateur.credit }" value="${aricle.prix_initial}">
+	      <input type="number" id="prixInitial" name="prixInitial" min="0" value="${article.prix_initial}">
 	    </div>
      </div>
      <div class="control-group">
         <label class="control-label input-label" for="debutEnchere">Début de l'enchère</label>
         <div>
-            <input type="date" id="debutEnchere" name="debutEnchere" required/>
+            <input type="date" id="debutEnchere" name="debutEnchere" value="${article.date_debut_encheres}" required/>
             <i class="icon-time"></i>
         </div>
     </div>
      <div class="control-group">
         <label class="control-label input-label" for="finEnchere">Fin de l'enchère</label>
         <div>
-            <input type="date" id="finEnchere" name="finEnchere" required/>
+            <input type="date" id="finEnchere" name="finEnchere" value="${article.date_fin_encheres}" required/>
             <i class="icon-time"></i>
         </div>
     </div>
@@ -79,7 +79,7 @@
      <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="codePostal">Code postal</label>
-	      <input type="text" class="form-control" name="codePostal" value="${ reatraits.code_postal }">
+	      <input type="text" class="form-control" name="codePostal" value="${ retraits.code_postal }">
 	    </div>
      </div>
           <div class="form-row">
@@ -97,7 +97,6 @@
 	   </div>
 </form>
 </div>
-<p> ${ erreurs } </p>
 </main>
 <%@ include file="FooterInclusion.jsp" %>
     <!-- js et bootstrap --> 

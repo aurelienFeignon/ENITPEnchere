@@ -22,9 +22,6 @@
 				       	<a class="nav-link" href="Accueil">Accueil <span class="sr-only">(current)</span></a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="#">Enchères</a>
-				      </li>
-				      <li class="nav-item">
 				        <a class="nav-link" href="Vente">Vendre un article</a>
 				      </li>
 				      <li class="nav-item">

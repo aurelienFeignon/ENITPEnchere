@@ -12,19 +12,20 @@
 <title>Résultat enchère</title>
 </head>
 <body>
+<main>
 <%@ include file="HeaderSansNavInclusion.jsp" %>
 <div class="container">
 <h1 class='text-center'><c:out value="${encherisseur.pseudo}" /> a remporté l'enchère</h1>
-<main>
-<div class="container">
 <ul class="list-group mt-5">
-<li class="list-group-item"><c:out value="${article.nomArticle}" /></li>
+<li class="list-group-item"><c:out value="${article.nom_article}" /></li>
 <li class="list-group-item">Description : <c:out value="${article.description}" /></li>
-<li class="list-group-item">Meilleure offre : <c:out value="${article.prixVente}" /> par <c:out value= "${encherisseur.pseudo}" />
-<li class="list-group-item">Mise à prix : <c:out value="${article.miseAPrix}" /></li>
-<li class="list-group-item">Fin de l'enchère : <c:out value="${article.dateFinEncheres}" /></li>
+<li class="list-group-item">Meilleure offre : <c:out value="${article.prixVente}" /> par <c:out value= "${encherisseur.pseudo}" /> </li>
+<li class="list-group-item">Mise à prix : <c:out value="${article.prix_initial}" /></li>
+<li class="list-group-item">Fin de l'enchère : <c:out value="${article.date_fin_encheres}" /></li>
 <li class="list-group-item">Retrait : <c:out value="${retraits.rue}" /> <c:out value="${retraits.code_postal}" /> <c:out value="${retraits.ville}" /></li>
 <li class="list-group-item mb-5">Vendeur : <c:out value="${utilisateur.pseudo}" /></li>
+</ul>
+</div>
 
 <form action="PageAccueil" method="get" class="text-center">
 <input type="submit" value="Retour" name="retour" class="btn btn-primary r">

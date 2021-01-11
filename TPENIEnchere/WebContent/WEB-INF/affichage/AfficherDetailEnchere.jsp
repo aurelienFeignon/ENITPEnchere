@@ -19,53 +19,40 @@
 <div class="container">
 <h1 class='text-center'>Détail de la vente</h1>
 <ul class="list-group mt-5">
-<li class="list-group-item"><c:out value="${article.nomArticle}" /></li>
+<li class="list-group-item"><c:out value="${article.nom_article}" /></li>
 <li class="list-group-item">Description : <c:out value="${article.description}" /></li>
 <li class="list-group-item">Catégorie: <c:out value="${categories.libelle}" /></li> 
 <li class="list-group-item">Meilleure offre : <c:out value="${encheres.montant_enchere}"/> par <c:out value="${encherisseur.pseudo}"/></li> 
-<li class="list-group-item">Mise à prix : <c:out value="${article.miseAPrix}" /></li>
-<li class="list-group-item">Fin de l'enchère : <c:out value="${article.dateFinEncheres}" /></li>
+<li class="list-group-item">Mise à prix : <c:out value="${article.prix_initial}" /></li>
+<li class="list-group-item">Fin de l'enchère : <c:out value="${article.date_fin_encheres}" /></li>
 <li class="list-group-item">Retrait : <c:out value="${retraits.rue}" /> <c:out value="${retraits.code_postal}" /> <c:out value="${retraits.ville}" /></li>
 <li class="list-group-item mb-5">Vendeur : <c:out value="${utilisateur.pseudo}" /></li> 
 
 
-
-
-<!-- vente OUVERTE -->
-<c:choose>
-<c:when test="${article.etatVente = false }">
-
-<c:if test="${sessionScope.utilisateur.id != article.no_utilisateur}">
+<c:if test="${sessionScope.utilisateur.no_utilisateur != article.no_utilisateur}">
 <form action="ServletEncherir" method="post" class="text-center">
 <label for="proposition">Ma proposition :</label>
 <input type="number" name="proposition" id="proposition" value="${montantMin}" max="${sessionScope.utilisateur.credit}" min="${montantMin}" class="col-2 ml-4">
 
 
 <input type="hidden" name="credit" value="${sessionScope.utilisateur.credit}">
-<input type="hidden" name="id" value="${sessionScope.utilisateur.id}">
+<input type="hidden" name="id" value="${sessionScope.utilisateur.no_utilisateur}">
 <input type="hidden" name="idArticle" value="${article.no_article}">
 <input type="submit" value="Enchérir" class="btn btn-primary ml-3 ">
 </form>
 </c:if>
-</c:when>
 
+<c:if test="${nonDebutee}">
 
-<!-- vente FERMEE -->
-<c:when test="${article.etatVente = true }">
-<!--  si prixvente est vide alors enchere pas encore réalisée-->
-<c:if test="${!empty article.prixVente}">
-
-<c:if test="${sessionScope.utilisateur.id = utilisateur.id}">
-<form action="ServletModifierEnchere" method="post" class="text-center">
-<input type="number" name="proposition" id="proposition" value="${montantMin}" max="${sessionScope.utilisateur.credit}" min="${montantMin}" class="col-2 ml-4">
+<c:if test="${sessionScope.utilisateur.no_utilisateur == article.no_utilisateur}">
+<form action="ServletVersModificationEnchere" method="post" class="text-center">
 <input type="hidden" name="idArticle" value="${article.no_article}">
 <input type="hidden" name="idVendeur" value="${article.no_utilisateur}">
 <input type="hidden" name="idEnchere" value="${encheres.no_enchere}">
 <input type="hidden" name="idRetrait" value="${retraits.no_retrait}">
 <input type="submit" value="Modifier l'enchère" class="btn btn-primary ml-3 ">
 </form>
-<form action="ServletSupprimerEnchere" method="post" class="text-center">
-<input type="number" name="proposition" id="proposition" value="${montantMin}" max="${sessionScope.utilisateur.credit}" min="${montantMin}" class="col-2 ml-4">
+<form action="ServletSuppressionEnchere" method="post" class="text-center">
 <input type="hidden" name="idArticle" value="${article.no_article}">
 <input type="hidden" name="idEnchere" value="${encheres.no_enchere}">
 <input type="submit" value="Supprimer l'enchère" class="btn btn-danger ml-3 ">
@@ -75,9 +62,7 @@
 </c:if>
 </c:if>
 
-</c:when>
 
-</c:choose>
 </ul>
 </div>
 </main>

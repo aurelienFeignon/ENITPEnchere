@@ -21,7 +21,6 @@ public class ServletSuppressionEnchere extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int numeroEnchere = Integer.parseInt(request.getParameter("idEnchere"));
 		int numeroArticle = Integer.parseInt(request.getParameter("idArticle"));
 		
 		//suppression article
@@ -34,7 +33,7 @@ public class ServletSuppressionEnchere extends HttpServlet {
 	
 		
 		String message ="La suppresion de votre enchère a été réalisée avec succès.";
-    	request.setAttribute("reussite", message);
+    	request.setAttribute("réussite", message);
 		
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	}

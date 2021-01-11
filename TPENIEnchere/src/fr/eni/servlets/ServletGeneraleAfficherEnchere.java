@@ -1,6 +1,8 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Session;
-
-import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.RetraitManageur;
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bll.articleManageur;
@@ -20,32 +19,46 @@ import fr.eni.bo.Categories;
 import fr.eni.bo.Encheres;
 import fr.eni.bo.Retraits;
 import fr.eni.bo.Utilisateur;
+import fr.eni.utils.BusinessException;
 
 
 @WebServlet("/ServletGeneraleAfficherEnchere")
 public class ServletGeneraleAfficherEnchere extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private LocalDate localDate = LocalDate.now();
+	private boolean nonDebutee = false;
        
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//récupération idArticle et de l'id de l'encherisseur gagnant via clic si enchere terminée??;
-		int idArticle;
-		int idGagnant;
+		int idArticle = Integer.parseInt(request.getParameter("idArticle"));
+		int idGagnant = Integer.parseInt(request.getParameter("idGagnant"));
 		HttpSession session= request.getSession(false);
-		int idUser = (int) session.getAttribute("id");
+		Utilisateur User = (Utilisateur) session.getAttribute("utilisateur");
+		int idUser = User.getNo_utilisateur();
 		
 		//recuperation infos article
 		Article article = new Article();
 		articleManageur articleManageur = new articleManageur();
 		
-		article = articleManageur.selectId(idArticle);
+		try {
+			article = articleManageur.selectId(idArticle);
+		} catch (BusinessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		request.setAttribute("article", article);
 		
 		//récupération infos retraits
 		RetraitManageur retraitManageur = new RetraitManageur();
 		Retraits retraits = new Retraits();
-		retraits = retraitManageur.selectId(article.getNo_retrait());
+		try {
+			retraits = retraitManageur.selectId(article.getNo_retrait());
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		request.setAttribute("retraits", retraits);
 
@@ -53,27 +66,39 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		
 		categoriesManageur categoriesManageur = new categoriesManageur();
 		Categories categories = new Categories();
-		categories = categoriesManageur.selectId(article.getNo_categorie());
+		try {
+			categories = categoriesManageur.selectId(article.getNo_categorie());
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		request.setAttribute("categories", categories);
 		
         //récupération infos vendeur
 		UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
 		Utilisateur utilisateur = new Utilisateur();
-		utilisateur = utilisateurManageur.selectId(article.getNo_utilisateur());
+		try {
+			utilisateur = utilisateurManageur.selectId(article.getNo_utilisateur());
+		} catch (BusinessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		request.setAttribute("utilisateur", utilisateur);
 		
 		
-		//récupération infos enchererisseur
-		EnchereManageur enchereManageur = new EnchereManageur();
+	//récupération infos enchererisseur
 		Encheres encheres = new Encheres();
-		encheres = enchereManageur.selectId(article.getNo_enchere());
-		
 		Utilisateur encherisseur = new Utilisateur();
-		encherisseur = utilisateurManageur.selectId(encheres.getNo_utilisateur());
+/*		try {
+			encherisseur = utilisateurManageur.selectId(encheres.getNo_utilisateur());
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("encherisseur", encherisseur);
-		
+*/	
 		
 		
 		boolean etatVente = article.getEtatVente();
@@ -81,7 +106,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		
 		
 		// si vente en cours
-		if (etatVente = false)
+		if (article.getDate_debut_encheres().toLocalDate().isBefore(localDate) && etatVente == false)
 		{
 			//récupération infos enchère et encherisseur
 			double montant_enchere = 0;
@@ -101,8 +126,6 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 			request.setAttribute("encheres", encheres);
 			request.setAttribute("montantMin", montantMin);
 			
-			
-			
 			this.getServletContext().getRequestDispatcher("/DetailEnchere").forward(request, response);
 		}
 		
@@ -110,9 +133,10 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		else {
 			
 			//si prix de vente est égal à prix initial, alors la vente n'a pas débuté. Si vente pas débuté + user = vendeur.
-			if(prix_vente == 0 && idUser == article.getNo_utilisateur())
+			if(article.getDate_debut_encheres().toLocalDate().isAfter(localDate) && idUser == article.getNo_utilisateur())
 			{
-				
+				this.nonDebutee  = true;
+				request.setAttribute("nonDebutee", nonDebutee);
 					this.getServletContext().getRequestDispatcher("/DetailEnchere").forward(request, response);
 			
 				
@@ -131,11 +155,10 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 				
 				// si user est le gagnant de l'enchere => jsp enchere remportée ATTENTION FAIRE PASSER L'IDGAGNANT PRECEDEMMENT
 				
-				if(idUser == idGagnant);
+				if(idUser == idGagnant)
 				{
 					this.getServletContext().getRequestDispatcher("/ResultatVente").forward(request, response);
 				}
-				
 				else
 				{
 					this.getServletContext().getRequestDispatcher("/ResultatEnchere").forward(request, response);

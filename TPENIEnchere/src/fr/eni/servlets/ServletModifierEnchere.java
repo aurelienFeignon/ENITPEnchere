@@ -2,6 +2,7 @@ package fr.eni.servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,11 +69,13 @@ public class ServletModifierEnchere extends HttpServlet {
 				 unRetrait.setRue(rue);
 				 unRetrait.setVille(ville);
 				 unRetrait.setCode_postal(codePostal);
-				 try {
+
+				try {
 					articleManageur.update(unArticle, idArticle);
-				} catch (BusinessException e) {
+				} catch (BusinessException | SQLException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
-					List<Integer> codeErreur= e.getListeCodesErreur();
+					List<Integer> codeErreur= ((BusinessException) e).getListeCodesErreur();
 					List<String> messageErreur= new ArrayList<String>();
 					if(!codeErreur.isEmpty()) {
 						for(Integer code: codeErreur) {
@@ -80,18 +83,16 @@ public class ServletModifierEnchere extends HttpServlet {
 						}
 						request.setAttribute("erreurs", messageErreur);
 					}
-					this.getServletContext().getRequestDispatcher("/ModificationEnchere").forward(request, response);
+					this.getServletContext().getRequestDispatcher("/NouvelleVente").forward(request, response);
 					return;
 				}
+								
+				
 				  String MESSAGEREUSSITE = "Vente modifiée avec succès" ;
 				 request.setAttribute("réussite", MESSAGEREUSSITE);
 				 this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 				 
 			}
-
-		
-		
-		
+	
 	}
 
-}
