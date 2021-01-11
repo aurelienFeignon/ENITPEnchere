@@ -88,7 +88,7 @@ public void enleveCredit(Utilisateur utilisateur, int debit) throws BusinessExce
 	BusinessException businessException = new BusinessException();
 	double credit= utilisateur.getCredit()-debit;
 	utilisateur.setCredit(credit);
-this.validerUtilisateur(utilisateur, businessException);
+this.validerCredit(utilisateur, businessException);
 	
 	if(!businessException.hasErreurs()) {
 		
@@ -104,7 +104,7 @@ public void AjouterCredit(Utilisateur utilisateur, int debit) throws BusinessExc
 	BusinessException businessException = new BusinessException();
 	double credit= utilisateur.getCredit()+debit;
 	utilisateur.setCredit(credit);
-this.validerUtilisateur(utilisateur, businessException);
+this.validerCredit(utilisateur, businessException);
 	
 	if(!businessException.hasErreurs()) {
 		
