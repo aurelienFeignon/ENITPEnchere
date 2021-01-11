@@ -36,10 +36,10 @@
      <div class="mr-sm-3">
 	<label for="categorie">Categorie : </label>
 	<SELECT name="categorie">
-	<OPTION value="1" <c:if test="${article.no_categorie} == 1">selected="selected"</c:if>>Informatique </OPTION>
-	<OPTION value="2" <c:if test="${article.no_categorie} == 2">selected="selected"</c:if>>Ameublement </OPTION>
-	<OPTION value="3" <c:if test="${article.no_categorie}== 3">selected="selected"</c:if>>Vetement </OPTION>
-	<OPTION value="4" <c:if test="${article.no_categorie}== 4">selected="selected"</c:if>>Sport&Loisirs </OPTION>
+	<OPTION value="1" ${article.no_categorie =='1'? 'selected="true"' : '' }>Informatique </OPTION>
+	<OPTION value="2" ${article.no_categorie =='2'? 'selected="true"' : '' } >Ameublement </OPTION>
+	<OPTION value="3" ${article.no_categorie =='3'? 'selected="true"' : '' }>Vetement </OPTION>
+	<OPTION value="4" ${article.no_categorie =='4'? 'selected="true"' : '' }>Sport&Loisirs </OPTION>
 	</SELECT>
 	</div>  
 	 <div class="form-row">

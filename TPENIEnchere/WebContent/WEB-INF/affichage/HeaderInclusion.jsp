@@ -11,7 +11,7 @@
        <c:when test="${ !empty sessionScope.utilisateur }">
 		 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a href="Accueil"><img src="images/logo.png" width="30" height="30" alt="logo eni"></a>
-			  	<a class="navbar-brand" href="#">ENI-Encheres</a>
+			  	<a class="navbar-brand" href="Accueil">ENI-Encheres</a>
 			  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    	<span class="navbar-toggler-icon"></span>
 			  	</button>
@@ -25,7 +25,7 @@
 				        <a class="nav-link" href="Vente">Vendre un article</a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="MonProfil">Mon profil</a>
+				        <a class="nav-link" href="monProfil">Mon profil</a>
 				      </li>
 						<li class="nav-item">
 				        <a class="nav-link" href="Deconnexion">Déconnexion</a>

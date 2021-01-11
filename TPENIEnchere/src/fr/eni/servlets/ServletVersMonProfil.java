@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //UTILISATION : Dirige vers la jsp "MonProfil".
-@WebServlet("/ServletVersMonProfil")
+@WebServlet("/monProfil")
 public class ServletVersMonProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/MonProfil");
+		this.getServletContext().getRequestDispatcher("/MonProfil").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
