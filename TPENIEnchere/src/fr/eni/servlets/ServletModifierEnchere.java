@@ -31,7 +31,9 @@ public class ServletModifierEnchere extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		//Recuperer les parametres
+				int idArticle = Integer.parseInt(request.getParameter("idArticle"));
 				String article = request.getParameter("article");
 				String description = request.getParameter("description");
 				int categorie = Integer.parseInt(request.getParameter("categorie"));
@@ -57,7 +59,7 @@ public class ServletModifierEnchere extends HttpServlet {
 				 unArticle.setDate_debut_encheres(dateDebutEnchere);
 				 unArticle.setDate_fin_encheres(dateFinEnchere);
 				 unArticle.setPrix_initial(miseAPrix);
-				 unArticle.setPrix_vente(miseAPrix);
+				 unArticle.setPrix_vente(0);
 				 unArticle.setNo_utilisateur(numeroUtilisateur);
 				 unArticle.setNo_categorie(categorie);
 				 unArticle.setNo_retrait(unRetrait.getNo_retrait());
@@ -67,7 +69,7 @@ public class ServletModifierEnchere extends HttpServlet {
 				 unRetrait.setVille(ville);
 				 unRetrait.setCode_postal(codePostal);
 				 try {
-					articleManageur.update(unArticle, unRetrait);
+					articleManageur.update(unArticle, idArticle);
 				} catch (BusinessException e) {
 					e.printStackTrace();
 					List<Integer> codeErreur= e.getListeCodesErreur();

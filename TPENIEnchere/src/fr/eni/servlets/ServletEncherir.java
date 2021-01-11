@@ -59,20 +59,22 @@ public class ServletEncherir extends HttpServlet {
 			nouveauEncherisseur = utilisateurManageur.selectId(idEncherisseur);
 			utilisateurManageur.enleveCredit(nouveauEncherisseur, (int) proposition);
 			
-			//update enchere - FORMAT DATE A CHANGER
-			enchere.setDate_enchere(SystemClockFactory.getDatetime());
- 	        enchere.setMontant_enchere((int) proposition);
- 	        enchere.setNo_utilisateur(idEncherisseur);
- 	        
 			
-			enchereManageur.update(enchere,enchere.getNo_enchere());
+			//création nouvelle enchère
+			// 	 a faire date du jour ? + generated key ?
+			enchere.setDate_enchere(date_enchere);
+			enchere.setMontant_enchere((int) proposition);
+			enchere.setNo_article(idArticle);
+			enchere.setNo_utilisateur(idEncherisseur);
+			enchereManageur.insert(enchere);
 			
-			//update les infos de l'article (prixdevente)
-			Article article = new Article();
+			
+			
+			
+			//update prixdevente
 			articleManageur articleManageur = new articleManageur();
-			article = articleManageur.selectId(idArticle);
-			article.setPrix_vente((int) proposition);
-				articleManageur.update(article, article.getNo_article());
+			articleManageur.updatePrixVente(idArticle, (int) proposition);
+			
 		}
 
 		

@@ -28,8 +28,9 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
        
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//récupération idArticle via clic;
+		//récupération idArticle et de l'id de l'encherisseur gagnant via clic si enchere terminée??;
 		int idArticle;
+		int idGagnant;
 		HttpSession session= request.getSession(false);
 		int idUser = (int) session.getAttribute("id");
 		
@@ -78,6 +79,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		boolean etatVente = article.getEtatVente();
 		int prix_vente = article.getPrix_vente();
 		
+		
 		// si vente en cours
 		if (etatVente = false)
 		{
@@ -107,7 +109,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		//Vente fermée
 		else {
 			
-			//si prix de vente est égal à 0, alors la vente n'a pas débuté. Si vente pas débuté + user = vendeur.
+			//si prix de vente est égal à prix initial, alors la vente n'a pas débuté. Si vente pas débuté + user = vendeur.
 			if(prix_vente == 0 && idUser == article.getNo_utilisateur())
 			{
 				
@@ -127,8 +129,9 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 					this.getServletContext().getRequestDispatcher("/ResultatEnchere").forward(request, response);
 				}
 				
-				// si user est le gagnant de l'enchere => jsp enchere remportée
-				if(idUser == encheres.getNo_utilisateur())
+				// si user est le gagnant de l'enchere => jsp enchere remportée ATTENTION FAIRE PASSER L'IDGAGNANT PRECEDEMMENT
+				
+				if(idUser == idGagnant);
 				{
 					this.getServletContext().getRequestDispatcher("/ResultatVente").forward(request, response);
 				}
