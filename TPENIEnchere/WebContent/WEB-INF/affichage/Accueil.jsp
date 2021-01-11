@@ -69,7 +69,7 @@
    <label for="encheresRemportees">mes enchères remportées</label>
 </div>
 <div class="col-sm-6">
-	<input type="radio" id="vente" name="menu" value="vente">
+	<input type="radio" id="vente" name="menu" value="vente" <c:if test="${venteChecked}">checked</c:if>>
 	<label for="vente">Mes ventes</label><br>  
 	<input type="checkbox" id="ventesEnCours" name="ventesEnCours">
    <label for="ventesEnCours">mes ventes en cours</label>

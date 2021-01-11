@@ -19,7 +19,7 @@ import fr.eni.utils.BusinessException;
 @WebServlet("/AcceuilFiltreRecherche")
 public class ServletMenuAccueilConnecté extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	public Boolean venteChecked = false;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -33,8 +33,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
-		System.out.println(noUtilisateur);
-		System.out.println(request.getParameter("ventesEnCours"));
+
 		if(request.getParameter("encheresOuvertes") != null){
 			articleManageur articleManager  = new articleManageur();
 			List<Article> listeArticle =null;
@@ -70,6 +69,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 		}
 		
 		if(request.getParameter("ventesEnCours") != null){
+			venteChecked =true;
 			articleManageur articleManager  = new articleManageur();
 			List<Article> listeArticle =null;
 			try {
@@ -77,10 +77,12 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 			} catch (BusinessException e) {
 				e.printStackTrace();
 			}
+			request.setAttribute("venteChecked", venteChecked);
 			request.setAttribute("listeArticle", listeArticle);
 		}
 		
 		if(request.getParameter("ventesNonDebutees") != null){
+			venteChecked =true;
 			articleManageur articleManager  = new articleManageur();
 			List<Article> listeArticle =null;
 			try {
@@ -88,10 +90,12 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 			} catch (BusinessException e) {
 				e.printStackTrace();
 			}
+			request.setAttribute("venteChecked", venteChecked);
 			request.setAttribute("listeArticle", listeArticle);
 		}
 		
 		if(request.getParameter("venteTerminees") != null){
+			venteChecked =true;
 			articleManageur articleManager  = new articleManageur();
 			List<Article> listeArticle =null;
 			try {
@@ -99,9 +103,10 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 			} catch (BusinessException e) {
 				e.printStackTrace();
 			}
+			request.setAttribute("venteChecked", venteChecked);
 			request.setAttribute("listeArticle", listeArticle);
 		}
-		this.getServletContext().getRequestDispatcher("/Accueil").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	}
 
 }

@@ -18,6 +18,10 @@ achat.checked = true;
 ventesEnCours.disabled = true;
 ventesNonDebutees.disabled = true;
 venteTerminees.disabled = true;
+}else{
+  encheresOuvertes.disabled = true;
+  encheresEnCours.disabled = true;
+  encheresRemportees.disabled = true;
 }
 
 achat.onclick = achatClicker;
