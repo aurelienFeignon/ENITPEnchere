@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
 <title>Mon profil</title>
 </head>
 <body>

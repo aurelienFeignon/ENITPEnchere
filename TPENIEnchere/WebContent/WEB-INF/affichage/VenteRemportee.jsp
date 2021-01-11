@@ -9,11 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
 <title>Résultat vente</title>
 
 </head>
 <body>
-<%@ include file="HeaderSansNavInclusion.jsp" %>
+<%@ include file="HeaderInclusion.jsp" %>
 <h1 class='text-center'>Vous avez remporté la vente</h1>
 <main>
 <div class="container">

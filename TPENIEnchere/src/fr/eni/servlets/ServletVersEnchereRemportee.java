@@ -1,4 +1,4 @@
-package src.fr.eni.servlets;
+package fr.eni.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -51,7 +51,7 @@ public class ServletVersEnchereRemportee extends HttpServlet {
 		//récupération infos enchererisseur
 		EnchereManageur enchereManageur = new EnchereManageur();
 		Encheres encheres = new Encheres();
-		encheres = enchereManageur.selectId(article.getNo_enchere());
+		encheres = enchereManageur.selectId(article.getNo_article());
 		
 		Utilisateur encherisseur = new Utilisateur();
 		encherisseur = utilisateurManageur.selectId(encheres.getNo_utilisateur());

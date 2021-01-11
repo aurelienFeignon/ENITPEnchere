@@ -12,6 +12,7 @@
 <!-- La librairie fontawesome pour les icones, fichier CSS et bootstrap -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
 </head>
 <body>
 <%@ include file="HeaderInclusion.jsp" %>

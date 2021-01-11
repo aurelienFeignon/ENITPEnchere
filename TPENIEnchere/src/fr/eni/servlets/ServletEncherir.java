@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bll.articleManageur;
+import fr.eni.bo.Article;
 import fr.eni.bo.Encheres;
 import fr.eni.bo.Utilisateur;
 import fr.eni.utils.BusinessException;
@@ -30,6 +31,7 @@ public class ServletEncherir extends HttpServlet {
 
 	}
 
+	@SuppressWarnings("null")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int idEncherisseur = Integer.parseInt(request.getParameter("id"));
@@ -43,103 +45,46 @@ public class ServletEncherir extends HttpServlet {
 		
 		Encheres derniereEnchere = new Encheres();
 		List<Encheres> listEncheres = new ArrayList<>();
-		
-		try {
-			listEncheres = enchereManageur.selectHistoriqueArticle(idArticle);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(listEncheres.size() != 0) {
-		derniereEnchere = listEncheres.get(listEncheres.size());
-		}else {
-			derniereEnchere.setMontant_enchere(0);
-		}
-			
-		
+		articleManageur articleManageur= new articleManageur();
 		
 		
 		//normalement il est impossible de miser en dessous de l'enchere actuelle via la jsp mais vérification ici aussi au ca où 
 		double proposition = Double.parseDouble(request.getParameter("proposition"));
 		double creditUser = (Double.parseDouble(request.getParameter("credit")));
-		double montant_enchere = (double)derniereEnchere.getMontant_enchere();
 		
+		Utilisateur nouveauEncherisseur = new Utilisateur();
+		UtilisateurManageur utilisateurManageur = new UtilisateurManageur();	
 		
-		if (proposition > montant_enchere && proposition <= creditUser)
-			
-		{
-			Utilisateur ancienEncherisseur = new Utilisateur();
-			Utilisateur nouveauEncherisseur = new Utilisateur();
-			 UtilisateurManageur utilisateurManageur = new UtilisateurManageur();	
-			
-			 if(montant_enchere > 0) {
-			 //on rend le crédit à l'ancien encherisseur s'il ya eu une enchère précédente
-			try {
-				ancienEncherisseur = utilisateurManageur.selectId(derniereEnchere.getNo_utilisateur());
-			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				utilisateurManageur.AjouterCredit(ancienEncherisseur, (int) montant_enchere);
-			} catch (BusinessException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 }
-			
-			 //on enleve le crédit au nouvel encherisseur
-			try {
-				nouveauEncherisseur = utilisateurManageur.selectId(idEncherisseur);
-			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
+		try {
+			listEncheres = enchereManageur.selectHistoriqueArticle(idArticle);
+			 
+			 nouveauEncherisseur = utilisateurManageur.selectId(idEncherisseur);
+			 if(listEncheres.size() != 0) {
+					derniereEnchere = listEncheres.get(listEncheres.size());
+					 Utilisateur ancienEncherisseur = utilisateurManageur.selectId(derniereEnchere.getNo_utilisateur());
+					
+					utilisateurManageur.AjouterCredit(ancienEncherisseur, derniereEnchere.getMontant_enchere());
+					utilisateurManageur.enleveCredit(nouveauEncherisseur, (int) proposition);
+			}else {
 				utilisateurManageur.enleveCredit(nouveauEncherisseur, (int) proposition);
-			} catch (BusinessException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
-			
-			
-			//création nouvelle enchère
-			// 	+ generated key ?
-			Encheres nouvelleEnchere = null;
-			nouvelleEnchere.setDate_enchere(Date.valueOf(LocalDate.now()));
-			nouvelleEnchere.setMontant_enchere((int) proposition);
-			nouvelleEnchere.setNo_article(idArticle);
-			nouvelleEnchere.setNo_utilisateur(idEncherisseur);
-			try {
+			 	Encheres nouvelleEnchere = new Encheres();
+			 	nouvelleEnchere.setDate_enchere(Date.valueOf(LocalDate.now()));
+				nouvelleEnchere.setMontant_enchere((int) proposition);
+				nouvelleEnchere.setNo_article(idArticle);
+				nouvelleEnchere.setNo_utilisateur(idEncherisseur);
+				System.out.println(nouvelleEnchere.toString());
 				enchereManageur.insert(nouvelleEnchere);
-			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			
-			
-			//update prixdevente
-			articleManageur articleManageur = new articleManageur();
-			try {
+				
+				//update prixdevente
 				articleManageur.updatePrixVente(idArticle, (int) proposition);
-			} catch (BusinessException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-
-		
-		else 
-		{
+		} catch (BusinessException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			String message ="Impossible d'effectuer l'action désirée";
         	request.setAttribute("erreur", message);
 			this.getServletContext().getRequestDispatcher("/DetailEnchere").forward(request, response);
 		}
-		
-		
 		String message ="Votre enchère a été réalisée avec succès.";
     	request.setAttribute("reussite", message);
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);

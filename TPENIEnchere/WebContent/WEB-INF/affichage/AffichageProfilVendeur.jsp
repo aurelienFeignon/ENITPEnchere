@@ -10,9 +10,10 @@
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
 <title>Informations du profil</title>
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
 </head>
 <body>
-<%@ include file="HeaderSansNavInclusion.jsp" %>
+<%@ include file="HeaderInclusion.jsp" %>
 
 <main>
 <h1>Informations du profil </h1>
