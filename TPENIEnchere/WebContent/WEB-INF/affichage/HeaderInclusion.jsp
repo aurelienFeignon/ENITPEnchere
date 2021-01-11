@@ -10,7 +10,7 @@
       
        <c:when test="${ !empty sessionScope.utilisateur }">
 		 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a href="Accueil"><img src="images/logo.jpg" width="30" height="30" alt="logo eni"></a>
+				<a href="Accueil"><img src="images/logo.png" width="30" height="30" alt="logo eni"></a>
 			  	<a class="navbar-brand" href="#">ENI-Encheres</a>
 			  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    	<span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
        
        <c:otherwise>
        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<img src="images/logo.jpg" width="30" height="30" alt="logo eni">
+				<img src="images/logo.png" width="30" height="30" alt="logo eni">
 			  	<a class="navbar-brand" href="#">ENI-Encheres</a>
 			  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    	<span class="navbar-toggler-icon"></span>

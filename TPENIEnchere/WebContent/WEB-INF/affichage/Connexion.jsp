@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
 <link href="css/signin.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
 <title>Se connecter</title>
 </head>
 
@@ -17,7 +18,7 @@
     
 <main class="form-signin">
   <form action="Connexion" method="post">
-    <img class="mb-4" src="images/logo.jpg" alt="logo eni" width="72" height="57">
+    <img class="mb-4" src="images/logo.png" alt="logo eni" width="150" height="150">
     <h1 class="h3 mb-3 fw-normal">connectez vous</h1>
     <label for="identifiant" class="visually-hidden">Identifiant</label>
     <input type="text"  name="identifiant" class="form-control" placeholder="Identifiant" value="${ identifiant }" required autofocus>
