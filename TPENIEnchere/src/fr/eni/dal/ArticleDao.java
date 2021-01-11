@@ -31,4 +31,16 @@ public interface ArticleDao extends GeneriqueDao<Article>{
 	public List<Article> selectAchatAll(int noUtilisateur) throws BusinessException;
 
 	public void updatePrixVente(int prixDeVente, int id)throws BusinessException, SQLException;
+
+	public List<Article> selectAchatEnchereEnCour(int noUtilisateur) throws BusinessException;
+
+	public List<Article> selectAchatEnchereRemporte(int noUtilisateur) throws BusinessException;
+
+	public List<Article> selectVenteAll(int noUtilisateur) throws BusinessException;
+
+	public List<Article> selectVenteTermine(int noUtilisateur) throws BusinessException;
+
+	public List<Article> selectVenteEnCour(int noUtilisateur) throws BusinessException;
+
+	public List<Article> selectVenteNonDebute(int noUtilisateur)throws BusinessException;
 }

@@ -21,7 +21,12 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String SELECT_NO_CATEGORIE="select * from ARTICLES_VENDUS where no_categorie=? and etatVente=0";
 	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and etatVente=0";
 	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and no_categorie=? and etatVente=0";
-	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in ? and etatVente=0";
+	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in (?) and etatVente=0";
+	private static final String SELECT_ACHAT_ENCHERE_EN_COURS="select * from ARTICLES_VENDUS a inner join ENCHERES e on a.no_article=e.no_article where e.no_utilisateur=? and etatVente=0 and a.no_utilisateur not in (?)";
+	private static final String SELECT_ACHAT_ENCHERE_REMPORTE="select * from ARTICLES_VENDUS a inner join ENCHERES e on a.no_article=e.no_article where e.no_utilisateur=? and etatVente=1 and a.no_utilisateur not in (?)";
+	private static final String SELECT_VENTE_ALL="select * from ARTICLES_VENDUS where no_utilisateur=?";
+	private static final String SELECT_VENTE_EN_COURS="select * from ARTICLES_VENDUS where no_utilisateur=? and etatVente=0";
+	private static final String SELECT_VENTE_TERMINE="select * from ARTICLES_VENDUS where no_utilisateur=? and etatVente=1";
 	private static final String UPDATE="update ARTICLES_VENDUS Set nom_article= ?,description=?, date_debut_encheres=?, date_fin_encheres=?, prix_initial=?,prix_vente=?, no_utilisateur=?,no_categorie=?, no_retrait=? where no_article=?";
 	private static final String UPDATE_PRIX_DE_VENTE="update ARTICLES_VENDUS Set  prix_vente=? where no_article=?";
 	private static final String UPDATE_ETAT_VENTE="update ARTICLES_VENDUS Set  etatVente=? where no_article=?";
@@ -166,6 +171,129 @@ public class ArticleDaoImpl implements ArticleDao {
 		List<Article> articles= new ArrayList<Article>();
 		try (Connection cnx= ConnectionProvider.getConnection()){
 			PreparedStatement stm = cnx.prepareStatement(SELECT_ACHAT_ALL);
+			stm.setInt(1, noUtilisateur);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	
+	
+	public List<Article> selectAchatEnchereEnCour(int noUtilisateur) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_ACHAT_ENCHERE_EN_COURS);
+			stm.setInt(1, noUtilisateur);
+			stm.setInt(2, noUtilisateur);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	public List<Article> selectAchatEnchereRemporte(int noUtilisateur) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_ACHAT_ENCHERE_REMPORTE);
+			stm.setInt(1, noUtilisateur);
+			stm.setInt(2, noUtilisateur);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	public List<Article> selectVenteAll(int noUtilisateur) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_VENTE_ALL);
+			stm.setInt(1, noUtilisateur);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	public List<Article> selectVenteEnCour(int noUtilisateur) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_VENTE_EN_COURS);
+			stm.setInt(1, noUtilisateur);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articles.add(this.articleConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	public List<Article> selectVenteNonDebute(int noUtilisateur) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		Article articleCourant= null;
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_VENTE_EN_COURS);
+			stm.setInt(1, noUtilisateur);
+			ResultSet rs= stm.executeQuery();
+			while(rs.next()) {
+				articleCourant=this.articleConstructeur(rs);
+				if(articleCourant.getDate_debut_encheres().after(new Date())) {
+					articles.add(articleCourant);
+				}
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException= new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+		
+		return articles;
+	}
+	
+	public List<Article> selectVenteTermine(int noUtilisateur) throws BusinessException {
+		List<Article> articles= new ArrayList<Article>();
+		try (Connection cnx= ConnectionProvider.getConnection()){
+			PreparedStatement stm = cnx.prepareStatement(SELECT_VENTE_TERMINE);
 			stm.setInt(1, noUtilisateur);
 			ResultSet rs= stm.executeQuery();
 			while(rs.next()) {

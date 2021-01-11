@@ -83,6 +83,40 @@ public class articleManageur  {
 		return articles;
 	}
 	
+	public List<Article> selectAchatEnchereEnCour(int noUtilisateur) throws BusinessException {
+		List<Article> articles = new ArrayList<Article>();
+		articles = this.articleDao.selectAchatEnchereEnCour(noUtilisateur);
+		return articles;
+	}
+	
+	public List<Article> selectAchatEnchereRemporte(int noUtilisateur) throws BusinessException {
+		List<Article> articles = new ArrayList<Article>();
+		articles = this.articleDao.selectAchatEnchereRemporte(noUtilisateur);
+		return articles;
+	}
+	
+	public List<Article> selectVenteAll(int noUtilisateur) throws BusinessException {
+		List<Article> articles = new ArrayList<Article>();
+		articles = this.articleDao.selectVenteAll(noUtilisateur);
+		return articles;
+	}
+	public List<Article> selectVenteTermine(int noUtilisateur) throws BusinessException {
+		List<Article> articles = new ArrayList<Article>();
+		articles = this.articleDao.selectVenteTermine(noUtilisateur);
+		return articles;
+	}
+	
+	public List<Article> selectVenteEnCour(int noUtilisateur) throws BusinessException {
+		List<Article> articles = new ArrayList<Article>();
+		articles = this.articleDao.selectVenteEnCour(noUtilisateur);
+		return articles;
+	}
+	
+	public List<Article> selectVenteNonDebute(int noUtilisateur) throws BusinessException {
+		List<Article> articles = new ArrayList<Article>();
+		articles = this.articleDao.selectVenteNonDebute(noUtilisateur);
+		return articles;
+	}
 	
 	public void update(Article article, int id) throws BusinessException, SQLException {
 		
