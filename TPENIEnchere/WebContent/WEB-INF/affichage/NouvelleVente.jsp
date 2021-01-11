@@ -12,15 +12,17 @@
 <!-- La librairie fontawesome pour les icones, fichier CSS et bootstrap -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
 <%@ include file="HeaderInclusion.jsp" %>
-<main class="justify-content-center">
-<div class="col-md-6">
-<img alt="Photo de l'article mis en vente." src="https://media.giphy.com/media/Zcc3ZeeZ5ztdw1oNSB/giphy.gif">
+<h1>Nouvelle vente</h1>
+<main class="container">
+<div class=" container-fluid text-center">
+	<img class="container col-md-6" alt="Photo de l'article mis en vente."  width="555" height="525" src="https://media.giphy.com/media/Zcc3ZeeZ5ztdw1oNSB/giphy.gif">
 </div>
-<div class="col-md-6">
-<form action="Vente" method="post">
+<div class=" container col-md-6">
+<form class="container form-horizontal" action="Vente" method="post">
 	  <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="article">Article</label>
