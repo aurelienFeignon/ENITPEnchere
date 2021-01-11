@@ -55,8 +55,9 @@
 
 <!-- Section permettant de selectionner plus finements les filtres -->
 <section class="row d-flex justify-content-center">
-<form action="#" method="post" class="form-inline my-2 my-lg-0">
+<form id="filtreRechercheFin" action="AcceuilFiltreRecherche" method="post" class="form-inline my-2 my-lg-0">
 <c:if test="${ !empty sessionScope.utilisateur }">
+<input type="hidden" id="noUtilisateur" name="noUtilisateur" value="${utilisateur.no_utilisateur}">
 <div class="col-sm-6" >
 	<input type="radio" id="achat" name="menu" value="achat">
 	<label for="achat">Achats</label><br>

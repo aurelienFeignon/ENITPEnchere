@@ -12,11 +12,13 @@ var ventesEnCours = document.getElementById("ventesEnCours");
 var ventesNonDebutees = document.getElementById("ventesNonDebutees");
 var venteTerminees = document.getElementById("venteTerminees");
 
+if(vente.checked == false){
 achat.checked = true;
 
 ventesEnCours.disabled = true;
 ventesNonDebutees.disabled = true;
 venteTerminees.disabled = true;
+}
 
 achat.onclick = achatClicker;
 vente.onclick = venteClicker;
@@ -59,6 +61,16 @@ function venteClicker(){
  encheresEnCours.disabled = true;
  encheresRemportees.disabled = true;
  
+}
+ encheresOuvertes.onclick = AutoSubmit;
+ encheresEnCours.onclick = AutoSubmit;
+ encheresRemportees.onclick = AutoSubmit;
+ ventesEnCours.onclick = AutoSubmit;
+ ventesNonDebutees.onclick = AutoSubmit;
+ venteTerminees.onclick = AutoSubmit;
+
+function AutoSubmit() {
+  document.getElementById("filtreRechercheFin").submit();
 }
 
 }
