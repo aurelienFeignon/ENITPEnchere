@@ -120,7 +120,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 			
 			else
 			{
-				montantMin = 0;
+				montantMin = article.getPrix_initial();
 			}
 			
 			request.setAttribute("encheres", encheres);

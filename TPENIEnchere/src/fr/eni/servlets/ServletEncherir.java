@@ -1,8 +1,10 @@
-package src.fr.eni.servlets;
+package fr.eni.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bll.articleManageur;
-import fr.eni.bo.Article;
 import fr.eni.bo.Encheres;
 import fr.eni.bo.Utilisateur;
+import fr.eni.utils.BusinessException;
 
 
 @WebServlet("/ServletEncherir")
@@ -30,7 +32,6 @@ public class ServletEncherir extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Date date = new Date();
 		int idEncherisseur = Integer.parseInt(request.getParameter("id"));
 		 
 		 int idArticle = Integer.parseInt(request.getParameter("idArticle"));
@@ -43,8 +44,18 @@ public class ServletEncherir extends HttpServlet {
 		Encheres derniereEnchere = new Encheres();
 		List<Encheres> listEncheres = new ArrayList<>();
 		
-		listEncheres = enchereManageur.selectHistoriqueArticle(idArticle);
-		derniereEnchere = listEncheres.get(listEncheres.size() - 1);
+		try {
+			listEncheres = enchereManageur.selectHistoriqueArticle(idArticle);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(listEncheres.size() != 0) {
+		derniereEnchere = listEncheres.get(listEncheres.size());
+		}else {
+			derniereEnchere.setMontant_enchere(0);
+		}
+			
 		
 		
 		
@@ -63,30 +74,60 @@ public class ServletEncherir extends HttpServlet {
 			
 			 if(montant_enchere > 0) {
 			 //on rend le crédit à l'ancien encherisseur s'il ya eu une enchère précédente
-			ancienEncherisseur = utilisateurManageur.selectId(derniereEnchere.getNo_utilisateur());
-			utilisateurManageur.AjouterCredit(ancienEncherisseur, (int) montant_enchere);
+			try {
+				ancienEncherisseur = utilisateurManageur.selectId(derniereEnchere.getNo_utilisateur());
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				utilisateurManageur.AjouterCredit(ancienEncherisseur, (int) montant_enchere);
+			} catch (BusinessException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			 }
 			
 			 //on enleve le crédit au nouvel encherisseur
-			nouveauEncherisseur = utilisateurManageur.selectId(idEncherisseur);
-			utilisateurManageur.enleveCredit(nouveauEncherisseur, (int) proposition);
+			try {
+				nouveauEncherisseur = utilisateurManageur.selectId(idEncherisseur);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				utilisateurManageur.enleveCredit(nouveauEncherisseur, (int) proposition);
+			} catch (BusinessException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
 			//création nouvelle enchère
 			// 	+ generated key ?
-			Encheres nouvelleEnchere = new Encheres();
-			nouvelleEnchere.setDate_enchere((java.sql.Date) date);
+			Encheres nouvelleEnchere = null;
+			nouvelleEnchere.setDate_enchere(Date.valueOf(LocalDate.now()));
 			nouvelleEnchere.setMontant_enchere((int) proposition);
 			nouvelleEnchere.setNo_article(idArticle);
 			nouvelleEnchere.setNo_utilisateur(idEncherisseur);
-			enchereManageur.insert(nouvelleEnchere);
+			try {
+				enchereManageur.insert(nouvelleEnchere);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
 			
 			
 			//update prixdevente
 			articleManageur articleManageur = new articleManageur();
-			articleManageur.updatePrixVente(idArticle, (int) proposition);
+			try {
+				articleManageur.updatePrixVente(idArticle, (int) proposition);
+			} catch (BusinessException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 

@@ -19,7 +19,7 @@
 <ul class="list-group mt-5">
 <li class="list-group-item"><c:out value="${article.nom_article}" /></li>
 <li class="list-group-item">Description : <c:out value="${article.description}" /></li>
-<li class="list-group-item">Meilleure offre : <c:out value="${article.prixVente}" /> par <c:out value= "${encherisseur.pseudo}" /> </li>
+<li class="list-group-item">Meilleure offre : <c:out value="${article.prix_vente}" /> par <c:out value= "${encherisseur.pseudo}" /> </li>
 <li class="list-group-item">Mise à prix : <c:out value="${article.prix_initial}" /></li>
 <li class="list-group-item">Fin de l'enchère : <c:out value="${article.date_fin_encheres}" /></li>
 <li class="list-group-item">Retrait : <c:out value="${retraits.rue}" /> <c:out value="${retraits.code_postal}" /> <c:out value="${retraits.ville}" /></li>
