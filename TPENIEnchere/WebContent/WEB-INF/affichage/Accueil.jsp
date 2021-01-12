@@ -17,8 +17,6 @@
 </head>
 <body>
 
-<!--Inclue une jsp non declaré dans web.xml à cette endroit de la jsp -->
-
 <%@ include file="HeaderInclusion.jsp" %>
 
 <main>
