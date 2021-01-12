@@ -125,7 +125,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		if (etatVente == false)
 		{
 			//en cours
-			if (article.getDate_debut_encheres().toLocalDate().isBefore(localDate))
+			if (article.getDate_debut_encheres().toLocalDate().isBefore(localDate) | article.getDate_debut_encheres().toLocalDate().isEqual(localDate))
 					{
 				
 				double montant_enchere = 0;
@@ -156,7 +156,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 			//pas encore en vente - seul le vendeur peut y accéder
 			else
 			{
-				if(article.getDate_debut_encheres().toLocalDate().isAfter(localDate) && idUser == article.getNo_utilisateur())
+				if(article.getDate_debut_encheres().toLocalDate().isAfter(localDate) && idUser == article.getNo_utilisateur()) 
 				{
 					this.nonDebutee  = true;
 					request.setAttribute("nonDebutee", nonDebutee);
