@@ -1,12 +1,18 @@
 package fr.eni.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import fr.eni.bll.articleManageur;
+import fr.eni.bo.Article;
+import fr.eni.utils.BusinessException;
 
 /**
  * Servlet implementation class ServletDeconnexion
@@ -23,8 +29,16 @@ public class ServletDeconnexion extends HttpServlet {
         HttpSession session = request.getSession();
         session.invalidate();
 
-        /* Redirection vers la page d'acceuil! */
-        this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
+      //Afficher les articles de la base de données
+      		articleManageur articleManager  = new articleManageur();
+      		List<Article> listeArticle =null;
+      		try {
+      			listeArticle = articleManager.selectAll();
+      		} catch (BusinessException e) {
+      			e.printStackTrace();
+      		}
+      		request.setAttribute("listeArticle", listeArticle);
+      		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
     }
 	
 }

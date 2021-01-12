@@ -112,6 +112,16 @@ public class ServletNouvelleVente extends HttpServlet {
 		}
 		  String MESSAGEREUSSITE = "Nouvelle article mis en vente avec succès" ;
 		 request.setAttribute("réussite", MESSAGEREUSSITE);
+		//Afficher les articles de la base de données
+			articleManageur articleManager  = new articleManageur();
+			List<Article> listeArticle =null;
+			try {
+				listeArticle = articleManager.selectAll();
+			} catch (BusinessException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("listeArticle", listeArticle);
+		 
 		 this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 		 
 	}
