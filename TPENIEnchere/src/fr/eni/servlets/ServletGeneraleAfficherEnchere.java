@@ -31,11 +31,13 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 	private LocalDate localDate = LocalDate.now();
 	private boolean nonDebutee = false;
        
- 
+	// attention = ajouter datedebut = date du jour
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//récupération idArticle et de l'id de l'encherisseur gagnant via clic si enchere terminée??;
+		//récupération idArticle
 		int idArticle = Integer.parseInt(request.getParameter("idArticle"));
-		int idGagnant = Integer.parseInt(request.getParameter("idGagnant"));
+		int idGagnant = 0;
+		//récuperation id utilisateur
 		HttpSession session= request.getSession(false);
 		Utilisateur User = (Utilisateur) session.getAttribute("utilisateur");
 		int idUser = User.getNo_utilisateur();
@@ -47,7 +49,6 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		try {
 			article = articleManageur.selectId(idArticle);
 		} catch (BusinessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -65,7 +66,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		
 		request.setAttribute("retraits", retraits);
 
-		//récupération infos categorie
+		//récupération infos categories
 		
 		categoriesManageur categoriesManageur = new categoriesManageur();
 		Categories categories = new Categories();
@@ -91,83 +92,109 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		request.setAttribute("utilisateur", utilisateur);
 		
 		
-	//récupération infos enchererisseur
+	//récupération infos enchere + encherisseur SI ENCHERE
 		Encheres enchere = null;
 		List<Encheres> encheres= new ArrayList<>();
 		Utilisateur encherisseur = new Utilisateur();
 		EnchereManageur enchereManageur= new EnchereManageur();
+		
 		try {
-			encheres= enchereManageur.selectAll();
+			encheres= enchereManageur.selectHistoriqueArticle(idArticle);
+		} catch (BusinessException e1) {
+			e1.printStackTrace();
+		}
+		if(!encheres.isEmpty()) {
+		try {
+			
 			enchere= encheres.get(encheres.size()-1);
 			encherisseur = utilisateurManageur.selectId(enchere.getNo_utilisateur());
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		request.setAttribute("enchere", enchere);
 		request.setAttribute("encherisseur", encherisseur);
-
+		}
 		
 		
 		boolean etatVente = article.getEtatVente();
-		int prix_vente = article.getPrix_vente();
 		
 		
-		// si vente en cours
-		if (article.getDate_debut_encheres().toLocalDate().isBefore(localDate) && etatVente == false)
+		
+		// pas débutée ou en cours
+		if (etatVente == false)
 		{
-			//récupération infos enchère et encherisseur
-			double montant_enchere = 0;
-			double montantMin = 0;
-			
-			montant_enchere = enchere.getMontant_enchere();
-			if (montant_enchere > 0)
-			{
-				montantMin = montant_enchere;
-			}
-			
-			else
-			{
-				montantMin = article.getPrix_initial();
-			}
-			
-			request.setAttribute("encheres", encheres);
-			request.setAttribute("montantMin", montantMin);
-			
-			this.getServletContext().getRequestDispatcher("/DetailEnchere").forward(request, response);
-		}
-		
-		//Vente fermée
-		else {
-			
-			
-			if(article.getDate_debut_encheres().toLocalDate().isAfter(localDate) && idUser == article.getNo_utilisateur())
-			{
-				this.nonDebutee  = true;
-				request.setAttribute("nonDebutee", nonDebutee);
-					this.getServletContext().getRequestDispatcher("/DetailEnchere").forward(request, response);
-			
+			//en cours
+			if (article.getDate_debut_encheres().toLocalDate().isBefore(localDate))
+					{
 				
-			}
-			
-			//vente terminée
-			else
-			{
+				double montant_enchere = 0;
+				double montantMin = 0;
 				
-				// si user est le gagnant de l'enchere => jsp enchere remportée ATTENTION FAIRE PASSER L'IDGAGNANT PRECEDEMMENT
-				
-				if(etatVente == true && idUser == idGagnant)
+				//s'il y a déjà eu une enchere
+				if(!encheres.isEmpty())
 				{
-					this.getServletContext().getRequestDispatcher("/ResultatVente").forward(request, response);
+					
+					montant_enchere = enchere.getMontant_enchere();
+					montantMin = montant_enchere;
+					
+					request.setAttribute("encheres", encheres);
 				}
+				
+				// pas encore d'enchere
 				else
 				{
-					this.getServletContext().getRequestDispatcher("/ResultatEnchere").forward(request, response);
+					montantMin = article.getPrix_initial();
 				}
+				
+				
+				request.setAttribute("montantMin", montantMin);
+				
+				this.getServletContext().getRequestDispatcher("/DetailEnchere").forward(request, response);
+					}
+			
+			//pas encore en vente - seul le vendeur peut y accéder
+			else
+			{
+				if(article.getDate_debut_encheres().toLocalDate().isAfter(localDate) && idUser == article.getNo_utilisateur())
+				{
+					this.nonDebutee  = true;
+					request.setAttribute("nonDebutee", nonDebutee);
+						this.getServletContext().getRequestDispatcher("/DetailEnchere").forward(request, response);
+				
 					
+				}
 			}
 			
 		}
+		
+		//vente terminée
+		else
+			
+		{
+			//on recherche si il y a une enchere + l'enchere gagnante
+			
+			if(!encheres.isEmpty()) {
+			idGagnant = enchere.getNo_utilisateur();
+			}
+			
+			//si gagnant
+			if (idUser == idGagnant)
+			{
+				this.getServletContext().getRequestDispatcher("/ResultatVente").forward(request, response);
+			}
+			
+			
+			else 
+			{
+				this.getServletContext().getRequestDispatcher("/ResultatEnchere").forward(request, response);
+				
+			}
+		}
+		
+		
+		
+	
 		
 		
 	}
