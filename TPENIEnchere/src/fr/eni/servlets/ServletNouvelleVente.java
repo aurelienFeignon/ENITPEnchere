@@ -67,14 +67,14 @@ public class ServletNouvelleVente extends HttpServlet {
 		Boolean etat = false;
 		Date dateDebutEnchere = Date.valueOf(debutEnchere);
 		Date dateFinEnchere = Date.valueOf(finEnchere);
-		if(request.getPart("photo") != null) {
+		/*if(request.getPart("photo") != null) {
 			Part part= request.getPart("photo");
 			String nomFichier= part.getSubmittedFileName();
 			if(nomFichier!= null && !nomFichier.isEmpty()) {
 				nomFichier= nomFichier.substring(nomFichier.lastIndexOf('/')+1).substring(nomFichier.lastIndexOf('\\')+1);
 				ecrireFichier(part, nomFichier, this.getServletContext().getRealPath("/images") );
 			}
-		}
+		}*/
 		
 		System.out.println(numeroUtilisateur);
 	//Je cree un objet 
