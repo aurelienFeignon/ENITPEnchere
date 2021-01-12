@@ -1,6 +1,7 @@
 package fr.eni.bll;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -97,7 +98,8 @@ public class EnchereManageur implements GeneriqueDao<Encheres> {
 	}
 
 	private void validerDateEnchere(Encheres enchere, BusinessException businessException) {
-		if(enchere.getDate_enchere().before(new Date())) {
+		LocalDate localDate = LocalDate.now().minusDays(1);
+		if(enchere.getDate_enchere().toLocalDate().isBefore(localDate)) {
 			businessException.ajouterErreur(CodeResultatBll.DATE_DEBUT_INFERIEUR_JOUR);
 		}
 	}

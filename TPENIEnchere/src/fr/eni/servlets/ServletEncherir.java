@@ -60,7 +60,7 @@ public class ServletEncherir extends HttpServlet {
 			 
 			 nouveauEncherisseur = utilisateurManageur.selectId(idEncherisseur);
 			 if(listEncheres.size() != 0) {
-					derniereEnchere = listEncheres.get(listEncheres.size());
+					derniereEnchere = listEncheres.get(listEncheres.size()-1);
 					 Utilisateur ancienEncherisseur = utilisateurManageur.selectId(derniereEnchere.getNo_utilisateur());
 					
 					utilisateurManageur.AjouterCredit(ancienEncherisseur, derniereEnchere.getMontant_enchere());
