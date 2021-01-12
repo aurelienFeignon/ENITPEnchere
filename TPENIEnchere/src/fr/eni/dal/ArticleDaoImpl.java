@@ -10,8 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 import fr.eni.bll.EnchereManageur;
+import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Encheres;
+import fr.eni.bo.Utilisateur;
 import fr.eni.utils.BusinessException;
 
 public class ArticleDaoImpl implements ArticleDao {
@@ -369,13 +371,17 @@ public class ArticleDaoImpl implements ArticleDao {
 	public List<Article> selectAll() throws BusinessException {
 		List<Article> articles= new ArrayList<Article>();
 		Article articleCourant= null;
+		UtilisateurManageur utilisateurManageur= new UtilisateurManageur();
+		Utilisateur utilisateur= null;
 		try(Connection cnx= ConnectionProvider.getConnection()){
 			PreparedStatement stm = cnx.prepareStatement(SELECT_ALL);
 			ResultSet rs= stm.executeQuery();
 			while(rs.next()) {
 				articleCourant=this.articleConstructeur(rs);
 				if(!articleCourant.getEtatVente()) {
-				articles.add(articleCourant);
+					utilisateur= utilisateurManageur.selectId(articleCourant.getNo_utilisateur());
+					utilisateurManageur.AjouterCredit(utilisateur, articleCourant.getPrix_vente());
+					articles.add(articleCourant);
 				}
 			}
 		} catch (SQLException e) {
