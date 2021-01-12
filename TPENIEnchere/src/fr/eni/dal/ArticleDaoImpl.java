@@ -26,12 +26,12 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and etatVente=0";
 	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and no_categorie=? and etatVente=0";
 	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in (?) and etatVente=0";
-	private static final String SELECT_ACHAT_ENCHERE_EN_COURS="select a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,a.prix_vente, a.no_utilisateur,a.no_categorie,a.no_retrait,a.etatVente"+
-	"from ARTICLES_VENDUS a inner join ENCHERES e on a.no_article=e.no_article where e.no_utilisateur=? and a.etatVente=0 and a.no_utilisateur not in (?)"+
-	"group by a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,a.prix_vente, a.no_utilisateur,a.no_categorie,a.no_retrait,a.etatVente ";
-	private static final String SELECT_ACHAT_ENCHERE_REMPORTE="select a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,a.prix_vente, a.no_utilisateur,a.no_categorie,a.no_retrait,a.etatVente"+
-	"from ARTICLES_VENDUS a inner join ENCHERES e on a.no_article=e.no_article where e.no_utilisateur=? and a.etatVente=1 and a.no_utilisateur not in (?)"+
-	"group by a.no_article, a.nom_article, a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,a.prix_vente, a.no_utilisateur,a.no_categorie,a.no_retrait,a.etatVente ";
+	private static final String SELECT_ACHAT_ENCHERE_EN_COURS="select ARTICLES_VENDUS.no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,prix_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie,ARTICLES_VENDUS.no_retrait,etatVente" + 
+	" from ARTICLES_VENDUS inner join ENCHERES  on ARTICLES_VENDUS.no_article=ENCHERES.no_article where ENCHERES.no_utilisateur=? and etatVente=0 and ARTICLES_VENDUS.no_utilisateur not in (?)" + 
+	" group by ARTICLES_VENDUS.no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,prix_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie,ARTICLES_VENDUS.no_retrait,etatVente";
+	private static final String SELECT_ACHAT_ENCHERE_REMPORTE="select ARTICLES_VENDUS.no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,prix_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie,ARTICLES_VENDUS.no_retrait,etatVente" + 
+	" from ARTICLES_VENDUS inner join ENCHERES  on ARTICLES_VENDUS.no_article=ENCHERES.no_article where ENCHERES.no_utilisateur=? and etatVente=1 and ARTICLES_VENDUS.no_utilisateur not in (?)" + 
+	" group by ARTICLES_VENDUS.no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,prix_vente, ARTICLES_VENDUS.no_utilisateur,ARTICLES_VENDUS.no_categorie,ARTICLES_VENDUS.no_retrait,etatVente";
 	private static final String SELECT_VENTE_ALL="select * from ARTICLES_VENDUS where no_utilisateur=?";
 	private static final String SELECT_VENTE_EN_COURS="select * from ARTICLES_VENDUS where no_utilisateur=? and etatVente=0";
 	private static final String SELECT_VENTE_TERMINE="select * from ARTICLES_VENDUS where no_utilisateur=? and etatVente=1";
@@ -271,7 +271,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				encheres= enchereManageur.selectHistoriqueArticle(article.getNo_article());
 				if(!encheres.isEmpty()) {
 					enchere= encheres.get(encheres.size()-1);
-					if(enchere.getNo_utilisateur()==article.getNo_utilisateur()) {
+					if(enchere.getNo_utilisateur()== noUtilisateur) {
 					articles.add(article);
 					}}}
 		} catch (SQLException e) {
