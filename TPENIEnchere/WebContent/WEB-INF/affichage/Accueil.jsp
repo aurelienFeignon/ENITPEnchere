@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -91,15 +92,16 @@
 <div class="card col-sm-5">
 <img class="card-img-top" src="https://media.giphy.com/media/TKMZAVkrx2OFALkLKf/giphy.gif" alt="Image de l'article en vente.">
 <div class="card-body">
-<h5 class="card-title"> <a href="ServletGeneraleAfficherEnchere?idArticle=${article.no_article}&idGagnant=${article.no_utilisateur}"> <c:out value="${article.nom_article} "/></a></h5>
+<h5 class="card-title"> <a href="ServletGeneraleAfficherEnchere?idArticle=${article.no_article}"> <c:out value="${article.nom_article} "/></a></h5>
 <p class="card-text">Prix : <c:out value="${article.prix_vente} "/></p>
-<p class="card-text">Fin de l'enchère (à modifier) : <c:out value="${article.date_fin_encheres} "/></p>
+<fmt:parseDate pattern="yyyy-MM-dd" value="${article.date_fin_encheres}" var="DateAffichage" />
+<p class="card-text">Fin de l'enchère : <fmt:formatDate value="${DateAffichage}" pattern="dd-MM-yyyy" /></p>
 <c:choose>
  <c:when test="${ !empty sessionScope.utilisateur }">
-<a href="#" class="btn btn-primary">Vendeur : <c:out value="${article.no_utilisateur} "/></a>
+<a href="ServletAffichageProfilVendeur?nombre=${article.no_utilisateur}" class="btn btn-primary">Profil du vendeur</a>
  </c:when>
 <c:otherwise>
-<p class="card-text"> Vendeur : <c:out value="${article.no_utilisateur} "/></p>
+<p class="card-text"> </p>
 </c:otherwise>
  </c:choose>
 

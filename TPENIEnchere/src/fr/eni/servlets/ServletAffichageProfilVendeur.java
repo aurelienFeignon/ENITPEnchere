@@ -26,10 +26,9 @@ public class ServletAffichageProfilVendeur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		// obtention id via jsp accueil - A FAIRE
+		// obtention id via jsp accueil
 		
-		int idUser = Integer.parseInt(request.getParameter("idUser"));
-		
+		int idUser = Integer.parseInt(request.getParameter("nombre"));
 		
 		//recupère les infos de l'utilisateur
 		 Utilisateur utilisateur = new Utilisateur();
