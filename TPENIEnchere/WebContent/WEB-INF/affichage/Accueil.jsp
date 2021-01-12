@@ -92,7 +92,7 @@
 <img class="card-img-top" src="https://media.giphy.com/media/TKMZAVkrx2OFALkLKf/giphy.gif" alt="Image de l'article en vente.">
 <div class="card-body">
 <h5 class="card-title"> <a href="ServletGeneraleAfficherEnchere?idArticle=${article.no_article}&idGagnant=${article.no_utilisateur}"> <c:out value="${article.nom_article} "/></a></h5>
-<p class="card-text">Prix : <c:out value="${article.prix_initial} "/></p>
+<p class="card-text">Prix : <c:out value="${article.prix_vente} "/></p>
 <p class="card-text">Fin de l'enchère (à modifier) : <c:out value="${article.date_fin_encheres} "/></p>
 <c:choose>
  <c:when test="${ !empty sessionScope.utilisateur }">

@@ -147,7 +147,7 @@ public class articleManageur  {
 			
 	this.validerArticleModifPrixDeVente(id,prixDeVente, businessException);
 	if(!businessException.hasErreurs()) {
-		this.articleDao.updatePrixVente(prixDeVente, id);
+		this.articleDao.updatePrixVente(id, prixDeVente);
 	}else {
 		throw businessException;
 	}

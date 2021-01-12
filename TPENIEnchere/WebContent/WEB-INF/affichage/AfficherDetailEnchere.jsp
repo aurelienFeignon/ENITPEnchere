@@ -33,7 +33,7 @@
 <c:if test="${sessionScope.utilisateur.no_utilisateur != article.no_utilisateur}">
 <form action="ServletEncherir" method="post" class="text-center">
 <label for="proposition">Ma proposition :</label>
-<input type="number" name="proposition" id="proposition" value="${montantMin}" max="${sessionScope.utilisateur.credit}" min="${montantMin}" class="col-2 ml-4">
+<input type="number" name="proposition" id="proposition" value="${article.prix_vente}" max="${sessionScope.utilisateur.credit}" min="${article.prix_vente}" class="col-2 ml-4">
 
 
 <input type="hidden" name="credit" value="${sessionScope.utilisateur.credit}">
