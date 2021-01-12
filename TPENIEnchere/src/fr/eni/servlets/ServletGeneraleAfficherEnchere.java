@@ -66,7 +66,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		
 		request.setAttribute("retraits", retraits);
 
-		//récupération infos categorie
+		//récupération infos categories
 		
 		categoriesManageur categoriesManageur = new categoriesManageur();
 		Categories categories = new Categories();
