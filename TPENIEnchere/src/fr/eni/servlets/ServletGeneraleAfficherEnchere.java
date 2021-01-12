@@ -132,7 +132,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		//Vente fermée
 		else {
 			
-			//si prix de vente est égal à prix initial, alors la vente n'a pas débuté. Si vente pas débuté + user = vendeur.
+			
 			if(article.getDate_debut_encheres().toLocalDate().isAfter(localDate) && idUser == article.getNo_utilisateur())
 			{
 				this.nonDebutee  = true;
@@ -145,17 +145,10 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 			//vente terminée
 			else
 			{
-				// si user est le vendeur => jsp vente réussie
-				if(idUser == article.getNo_utilisateur())
-				{
-		
-					
-					this.getServletContext().getRequestDispatcher("/ResultatEnchere").forward(request, response);
-				}
 				
 				// si user est le gagnant de l'enchere => jsp enchere remportée ATTENTION FAIRE PASSER L'IDGAGNANT PRECEDEMMENT
 				
-				if(idUser == idGagnant)
+				if(etatVente == true && idUser == idGagnant)
 				{
 					this.getServletContext().getRequestDispatcher("/ResultatVente").forward(request, response);
 				}
