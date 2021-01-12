@@ -2,6 +2,8 @@ package fr.eni.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.RetraitManageur;
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bll.articleManageur;
@@ -89,16 +92,21 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		
 		
 	//récupération infos enchererisseur
-		Encheres encheres = new Encheres();
+		Encheres enchere = null;
+		List<Encheres> encheres= new ArrayList<>();
 		Utilisateur encherisseur = new Utilisateur();
-/*		try {
-			encherisseur = utilisateurManageur.selectId(encheres.getNo_utilisateur());
+		EnchereManageur enchereManageur= new EnchereManageur();
+		try {
+			encheres= enchereManageur.selectAll();
+			enchere= encheres.get(encheres.size()-1);
+			encherisseur = utilisateurManageur.selectId(enchere.getNo_utilisateur());
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.setAttribute("enchere", enchere);
 		request.setAttribute("encherisseur", encherisseur);
-*/	
+
 		
 		
 		boolean etatVente = article.getEtatVente();
@@ -112,7 +120,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 			double montant_enchere = 0;
 			double montantMin = 0;
 			
-			montant_enchere = encheres.getMontant_enchere();
+			montant_enchere = enchere.getMontant_enchere();
 			if (montant_enchere > 0)
 			{
 				montantMin = montant_enchere;
