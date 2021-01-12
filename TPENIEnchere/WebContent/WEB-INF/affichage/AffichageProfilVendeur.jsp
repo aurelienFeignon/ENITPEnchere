@@ -36,7 +36,7 @@
 
 </main>
 
-<c:out value="${message}"></c:out>
+
 
 <%@ include file="FooterInclusion.jsp" %>
 <script src="js/jquery-3.4.1.min.js"></script>
