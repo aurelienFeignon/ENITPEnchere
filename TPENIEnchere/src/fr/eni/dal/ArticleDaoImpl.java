@@ -24,7 +24,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String SELECT_RECHERCHER="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and etatVente=0";
 	private static final String SELECT_RECHERCHER_CATEGORIE="select * from ARTICLES_VENDUS where nom_article like '%' + ? + '%' and no_categorie=? and etatVente=0";
 	private static final String SELECT_ACHAT_ALL="select * from ARTICLES_VENDUS where no_utilisateur not in (?) and etatVente=0";
-	private static final String SELECT_ACHAT_ENCHERE_EN_COURS="select * from ARTICLES_VENDUS a inner join ENCHERES e on a.no_article=e.no_article where e.no_utilisateur=? and etatVente=0 and a.no_utilisateur not in (?)";
+	private static final String SELECT_ACHAT_ENCHERE_EN_COURS="select a.no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,prix_vente, a.no_utilisateur,a.no_categorie,a.no_retrait,etatVente from ARTICLES_VENDUS a inner join ENCHERES e on a.no_article=e.no_article where e.no_utilisateur=? and etatVente=0 and a.no_utilisateur not in (?) group by a.no_article, nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial,prix_vente, a.no_utilisateur,a.no_categorie,a.no_retrait,etatVente ";
 	private static final String SELECT_ACHAT_ENCHERE_REMPORTE="select * from ARTICLES_VENDUS a inner join ENCHERES e on a.no_article=e.no_article where e.no_utilisateur=? and etatVente=1 and a.no_utilisateur not in (?)";
 	private static final String SELECT_VENTE_ALL="select * from ARTICLES_VENDUS where no_utilisateur=?";
 	private static final String SELECT_VENTE_EN_COURS="select * from ARTICLES_VENDUS where no_utilisateur=? and etatVente=0";
