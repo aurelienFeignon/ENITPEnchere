@@ -78,6 +78,7 @@ public class ServletConnexion extends HttpServlet {
 			//On stocke dans une session
 			HttpSession session = request.getSession();
 			session.setAttribute("utilisateur", utilisateur);
+			session.setAttribute("utilisateurId", utilisateur.getNo_utilisateur());
 			 //On stock en cookie si "se souvenir de moi" cocher
 			if(request.getParameter("memorisation") != null){
 				 Cookie cookieIdentifiant = new Cookie("identifiant", identifiant);

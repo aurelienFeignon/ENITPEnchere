@@ -27,7 +27,7 @@
 			<li class="list-group-item">Rue : <c:out value="${sessionScope.utilisateur.rue}" /></li>
 			<li class="list-group-item">Code postal : <c:out value="${sessionScope.utilisateur.code_postal}" /></li>
 			<li class="list-group-item">Ville : <c:out value="${sessionScope.utilisateur.ville}" /></li>
-			<li class="list-group-item">Crédit : <c:out value="${sessionScope.utilisateur.credit}" /></li>
+			<li class="list-group-item">Crédit : <c:out value="${utilisateurCredit.credit}" /></li>
 		</ul>
 </div>
 <form class="container" action="ServletVersModificationProfil" method="get">
