@@ -21,13 +21,14 @@
 <ul class="list-group mt-5">
 <li class="list-group-item"><c:out value="${article.nomArticle}" /></li>
 <li class="list-group-item">Description : <c:out value="${article.description}" /></li>
-<li class="list-group-item">Meilleure offre : <c:out value="${article.prixVente}"  />
+<li class="list-group-item">Meilleure offre : <c:out value="${article.prixVente}"  /> </li>
 <li class="list-group-item">Mise à prix : <c:out value="${article.miseAPrix}" /></li>
 <li class="list-group-item">Retrait : <c:out value="${retraits.rue}" /> <c:out value="${retraits.code_postal}" /> <c:out value="${retraits.ville}" /></li>
 <li class="list-group-item">Vendeur : <c:out value="${utilisateur.pseudo}" /></li>
 <li class="list-group-item mb-5">Téléphone : <c:out value="${utilisateur.telephone}" /></li>
-
-<form action="PageAccueil" method="get" class="text-center">
+</ul>
+</div>
+<form action="Accueil" method="get" class="text-center">
 <input type="submit" value="Retour" name="retour" class="btn btn-primary r">
 </form>
 
