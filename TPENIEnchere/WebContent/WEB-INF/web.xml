@@ -101,7 +101,7 @@
   </servlet-mapping>
   <servlet>
 <servlet-name>Admin</servlet-name>
-<jsp-file>/WEB-INF/affichage/Admin.jsp</jsp-file>
+<jsp-file>/WEB-INF/Admin/Admin.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
 <servlet-name>Admin</servlet-name>
