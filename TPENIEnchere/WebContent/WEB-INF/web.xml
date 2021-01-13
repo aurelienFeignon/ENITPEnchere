@@ -104,7 +104,7 @@
 <jsp-file>/WEB-INF/Admin/Admin.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
-<servlet-name>Admin</servlet-name>
+<servlet-name>Admin</servlet-name> 
 <url-pattern>/PageAdmin</url-pattern>
 
 </servlet-mapping>
