@@ -60,17 +60,18 @@ public class ServletModifierEnchere extends HttpServlet {
 				 unArticle.setDate_debut_encheres(dateDebutEnchere);
 				 unArticle.setDate_fin_encheres(dateFinEnchere);
 				 unArticle.setPrix_initial(miseAPrix);
-				 unArticle.setPrix_vente(0);
+				 unArticle.setPrix_vente(miseAPrix);
 				 unArticle.setNo_utilisateur(numeroUtilisateur);
 				 unArticle.setNo_categorie(categorie);
-				 unArticle.setNo_retrait(unRetrait.getNo_retrait());
 				 unArticle.setEtatVente(etat);		
 				 
 				 unRetrait.setRue(rue);
 				 unRetrait.setVille(ville);
 				 unRetrait.setCode_postal(codePostal);
-
+				 
 				try {
+					unRetrait = retraitManageur.insert(unRetrait);
+					unArticle.setNo_retrait(unRetrait.getNo_retrait());
 					articleManageur.update(unArticle, idArticle);
 				} catch (BusinessException | SQLException e) {
 					// TODO Auto-generated catch block
@@ -87,9 +88,19 @@ public class ServletModifierEnchere extends HttpServlet {
 					return;
 				}
 								
-				
 				  String MESSAGEREUSSITE = "Vente modifiée avec succès" ;
 				 request.setAttribute("réussite", MESSAGEREUSSITE);
+				 
+				//Afficher les articles de la base de données
+					articleManageur articleManager  = new articleManageur();
+					List<Article> listeArticle =null;
+					try {
+						listeArticle = articleManager.selectAll();
+					} catch (BusinessException e) {
+						e.printStackTrace();
+					}
+					request.setAttribute("listeArticle", listeArticle);
+				 
 				 this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 				 
 			}

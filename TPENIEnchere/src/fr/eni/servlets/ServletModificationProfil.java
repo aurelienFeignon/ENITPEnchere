@@ -2,6 +2,7 @@ package fr.eni.servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.catalina.Session;
 
 import fr.eni.bll.UtilisateurManageur;
+import fr.eni.bll.articleManageur;
+import fr.eni.bo.Article;
 import fr.eni.bo.Utilisateur;
 import fr.eni.utils.BusinessException;
 
@@ -100,6 +103,17 @@ public class ServletModificationProfil extends HttpServlet {
 	  		   //retour sur la page d'accueil + message de réussite
 	  		        String message ="Modification des informations et du mot de passe réussie";
 	  	        	request.setAttribute("réussiteMdp", message);
+	  	        	
+	  	        //Afficher les articles de la base de données
+	  	  		articleManageur articleManager  = new articleManageur();
+	  	  		List<Article> listeArticle =null;
+	  	  		try {
+	  	  			listeArticle = articleManager.selectAll();
+	  	  		} catch (BusinessException e) {
+	  	  			e.printStackTrace();
+	  	  		}
+	  	  		request.setAttribute("listeArticle", listeArticle);
+	  	        	
 	  			RequestDispatcher rd = request.getRequestDispatcher("/PageAccueil");
 	  			rd.forward(request, response);
 	  	 	       

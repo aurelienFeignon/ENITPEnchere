@@ -21,7 +21,7 @@
 <img alt="Photo de l'article mis en vente." src="https://media.giphy.com/media/Zcc3ZeeZ5ztdw1oNSB/giphy.gif">
 </div>
 <div class="col-md-6">
-<form action="Vente" method="post">
+<form action="ServletModifierEnchere" method="post">
 	  <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="article">Article</label>
