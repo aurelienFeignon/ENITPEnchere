@@ -99,7 +99,7 @@ ALTER TABLE ARTICLES_VENDUS
 ON DELETE NO ACTION 
     ON UPDATE no action 
 
---ajout d'une colonne sur la table Articles_vendus etat de la vente, 0 pour vente en cour et 1 pour vente terminé
+--ajout d'une colonne sur la table Articles_vendus etat de la vente, 0 pour vente en cours ou non commencée et 1 pour vente terminé
 ALTER TABLE ARTICLES_VENDUS ADD etatVente bit NOT NULL
 
 --insertion des categories pour que l'ajout d'objet fonctionne

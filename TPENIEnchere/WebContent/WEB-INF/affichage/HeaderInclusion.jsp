@@ -10,7 +10,7 @@
       
        <c:when test="${ !empty sessionScope.utilisateur }">
 		 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a href="Accueil"><img src="images/logo.png" width="30" height="30" alt="logo eni"></a>
+				<a href="<c:url value =" Accueil "/>"><img src="images/logo.png" width="30" height="30" alt="logo eni"></a>
 			  	<a class="navbar-brand" href="Accueil">ENI-Encheres</a>
 			  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    	<span class="navbar-toggler-icon"></span>
@@ -19,16 +19,16 @@
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
 				      <li class="nav-item active">
-				       	<a class="nav-link" href="Accueil">Accueil <span class="sr-only">(current)</span></a>
+				       	<a class="nav-link" href="<c:url value =" Accueil "/>">Accueil <span class="sr-only">(current)</span></a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="Vente">Vendre un article</a>
+				        <a class="nav-link" href="<c:url value =" Vente "/>">Vendre un article</a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="monProfil">Mon profil</a>
+				        <a class="nav-link" href="<c:url value =" monProfil "/>">Mon profil</a>
 				      </li>
 						<li class="nav-item">
-				        <a class="nav-link" href="Deconnexion">Déconnexion</a>
+				        <a class="nav-link" href="<c:url value =" Deconnexion "/>">Déconnexion</a>
 				      </li>
 				    </ul>
 				    <p> ${ sessionScope.utilisateur.pseudo } est connecté(e) </p>
@@ -48,7 +48,7 @@
 			  	 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 				    <ul class="navbar-nav mr-auto">
 					      <li class="nav-item active">
-					       	<a class="nav-link" href="Accueil">Accueil <span class="sr-only">(current)</span></a>
+					       	<a class="nav-link" href="<c:url value =" Accueil "/>">Accueil <span class="sr-only">(current)</span></a>
 					      </li>
 					   	  <li class="nav-item">
 					   	  	<a class="nav-link"  href = "<c:url value = 'Connexion'/>">Se connecter</a>

@@ -30,19 +30,16 @@
 			<li class="list-group-item">Crédit : <c:out value="${utilisateurCredit.credit}" /></li>
 		</ul>
 </div>
-<form class="container" action="ServletVersModificationProfil" method="get">
+<form class="container" action="<c:url value =" ModifierSonProfil "/>" method="get">
 		<button type="submit" class="btn btn-primary">Modifier</button>
 </form>
 
-
 </main>
-
-
 
 <%@ include file="FooterInclusion.jsp" %>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap-4.4.1.js"></script>
 </body>
-<!-- commentaire test -->
+
 </html>

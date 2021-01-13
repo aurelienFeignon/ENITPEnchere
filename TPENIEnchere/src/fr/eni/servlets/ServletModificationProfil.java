@@ -25,7 +25,7 @@ import fr.eni.utils.BusinessException;
 //TO DO : ajout suite code + ajouter d'autres messages d'erreur ? + tests !
 
 
-@WebServlet("/ServletModificationProfil")
+@WebServlet("/modificationProfil")
 public class ServletModificationProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

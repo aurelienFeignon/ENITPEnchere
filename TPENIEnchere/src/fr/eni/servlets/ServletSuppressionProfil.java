@@ -14,7 +14,7 @@ import fr.eni.bll.UtilisateurManageur;
 import fr.eni.utils.BusinessException;
 
 
-@WebServlet("/ServletSuppressionProfil")
+@WebServlet("/suppressionProfil")
 public class ServletSuppressionProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

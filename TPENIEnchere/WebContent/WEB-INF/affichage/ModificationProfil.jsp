@@ -18,7 +18,7 @@
 <h1 class='text-center mt-5'>Mon Profil</h1>
 <main>
 
-<form action="ServletModificationProfil" method="post" class="mt-5">
+<form action="<c:url value =" modificationProfil "/>" method="post" class="mt-5">
 
 <div class="form-row">
     <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -113,7 +113,7 @@
 </form>
 
 <!-- Bouton supprimer profil avec id caché -->
-<form action="ServletSuppressionProfil" method="post">
+<form action="<c:url value =" suppressionProfil "/>" method="post">
 <input type="submit"  value="Supprimer" class="btn btn-danger">
 </form>
 </div>

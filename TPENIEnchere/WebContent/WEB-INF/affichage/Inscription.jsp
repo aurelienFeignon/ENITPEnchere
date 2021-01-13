@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@ include file="HeaderInclusion.jsp" %>
-<form action="Inscription" method="post">
+<form action="<c:url value =" Inscription "/>" method="post">
 	  <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="pseudo">Pseudo</label>
