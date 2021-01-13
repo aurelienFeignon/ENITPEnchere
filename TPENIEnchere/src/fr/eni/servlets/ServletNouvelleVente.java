@@ -30,17 +30,17 @@ import fr.eni.utils.BusinessException;
 		fileSizeThreshold   = 1024 * 1024 * 1,  // 1 MB
 		maxFileSize         = 1024 * 1024 * 10, // 10 MB
 		maxRequestSize      = 1024 * 1024 * 15, // 15 MB
-		location			="/tmp"
+		location			="C:\\tmp"
 		)
 
-public class ServletNouvelleVente extends HttpServlet {
+public class ServletNouvelleVente extends HttpServlet  {
 	private static final long serialVersionUID = 1L;
 	public static final int TAILLE_TAMPON=10240;
 	public static final String IMAGES_FOLDER = "/Images";
+	public String uploadPath;
 	
 	
-	
-	
+		
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -53,6 +53,8 @@ public class ServletNouvelleVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//obtention du chemin absolue de l'application
+		String appPath = request.getServletContext().getRealPath("/WebContent/images");
 		
 		//Recuperer les parametres
 		
@@ -67,17 +69,17 @@ public class ServletNouvelleVente extends HttpServlet {
 		String debutEnchere = request.getParameter("debutEnchere");
 		String finEnchere  = request.getParameter("finEnchere");
 		int numeroUtilisateur = Integer.parseInt(request.getParameter("numeroUtilisateur"));
-		Boolean etat = false;
 		Date dateDebutEnchere = Date.valueOf(debutEnchere);
 		Date dateFinEnchere = Date.valueOf(finEnchere);
 		//Récupération et sauvegarde du contenu de l'image.
-		/*if(request.getPart("photo") != null) {
-			String uploadPath= getServletContext().getRealPath( IMAGES_FOLDER );
+		if(request.getPart("photo") != null) {
 			Part part= request.getPart("photo");
-			String fileName = getFileName( part );
-	        String fullPath = uploadPath + File.separator + fileName;
-	        part.write( fullPath );
-		}*/
+	            String fileName = getFileName(part);
+	            // refines the fileName in case it is an absolute path
+	            String fullPath = uploadPath + File.separator + fileName;
+	            part.write(fullPath);
+	        
+		}
 		
 		
 	//Je cree un objet 
@@ -129,35 +131,15 @@ public class ServletNouvelleVente extends HttpServlet {
 		 
 	}
 
-	   /*
-     * Récupération du nom du fichier dans la requête.
-     */
-    private String getFileName( Part part ) {
-        for ( String content : part.getHeader( "content-disposition" ).split( ";" ) ) {
-            if ( content.trim().startsWith( "filename" ) )
-                return content.substring( content.indexOf( "=" ) + 2, content.length() - 1 );
-        }
-        return "Default.file";
-    }
-	
-	private void ecrireFichier(Part part, String nomFichier, String cheminFichiers) throws IOException {
-		BufferedInputStream entree=null;
-		BufferedOutputStream sortie = null;
-		
-		try {
-			entree= new BufferedInputStream(part.getInputStream(), TAILLE_TAMPON);
-			sortie= new BufferedOutputStream(new FileOutputStream(new File(cheminFichiers + nomFichier)), TAILLE_TAMPON);
-			
-			byte[] tampon = new byte[TAILLE_TAMPON];
-			int longeur;
-			while((longeur= entree.read(tampon))>0) {
-				sortie.write(tampon, 0, longeur);
-			}
-		
-	}finally {
-		sortie.close();
-		entree.close();
-	}}
 
-
+	/*
+	 * Récupération du nom du fichier dans la requête.
+	 */
+	private String getFileName(Part part) {
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename"))
+				return content.substring(content.indexOf("=") + 2, content.length() - 1);
+		}
+		return "Default.file";
+	}
 }
