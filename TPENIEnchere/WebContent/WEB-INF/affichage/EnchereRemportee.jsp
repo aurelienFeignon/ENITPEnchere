@@ -16,11 +16,18 @@
 <main>
 <%@ include file="HeaderInclusion.jsp" %>
 <div class="container">
+<c:if test="${!empty enchere }">
 <h1 class='text-center'><c:out value="${encherisseur.pseudo}" /> a remporté l'enchère</h1>
+</c:if>
+<c:if test="${empty enchere}"><h1 class='text-center'>La vente est terminée </h1></c:if>
 <ul class="list-group mt-5">
 <li class="list-group-item"><c:out value="${article.nom_article}" /></li>
 <li class="list-group-item">Description : <c:out value="${article.description}" /></li>
-<li class="list-group-item">Meilleure offre : <c:out value="${article.prix_vente}" /> par <c:out value= "${encherisseur.pseudo}" /> </li>
+<li class="list-group-item">Meilleure offre : 
+<c:if test="${!empty enchere }">
+<c:out value="${article.prix_vente}" /> par <c:out value= "${encherisseur.pseudo}" /> </li>
+</c:if>
+<c:if test="${empty enchere}">Il n'y a pas eu d'enchere</c:if>
 <li class="list-group-item">Mise à prix : <c:out value="${article.prix_initial}" /></li>
 <li class="list-group-item">Fin de l'enchère : <c:out value="${article.date_fin_encheres}" /></li>
 <li class="list-group-item">Retrait : <c:out value="${retraits.rue}" /> <c:out value="${retraits.code_postal}" /> <c:out value="${retraits.ville}" /></li>
