@@ -29,7 +29,7 @@ public class ServletSuppressionProfil extends HttpServlet {
 	
 	//suppresion de l'utilisateur en BDD	
 		try {
-			utilisateurManageur.delete(Integer.parseInt(request.getParameter("id")));
+			utilisateurManageur.delete(Integer.parseInt(request.getSession(false).getAttribute("utilisateurId").toString()));
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}

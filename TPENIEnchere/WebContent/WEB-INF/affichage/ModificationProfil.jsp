@@ -114,7 +114,6 @@
 
 <!-- Bouton supprimer profil avec id caché -->
 <form action="ServletSuppressionProfil" method="post">
-<input type="hidden" name="id" value="${sessionScope.utilisateur.no_utilisateur}">
 <input type="submit"  value="Supprimer" class="btn btn-danger">
 </form>
 </div>
