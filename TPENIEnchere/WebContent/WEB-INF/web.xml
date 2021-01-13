@@ -99,5 +99,14 @@
     <servlet-name>ModificationEnchere</servlet-name>
     <url-pattern>/ModificationEnchere</url-pattern>
   </servlet-mapping>
+  <servlet>
+<servlet-name>Admin</servlet-name>
+<jsp-file>/WEB-INF/affichage/Admin.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+<servlet-name>Admin</servlet-name>
+<url-pattern>/PageAdmin</url-pattern>
+
+</servlet-mapping>
   
 </web-app>

@@ -15,10 +15,10 @@
 <%@ include file="HeaderInclusion.jsp" %>
 
 <main>
-<h1>Informations du profil </h1>
+<h1 clas="text-center mt-5 mb-5">Informations du profil </h1>
 
 <div class="container">
-		<ul class="list-group">
+		<ul class="list-group mt-5 mb-5">
 			<li class="list-group-item">Pseudo : <c:out value="${sessionScope.utilisateur.pseudo}" /></li>
 			<li class="list-group-item">Nom : <c:out value="${sessionScope.utilisateur.nom}" /></li>
 			<li class="list-group-item">Prenom : <c:out value="${sessionScope.utilisateur.prenom}" /></li>
@@ -30,10 +30,11 @@
 			<li class="list-group-item">Crédit : <c:out value="${utilisateurCredit.credit}" /></li>
 		</ul>
 </div>
+<div class="text-center">
 <form class="container" action="<c:url value =" ModifierSonProfil "/>" method="get">
 		<button type="submit" class="btn btn-primary">Modifier</button>
 </form>
-
+</div>
 </main>
 
 <%@ include file="FooterInclusion.jsp" %>

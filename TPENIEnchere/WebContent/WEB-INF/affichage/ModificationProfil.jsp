@@ -15,12 +15,12 @@
 <body>
 <%@ include file="HeaderInclusion.jsp" %>
 <div class="container">
-<h1 class='text-center mt-5'>Mon Profil</h1>
+<h1 class='text-center mt-5 mb-5'>Mon Profil</h1>
 <main>
 
 <form action="<c:url value =" modificationProfil "/>" method="post" class="mt-5">
 
-<div class="form-row">
+<div class="form-row mt-5">
     <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="pseudo">Pseudo : </label>
         <input type="text" class="form-control col-auto" name="pseudo" value="${sessionScope.utilisateur.pseudo}">
