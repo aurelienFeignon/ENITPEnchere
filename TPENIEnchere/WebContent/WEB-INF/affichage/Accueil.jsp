@@ -26,7 +26,7 @@
 		<section>
 			<h2 class="col-sm-12 d-flex justify-content-center">Filtres</h2>
 			<div class="container">
-				<form action="<c:url value =" Accueil "/>" method="post" novalidate="novalidate">
+				<form action="Accueil" method="post" novalidate="novalidate">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="row">
