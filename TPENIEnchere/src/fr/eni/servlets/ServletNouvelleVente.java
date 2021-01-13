@@ -30,15 +30,18 @@ import fr.eni.utils.BusinessException;
 		fileSizeThreshold   = 1024 * 1024 * 1,  // 1 MB
 		maxFileSize         = 1024 * 1024 * 10, // 10 MB
 		maxRequestSize      = 1024 * 1024 * 15, // 15 MB
-		location            = "C:\\tmp"
+		location			="/tmp"
 		)
 
 public class ServletNouvelleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final int TAILLE_TAMPON=10240;
+	public static final String IMAGES_FOLDER = "/Images";
 	
 	
-
+	
+	
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -67,16 +70,16 @@ public class ServletNouvelleVente extends HttpServlet {
 		Boolean etat = false;
 		Date dateDebutEnchere = Date.valueOf(debutEnchere);
 		Date dateFinEnchere = Date.valueOf(finEnchere);
+		//Récupération et sauvegarde du contenu de l'image.
 		/*if(request.getPart("photo") != null) {
+			String uploadPath= getServletContext().getRealPath( IMAGES_FOLDER );
 			Part part= request.getPart("photo");
-			String nomFichier= part.getSubmittedFileName();
-			if(nomFichier!= null && !nomFichier.isEmpty()) {
-				nomFichier= nomFichier.substring(nomFichier.lastIndexOf('/')+1).substring(nomFichier.lastIndexOf('\\')+1);
-				ecrireFichier(part, nomFichier, this.getServletContext().getRealPath("/images") );
-			}
+			String fileName = getFileName( part );
+	        String fullPath = uploadPath + File.separator + fileName;
+	        part.write( fullPath );
 		}*/
 		
-		System.out.println(numeroUtilisateur);
+		
 	//Je cree un objet 
 		 Article unArticle = new Article();
 		 Retraits unRetrait = new Retraits();
@@ -126,6 +129,17 @@ public class ServletNouvelleVente extends HttpServlet {
 		 
 	}
 
+	   /*
+     * Récupération du nom du fichier dans la requête.
+     */
+    private String getFileName( Part part ) {
+        for ( String content : part.getHeader( "content-disposition" ).split( ";" ) ) {
+            if ( content.trim().startsWith( "filename" ) )
+                return content.substring( content.indexOf( "=" ) + 2, content.length() - 1 );
+        }
+        return "Default.file";
+    }
+	
 	private void ecrireFichier(Part part, String nomFichier, String cheminFichiers) throws IOException {
 		BufferedInputStream entree=null;
 		BufferedOutputStream sortie = null;

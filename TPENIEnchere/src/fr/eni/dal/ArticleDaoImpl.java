@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -371,16 +372,12 @@ public class ArticleDaoImpl implements ArticleDao {
 	public List<Article> selectAll() throws BusinessException {
 		List<Article> articles= new ArrayList<Article>();
 		Article articleCourant= null;
-		UtilisateurManageur utilisateurManageur= new UtilisateurManageur();
-		Utilisateur utilisateur= null;
 		try(Connection cnx= ConnectionProvider.getConnection()){
 			PreparedStatement stm = cnx.prepareStatement(SELECT_ALL);
 			ResultSet rs= stm.executeQuery();
 			while(rs.next()) {
 				articleCourant=this.articleConstructeur(rs);
 				if(!articleCourant.getEtatVente()) {
-					utilisateur= utilisateurManageur.selectId(articleCourant.getNo_utilisateur());
-					utilisateurManageur.AjouterCredit(utilisateur, articleCourant.getPrix_vente());
 					articles.add(articleCourant);
 				}
 			}
@@ -459,9 +456,17 @@ public void updateEtatVente(Article article) throws BusinessException, SQLExcept
 		article.setNo_categorie(rs.getInt("no_categorie"));
 		article.setNo_retrait(rs.getInt("no_retrait"));
 		article.setEtatVente(rs.getBoolean("etatVente"));
-		if(article.getDate_fin_encheres().before(new Date())) {
+		if(article.getDate_fin_encheres().toLocalDate().isBefore(LocalDate.now().plusDays(1))) {		
 			this.updateEtatVente(article);
 			article.setEtatVente(true);
+			EnchereManageur enchereManageur= new EnchereManageur();
+			List<Encheres> encheres= enchereManageur.selectHistoriqueArticle(article.getNo_article());
+			if(!encheres.isEmpty()) {
+				UtilisateurManageur utilisateurManageur= new UtilisateurManageur();
+				Utilisateur utilisateur= null;
+				utilisateur= utilisateurManageur.selectId(article.getNo_utilisateur());
+				utilisateurManageur.AjouterCredit(utilisateur, article.getPrix_vente());
+			}
 		}
 		return article;
 	}

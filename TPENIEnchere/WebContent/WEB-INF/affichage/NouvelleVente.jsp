@@ -48,7 +48,7 @@
 	 <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="photo">Photo de l'article</label>
-	      <!--  <input  type="file" class="form-control" name="photo" value="uploader">-->
+	     <!--  <input  type="file" class="form-control" name="photo" value="uploader">-->
 	    </div>
      </div>
   		 <div class="form-row">
