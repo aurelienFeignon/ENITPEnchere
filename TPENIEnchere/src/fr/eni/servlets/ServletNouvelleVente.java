@@ -118,6 +118,7 @@ public class ServletNouvelleVente extends HttpServlet {
 					InputStream fileContent = part.getInputStream();
 					String sContext = "C:\\Users\\aurel\\git" + request.getContextPath() + "/WebContent";
 					File f = new File(sContext + "/images/" + fileName);
+					part.write(sContext);
 					FileSave.receiveFile(fileContent, f);
 					unArticle.setCheminImg(fileName);
 				} catch (BusinessException e) {

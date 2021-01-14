@@ -123,25 +123,40 @@ public interface ArticleDao extends GeneriqueDao<Article> {
 	public List<Article> selectVenteAll(int noUtilisateur) throws BusinessException;
 
 	/**
-	 * Méthode en charge de selectionner tout les articles ou la date de fin
-	 * d'enchere est passé que l'utilisateur à mis en vente
+	 * Méthode en charge de selectionner tout les articles mise en vente par
+	 * l'utilisateur ou la date de fin d'enchere est passé
 	 * 
-	 * @param noUtilisateur
-	 * @return
+	 * @param noUtilisateur numero d'utilisateur
+	 * @return La liste d'article filtré
 	 * @throws BusinessException
 	 */
 	public List<Article> selectVenteTermine(int noUtilisateur) throws BusinessException;
 
 	/**
-	 * Méthode en charge de
+	 * Méthode en charge de selectionner tout les articles mise en vente par
+	 * l'utilisateur ou l'enchere est en cour
 	 * 
 	 * @param noUtilisateur
-	 * @return
+	 * @return La liste d'article filtré
 	 * @throws BusinessException
 	 */
 	public List<Article> selectVenteEnCour(int noUtilisateur) throws BusinessException;
 
+	/**
+	 * Méthode en charge de selectionner tout les articles mise en vente par
+	 * l'utilisateur ou l'enchere n'a pas debutée
+	 * 
+	 * @param noUtilisateur numero utilisateur
+	 * @return La liste d'article filtré
+	 * @throws BusinessException
+	 */
 	public List<Article> selectVenteNonDebute(int noUtilisateur) throws BusinessException;
 
+	/**
+	 * Méthode en charge d'inserer un article avec le chemin de l'image
+	 * 
+	 * @param article article à inserer
+	 * @throws BusinessException
+	 */
 	public void insertAvecCheminImg(Article article) throws BusinessException;
 }

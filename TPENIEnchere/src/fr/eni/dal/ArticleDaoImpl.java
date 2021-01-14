@@ -41,6 +41,9 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static final String UPDATE_PRIX_DE_VENTE = "update ARTICLES_VENDUS Set  prix_vente=? where no_article=?";
 	private static final String UPDATE_ETAT_VENTE = "update ARTICLES_VENDUS Set  etatVente=? where no_article=?";
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void delete(int id) throws BusinessException {
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -56,6 +59,9 @@ public class ArticleDaoImpl implements ArticleDao {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void insert(Article article) throws BusinessException {
 		if (article == null) {
@@ -91,6 +97,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void insertAvecCheminImg(Article article) throws BusinessException {
 		if (article == null) {
@@ -128,6 +137,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Article selectId(int id) throws BusinessException {
 		Article article = null;
@@ -152,6 +164,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return article;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectCategorie(int noCategorie) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -172,6 +187,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectRechercher(String rechercher) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -192,6 +210,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectCategorieRechercher(String rechercher, int noCategorie) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -213,6 +234,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectAchatAll(int noUtilisateur) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -233,6 +257,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectAchatEnchereEnCour(int noUtilisateur) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -254,6 +281,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectAchatEnchereRemporte(int noUtilisateur) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -286,6 +316,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectVenteAll(int noUtilisateur) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -306,6 +339,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectVenteEnCour(int noUtilisateur) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -326,6 +362,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectVenteNonDebute(int noUtilisateur) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -351,6 +390,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectVenteTermine(int noUtilisateur) throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -371,6 +413,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Article> selectAll() throws BusinessException {
 		List<Article> articles = new ArrayList<Article>();
@@ -390,6 +435,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		return articles;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void update(Article article, int id) throws BusinessException, SQLException {
 		if (article == null) {
@@ -417,6 +465,9 @@ public class ArticleDaoImpl implements ArticleDao {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void updatePrixVente(int id, int prixDeVente) throws BusinessException, SQLException {
 
@@ -432,6 +483,14 @@ public class ArticleDaoImpl implements ArticleDao {
 		}
 	}
 
+	/**
+	 * Méthode en charge d'update l'etat de vente de l'article en bd passant en
+	 * vente à vendu
+	 * 
+	 * @param article article a modifier
+	 * @throws BusinessException
+	 * @throws SQLException
+	 */
 	public void updateEtatVente(Article article) throws BusinessException, SQLException {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -446,6 +505,14 @@ public class ArticleDaoImpl implements ArticleDao {
 		}
 	}
 
+	/**
+	 * Méthode en charge de constuire les articles après extraction de la bd.
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 * @throws BusinessException
+	 */
 	private Article articleConstructeur(ResultSet rs) throws SQLException, BusinessException {
 		Article article = new Article();
 		article.setNo_article(rs.getInt("no_article"));

@@ -92,8 +92,8 @@
 						alt="Image de l'article en vente.">
 					<div class="card-body">
 					<c:if test="${!empty article.cheminImg}">
-					<c:url value="/webcontent/${article.cheminImg}" var="ImgObj" />
-					<img src="${ImgObj}" alt="image de l'article">
+					
+					<img src="<c:url value="/webcontent/${article.cheminImg}"/>" alt="image de l'article">
 					</c:if>
 						<c:choose>
 							<c:when test="${ !empty sessionScope.utilisateur }">
