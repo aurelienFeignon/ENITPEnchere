@@ -1,5 +1,12 @@
 package fr.eni.dal;
 
+/**
+ * Classe de constante d'erreur
+ * 
+ * @author aurel
+ * @version TPENIEnchere - v1.0
+ * @date 14 janv. 2021 - 16:38:36
+ */
 public class CodesResultatDAL {
 
 	public static final int SUPPRESSION_UTILISATEUR = 10000;
