@@ -44,7 +44,32 @@
 						<input type="hidden" name="idArticle" value="${article.no_article}">
 						<input type="submit" value="Enchérir" class="btn btn-primary ml-3 ">
 					</form>
+				</c:if >
+				
+				
+				<c:if test="${sessionScope.utilisateur.no_utilisateur == article.no_utilisateur}">
+				<c:if test="${!empty listEncheres}">
+				<h2 class="text-center">Historique des enchères</h2>
+				<section class="row d-flex justify-content-around">
+				<div class="card col-sm-5">
+				<div class="card-body">
+				<c:forEach var="enchere" items="${listEncheres}">
+				<h5 class="card-title">Enchère n°<c:out value="${enchere.no_enchere}"/></h5>
+				<ul class="mb-5">
+				<li> Numéro de l'encherisseur : <c:out value="${enchere.no_utilisateur}"/></li>
+				<li> Montant de l'enchère : <c:out value="${enchere.montant_enchere}"/></li>
+				<li>Date de l'enchère : <c:out value="${enchere.date_enchere}"/></li>
+				</ul>
+				</c:forEach>
 				</c:if>
+				
+				<p>Il n'y a pas encore d'enchère pour l'instant>
+				
+				</c:if>
+				</div>
+				</div>
+				</section>
+				
 
 				<c:if test="${nonDebutee}">
 					<c:if test="${sessionScope.utilisateur.no_utilisateur == article.no_utilisateur}">

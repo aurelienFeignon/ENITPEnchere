@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>TPENIEnchere</display-name>
-
-<welcome-file-list>  
-	<welcome-file>Accueil</welcome-file>
-	<welcome-file>PageAccueil</welcome-file>
-</welcome-file-list>
-
-<session-config>
-	<session-timeout>5</session-timeout>
-</session-config>
-
+  <welcome-file-list>
+    <welcome-file>Accueil</welcome-file>
+    <welcome-file>PageAccueil</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>5</session-timeout>
+  </session-config>
   <servlet>
     <servlet-name>Accueil</servlet-name>
     <jsp-file>/WEB-INF/affichage/Accueil.jsp</jsp-file>
@@ -100,13 +97,19 @@
     <url-pattern>/ModificationEnchere</url-pattern>
   </servlet-mapping>
   <servlet>
-<servlet-name>Admin</servlet-name>
-<jsp-file>/WEB-INF/Admin/Admin.jsp</jsp-file>
-</servlet>
-<servlet-mapping>
-<servlet-name>Admin</servlet-name> 
-<url-pattern>/PageAdmin</url-pattern>
-
-</servlet-mapping>
-  
+    <servlet-name>Admin</servlet-name>
+    <jsp-file>/WEB-INF/Admin/Admin.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Admin</servlet-name>
+    <url-pattern>/PageAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AchatCredits</servlet-name>
+    <jsp-file>/WEB-INF/affichage/AchatCredits.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AchatCredits</servlet-name>
+    <url-pattern>/AchatCredits</url-pattern>
+  </servlet-mapping>
 </web-app>
