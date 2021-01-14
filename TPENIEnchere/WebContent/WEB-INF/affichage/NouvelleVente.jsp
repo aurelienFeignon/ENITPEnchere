@@ -39,13 +39,9 @@
      <div class="mr-sm-3">
 	<label for="categorie">Categorie : </label>
 	<SELECT name="categorie">
-	<c:forEach var="categorie" item="${categories}"> 
-	
+	<c:forEach var="categories" items="${categories}"> 
+		<OPTION value="${categories.no_categorie}">${categories.libelle}</OPTION>
 	</c:forEach>
-	<OPTION value="1">Informatique
-	<OPTION value="2">Ameublement
-	<OPTION value="3">Vetement
-	<OPTION value="4">Sport&Loisirs
 	</SELECT>
 	</div>  
 	 <div class="form-row">
