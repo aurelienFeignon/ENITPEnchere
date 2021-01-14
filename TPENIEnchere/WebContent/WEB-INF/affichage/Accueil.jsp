@@ -39,11 +39,7 @@
 										<c:forEach var="categories" items="${categories}"> 
 											<OPTION value="${categories.no_categorie}">${categories.libelle}</OPTION>
 										</c:forEach>
-										<!--  <OPTION value="1">Informatique</OPTION>
-										<OPTION value="2">Ameublement</OPTION>
-										<OPTION value="3">Vetement</OPTION>
-										<OPTION value="4">Sport&Loisirs</OPTION>-->
-
+										
 									</select>
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-12 p-0">
@@ -95,6 +91,10 @@
 						src="https://media.giphy.com/media/TKMZAVkrx2OFALkLKf/giphy.gif"
 						alt="Image de l'article en vente.">
 					<div class="card-body">
+					<!--<c:if test="${!empty article.CheminImg}">-->
+					<c:url value="/webcontent/${article.CheminImg}" var="ImgObj" />
+					<img src="${ImgObj}" alt="image de l'article">
+					<!--</c:if>-->
 						<c:choose>
 							<c:when test="${ !empty sessionScope.utilisateur }">
 								<h5 class="card-title">

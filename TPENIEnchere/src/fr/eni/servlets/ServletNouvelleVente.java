@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bll.CategoriesManageur;
 import fr.eni.bll.UtilisateurManageur;
-import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Categories;
 import fr.eni.bo.Retraits;
@@ -170,16 +170,5 @@ public class ServletNouvelleVente extends HttpServlet {
 
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 
-	}
-
-	/*
-	 * Récupération du nom du fichier dans la requête.
-	 */
-	private String getFileName(Part part) {
-		for (String content : part.getHeader("content-disposition").split(";")) {
-			if (content.trim().startsWith("filename"))
-				return content.substring(content.indexOf("=") + 2, content.length() - 1);
-		}
-		return "Default.file";
 	}
 }

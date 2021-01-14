@@ -45,13 +45,13 @@ public class ServletVersAccueil extends HttpServlet {
 		try {
 			List<Article> listeArticle = articleManageur.selectAll();
 			request.setAttribute("listeArticle", listeArticle);
-			List<Categories> categories= categoriesManageur.selectAll();
+			List<Categories> categories = categoriesManageur.selectAll();
 			request.setAttribute("categories", categories);
-			
+
 		} catch (BusinessException | SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		this.getServletContext().getRequestDispatcher("/PageAccueil").forward(request, response);
 	}
 
@@ -62,6 +62,14 @@ public class ServletVersAccueil extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		List<Categories> categories;
+		try {
+			categories = categoriesManageur.selectAll();
+			request.setAttribute("categories", categories);
+		} catch (BusinessException | SQLException e1) {
+			e1.printStackTrace();
+		}
+
 		// On recup les données
 		String recherche = request.getParameter("recherche");
 		Integer categorie = null;
