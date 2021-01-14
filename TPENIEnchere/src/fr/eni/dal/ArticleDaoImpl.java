@@ -506,10 +506,13 @@ public class ArticleDaoImpl implements ArticleDao {
 	}
 
 	/**
-	 * Méthode en charge de constuire les articles après extraction de la bd.
+	 * Méthode en charge de constuire les articles après extraction de la bd. la
+	 * methode verifie aussi que la date de fin d'enchere a expiré, si c'est le cas
+	 * elle update en bd le statut de la vente et verifie si une enchere a été passé
+	 * sur l'article. Auquel cas elle credite le vendeur du montant de l'offre
 	 * 
-	 * @param rs
-	 * @return
+	 * @param rs resulset après extraction en bd
+	 * @return un article
 	 * @throws SQLException
 	 * @throws BusinessException
 	 */

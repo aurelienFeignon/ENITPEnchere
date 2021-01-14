@@ -16,13 +16,30 @@ import fr.eni.utils.BusinessException;
 public interface CategoriesDao {
 
 	/**
-	 * Méthode en charge de
+	 * Méthode en charge de selectionner une categorie en fonction du numero de
+	 * categorie
 	 * 
-	 * @param noCategorie
-	 * @return
+	 * @param noCategorie numero de categorie
+	 * @return une categorie
 	 * @throws BusinessException
 	 */
 	public Categories selectId(int noCategorie) throws BusinessException;
 
+	/**
+	 * Méthode en charge de selectionner toutes les categories
+	 * 
+	 * @return la liste complete des categories
+	 * @throws BusinessException
+	 * @throws SQLException
+	 */
 	public List<Categories> selectAll() throws BusinessException, SQLException;
+
+	/**
+	 * Méthode en charge d'inserer en bd une nouvelle categorie
+	 * 
+	 * @param categorie nom de la categorie a ajouter
+	 * @throws BusinessException
+	 * @throws SQLException
+	 */
+	public void insert(String categorie) throws BusinessException, SQLException;
 }
