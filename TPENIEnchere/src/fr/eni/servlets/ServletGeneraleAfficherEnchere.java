@@ -31,7 +31,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 	private LocalDate localDate = LocalDate.now();
 	private boolean nonDebutee = false;
        
-	// attention = ajouter datedebut = date du jour
+	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//récupération idArticle
