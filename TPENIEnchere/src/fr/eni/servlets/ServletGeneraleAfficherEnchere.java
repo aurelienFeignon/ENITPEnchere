@@ -112,6 +112,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("listEncheres", encheres);
 		request.setAttribute("enchere", enchere);
 		request.setAttribute("encherisseur", encherisseur);
 		}
