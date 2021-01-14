@@ -26,6 +26,7 @@ public class ServletAchatCredits extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// ajout de crédits à l'user
 		int idUser = Integer.parseInt(request.getParameter("identifiant"));
 		double credit = Double.parseDouble(request.getParameter("credits"));
 		
