@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.catalina.Session;
 
 import fr.eni.bll.UtilisateurManageur;
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Utilisateur;
 import fr.eni.utils.BusinessException;
@@ -105,7 +105,7 @@ public class ServletModificationProfil extends HttpServlet {
 	  	        	request.setAttribute("réussiteMdp", message);
 	  	        	
 	  	        //Afficher les articles de la base de données
-	  	  		articleManageur articleManager  = new articleManageur();
+	  	  		ArticleManageur articleManager  = new ArticleManageur();
 	  	  		List<Article> listeArticle =null;
 	  	  		try {
 	  	  			listeArticle = articleManager.selectAll();

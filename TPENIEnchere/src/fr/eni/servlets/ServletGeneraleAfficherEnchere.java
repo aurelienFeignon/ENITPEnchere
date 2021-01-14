@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.RetraitManageur;
 import fr.eni.bll.UtilisateurManageur;
-import fr.eni.bll.articleManageur;
-import fr.eni.bll.categoriesManageur;
+import fr.eni.bll.ArticleManageur;
+import fr.eni.bll.CategoriesManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Categories;
 import fr.eni.bo.Encheres;
@@ -44,7 +44,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		
 		//recuperation infos article
 		Article article = new Article();
-		articleManageur articleManageur = new articleManageur();
+		ArticleManageur articleManageur = new ArticleManageur();
 		
 		try {
 			article = articleManageur.selectId(idArticle);
@@ -68,10 +68,10 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 
 		//récupération infos categories
 		
-		categoriesManageur categoriesManageur = new categoriesManageur();
+		CategoriesManageur CategoriesManageur = new CategoriesManageur();
 		Categories categories = new Categories();
 		try {
-			categories = categoriesManageur.selectId(article.getNo_categorie());
+			categories = CategoriesManageur.selectId(article.getNo_categorie());
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

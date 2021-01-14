@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bll.EnchereManageur;
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.utils.BusinessException;
 
 @WebServlet("/ServletSuppressionEnchere")
@@ -24,7 +24,7 @@ public class ServletSuppressionEnchere extends HttpServlet {
 		int numeroArticle = Integer.parseInt(request.getParameter("idArticle"));
 		
 		//suppression article
-		articleManageur articleManageur = new articleManageur();
+		ArticleManageur articleManageur = new ArticleManageur();
 		try {
 			articleManageur.delete(numeroArticle);
 		} catch (BusinessException e) {

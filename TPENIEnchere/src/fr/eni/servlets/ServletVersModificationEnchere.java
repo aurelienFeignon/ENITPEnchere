@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bll.RetraitManageur;
 import fr.eni.bll.UtilisateurManageur;
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Retraits;
 import fr.eni.bo.Utilisateur;
@@ -31,7 +31,7 @@ public class ServletVersModificationEnchere extends HttpServlet {
 		
 		//récupération infos article
 		Article article = new Article();
-		articleManageur articleManageur = new articleManageur();
+		ArticleManageur articleManageur = new ArticleManageur();
 		
 		try {
 			article = articleManageur.selectId(Integer.parseInt(request.getParameter("idArticle")));

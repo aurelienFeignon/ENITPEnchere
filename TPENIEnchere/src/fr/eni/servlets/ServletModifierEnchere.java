@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bll.RetraitManageur;
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Retraits;
 import fr.eni.message.LecteurMessage;
@@ -51,7 +51,7 @@ public class ServletModifierEnchere extends HttpServlet {
 				System.out.println(numeroUtilisateur);
 			//Je cree un objet 
 				 Article unArticle = new Article();
-				 articleManageur articleManageur = new articleManageur();
+				 ArticleManageur articleManageur = new ArticleManageur();
 				 Retraits unRetrait = new Retraits();
 				 RetraitManageur retraitManageur = new RetraitManageur();
 				 //Je recup les données saisies dans le formulaire et je les attributs à l'objet
@@ -92,7 +92,7 @@ public class ServletModifierEnchere extends HttpServlet {
 				 request.setAttribute("réussite", MESSAGEREUSSITE);
 				 
 				//Afficher les articles de la base de données
-					articleManageur articleManager  = new articleManageur();
+					ArticleManageur articleManager  = new ArticleManageur();
 					List<Article> listeArticle =null;
 					try {
 						listeArticle = articleManager.selectAll();

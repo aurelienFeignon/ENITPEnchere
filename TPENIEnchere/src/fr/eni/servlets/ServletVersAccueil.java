@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.utils.BusinessException;
 
@@ -25,7 +25,7 @@ public class ServletVersAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Afficher les articles de la base de données
-		articleManageur articleManager  = new articleManageur();
+		ArticleManageur articleManager  = new ArticleManageur();
 		List<Article> listeArticle =null;
 		try {
 			listeArticle = articleManager.selectAll();
@@ -50,7 +50,7 @@ public class ServletVersAccueil extends HttpServlet {
 		//Si rien dans la recherche
 		if(recherche == null && categorie == null){
 			//Afficher tous les articles de la base de données
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectAll();
@@ -60,7 +60,7 @@ public class ServletVersAccueil extends HttpServlet {
 			request.setAttribute("listeArticle", listeArticle);
 		}
 		else if(recherche != null && categorie == 0){ //Si seul le champs recherche est remplie
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectRechercher(recherche);
@@ -70,7 +70,7 @@ public class ServletVersAccueil extends HttpServlet {
 			request.setAttribute("listeArticle", listeArticle);
 		}
 		else if(categorie != 0 && recherche.equals("")){ //Si seul le champs categorie est remplie
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectCategorie(categorie);
@@ -80,7 +80,7 @@ public class ServletVersAccueil extends HttpServlet {
 			request.setAttribute("listeArticle", listeArticle);
 		}
 		else if(categorie != 0 && recherche != null){ //Si les deux sont remplies
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectCategorieRechercher(recherche, categorie);

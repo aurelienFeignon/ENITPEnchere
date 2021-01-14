@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bll.EnchereManageur;
 import fr.eni.bll.UtilisateurManageur;
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.bo.Encheres;
 import fr.eni.bo.Utilisateur;
@@ -45,7 +45,7 @@ public class ServletEncherir extends HttpServlet {
 		
 		Encheres derniereEnchere = new Encheres();
 		List<Encheres> listEncheres = new ArrayList<>();
-		articleManageur articleManageur= new articleManageur();
+		ArticleManageur articleManageur= new ArticleManageur();
 		
 		
 		//normalement il est impossible de miser en dessous de l'enchere actuelle via la jsp mais vérification ici aussi au ca où 

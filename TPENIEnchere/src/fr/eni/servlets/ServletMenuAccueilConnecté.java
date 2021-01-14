@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.utils.BusinessException;
 
@@ -35,7 +35,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 		int noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
 
 		if(request.getParameter("encheresOuvertes") != null){
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectAchatAll(noUtilisateur);
@@ -46,7 +46,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 		}
 		
 		if(request.getParameter("encheresEnCours") != null){
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectAchatEnchereEnCour(noUtilisateur);
@@ -58,7 +58,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 		
 		
 		if(request.getParameter("encheresRemportees") != null){
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectAchatEnchereRemporte(noUtilisateur);
@@ -70,7 +70,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 		
 		if(request.getParameter("ventesEnCours") != null){
 			venteChecked =true;
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectVenteEnCour(noUtilisateur);
@@ -83,7 +83,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 		
 		if(request.getParameter("ventesNonDebutees") != null){
 			venteChecked =true;
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectVenteNonDebute(noUtilisateur);
@@ -96,7 +96,7 @@ public class ServletMenuAccueilConnecté extends HttpServlet {
 		
 		if(request.getParameter("venteTerminees") != null){
 			venteChecked =true;
-			articleManageur articleManager  = new articleManageur();
+			ArticleManageur articleManager  = new ArticleManageur();
 			List<Article> listeArticle =null;
 			try {
 				listeArticle = articleManager.selectVenteTermine(noUtilisateur);

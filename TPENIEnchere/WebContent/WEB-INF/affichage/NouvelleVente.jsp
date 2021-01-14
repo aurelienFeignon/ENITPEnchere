@@ -39,6 +39,9 @@
      <div class="mr-sm-3">
 	<label for="categorie">Categorie : </label>
 	<SELECT name="categorie">
+	<c:forEach var="categorie" item="${categories}"> 
+	
+	</c:forEach>
 	<OPTION value="1">Informatique
 	<OPTION value="2">Ameublement
 	<OPTION value="3">Vetement
@@ -48,7 +51,7 @@
 	 <div class="form-row">
 	    <div class="form-group col-md-6">
 	      <label for="photo">Photo de l'article</label>
-	     <input  type="file" class="form-control" name="photo" value="uploader">
+	     <input  type="file"  name="photo" value="uploader" accept="image/png, image/jpeg">
 	    </div>
      </div>
   		 <div class="form-row">

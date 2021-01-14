@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.bll.articleManageur;
+import fr.eni.bll.ArticleManageur;
 import fr.eni.bo.Article;
 import fr.eni.utils.BusinessException;
 
@@ -30,7 +30,7 @@ public class ServletDeconnexion extends HttpServlet {
         session.invalidate();
 
       //Afficher les articles de la base de données
-      		articleManageur articleManager  = new articleManageur();
+      		ArticleManageur articleManager  = new ArticleManageur();
       		List<Article> listeArticle =null;
       		try {
       			listeArticle = articleManager.selectAll();
