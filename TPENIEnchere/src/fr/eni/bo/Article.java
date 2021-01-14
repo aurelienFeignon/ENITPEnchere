@@ -14,7 +14,7 @@ public class Article {
 	int no_categorie;
 	int no_retrait;
 	boolean etatVente;
-	String CheminImg;
+	String cheminImg;
 
 	/**
 	 * Constructeur.
@@ -38,7 +38,7 @@ public class Article {
 	 */
 	public Article(int no_article, String nom_article, String description, Date date_debut_encheres,
 			Date date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie,
-			int no_retrait, String CheminImg) {
+			int no_retrait, String cheminImg) {
 		super();
 		this.no_article = no_article;
 		this.nom_article = nom_article;
@@ -50,7 +50,7 @@ public class Article {
 		this.no_utilisateur = no_utilisateur;
 		this.no_categorie = no_categorie;
 		this.no_retrait = no_retrait;
-		this.CheminImg = CheminImg;
+		this.cheminImg = cheminImg;
 	}
 
 	public int getNo_article() {
@@ -142,11 +142,11 @@ public class Article {
 	}
 
 	public String getCheminImg() {
-		return CheminImg;
+		return cheminImg;
 	}
 
 	public void setCheminImg(String cheminImg) {
-		this.CheminImg = cheminImg;
+		this.cheminImg = cheminImg;
 	}
 
 }

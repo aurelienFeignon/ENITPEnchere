@@ -91,10 +91,10 @@
 						src="https://media.giphy.com/media/TKMZAVkrx2OFALkLKf/giphy.gif"
 						alt="Image de l'article en vente.">
 					<div class="card-body">
-					<!--<c:if test="${!empty article.CheminImg}">-->
-					<c:url value="/webcontent/${article.CheminImg}" var="ImgObj" />
+					<c:if test="${!empty article.cheminImg}">
+					<c:url value="/webcontent/${article.cheminImg}" var="ImgObj" />
 					<img src="${ImgObj}" alt="image de l'article">
-					<!--</c:if>-->
+					</c:if>
 						<c:choose>
 							<c:when test="${ !empty sessionScope.utilisateur }">
 								<h5 class="card-title">
