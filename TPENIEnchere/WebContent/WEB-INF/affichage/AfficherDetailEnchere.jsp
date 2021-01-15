@@ -53,22 +53,28 @@
 				<section class="row d-flex justify-content-around">
 				<div class="card col-sm-5">
 				<div class="card-body">
+				
 				<c:forEach var="enchere" items="${listEncheres}">
-				<h5 class="card-title">Enchère n°<c:out value="${enchere.no_enchere}"/></h5>
+				<h5 class="card-title">Détails de l'enchere : </h5>
 				<ul class="mb-5">
-				<li> Numéro de l'encherisseur : <c:out value="${enchere.no_utilisateur}"/></li>
-				<li> Montant de l'enchère : <c:out value="${enchere.montant_enchere}"/></li>
-				<li>Date de l'enchère : <c:out value="${enchere.date_enchere}"/></li>
+				<li class="row"> Numéro de l'encherisseur : <c:out value="${enchere.no_utilisateur}"/><a href="http://localhost:8080/TPENIEnchere/LeProfilVendeur?nombre=${enchere.no_utilisateur}" class="btn btn-primary ml-4"> Accéder au profil</a></li>
+				<li class="row mb-3"> Montant de l'enchère : <c:out value="${enchere.montant_enchere}"/></li>
+				<li class="row">Date de l'enchère : <c:out value="${enchere.date_enchere}"/></li>
 				</ul>
+				
+				
+				
 				</c:forEach>
-				</c:if>
-				
-				<p>Il n'y a pas encore d'enchère pour l'instant>
-				
-				</c:if>
+			
 				</div>
 				</div>
 				</section>
+				</c:if>
+				</c:if>
+					<c:if test="${empty listEncheres}" >
+				<p class="text-center mb-4 mt-2">Il n'y a pas encore d'enchère pour l'instant </p>
+				
+				</c:if>
 				
 
 				<c:if test="${nonDebutee}">
@@ -78,13 +84,20 @@
 							<input type="hidden" name="idVendeur" value="${article.no_utilisateur}"> 
 							<input type="hidden" name="idEnchere" value="${encheres.no_enchere}">
 							<input type="hidden" name="idRetrait" value="${retraits.no_retrait}">
+							<div class="text-center">
+							<div class="btn-group" role="group" aria-label="groupe boutons">
 							<input type="submit" value="Modifier l'enchère" class="btn btn-primary ml-3 ">
+							
 						</form>
 						<form action="<c:url value =" ServletSuppressionEnchere "/>" method="post"
 							class="text-center">
 							<input type="hidden" name="idArticle" value="${article.no_article}"> 
 							<input type="hidden" name="idEnchere" value="${encheres.no_enchere}"> 
+							
+							
 							<input type="submit" value="Supprimer l'enchère" class="btn btn-danger ml-3 ">
+							</div>
+							</div>
 						</form>
 					</c:if>
 				</c:if>

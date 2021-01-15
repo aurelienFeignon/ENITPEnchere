@@ -94,25 +94,27 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		
 	//récupération infos enchere + encherisseur SI ENCHERE
 		Encheres enchere = null;
-		List<Encheres> encheres= new ArrayList<>();
 		Utilisateur encherisseur = new Utilisateur();
 		EnchereManageur enchereManageur= new EnchereManageur();
+		List<Encheres> listEncheres= new ArrayList<>();
 		
 		try {
-			encheres= enchereManageur.selectHistoriqueArticle(idArticle);
-		} catch (BusinessException e1) {
-			e1.printStackTrace();
+			listEncheres = enchereManageur.selectHistoriqueArticleDecroissant(idArticle);
+		} catch (BusinessException e2) {
+			e2.printStackTrace();
 		}
-		if(!encheres.isEmpty()) {
+		
+		
+		if(!listEncheres.isEmpty()) {
 		try {
 			
-			enchere= encheres.get(encheres.size()-1);
+			enchere= listEncheres.get(0);
 			encherisseur = utilisateurManageur.selectId(enchere.getNo_utilisateur());
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("listEncheres", encheres);
+		request.setAttribute("listEncheres", listEncheres);
 		request.setAttribute("enchere", enchere);
 		request.setAttribute("encherisseur", encherisseur);
 		}
@@ -133,13 +135,12 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 				double montantMin = 0;
 				
 				//s'il y a déjà eu une enchere
-				if(!encheres.isEmpty())
+				if(!listEncheres.isEmpty())
 				{
 					
 					montant_enchere = enchere.getMontant_enchere();
 					montantMin = montant_enchere;
 					
-					request.setAttribute("encheres", encheres);
 				}
 				
 				// pas encore d'enchere
@@ -175,7 +176,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		{
 			//on recherche si il y a une enchere + l'enchere gagnante
 			
-			if(!encheres.isEmpty()) {
+			if(!listEncheres.isEmpty()) {
 			idGagnant = enchere.getNo_utilisateur();
 			}
 			
