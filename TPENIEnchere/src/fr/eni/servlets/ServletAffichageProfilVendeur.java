@@ -17,7 +17,7 @@ import fr.eni.utils.BusinessException;
 
 
 
-@WebServlet("/ServletAffichageProfilVendeur")
+@WebServlet("/LeProfilVendeur")
 public class ServletAffichageProfilVendeur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

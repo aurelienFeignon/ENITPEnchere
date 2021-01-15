@@ -91,8 +91,7 @@
 						src="https://media.giphy.com/media/TKMZAVkrx2OFALkLKf/giphy.gif"
 						alt="Image de l'article en vente.">
 					<div class="card-body">
-					<c:if test="${!empty article.cheminImg}">
-					
+					<c:if test="${!empty article.cheminImg}">	
 					<img src="<c:url value="/webcontent/${article.cheminImg}"/>" alt="image de l'article">
 					</c:if>
 						<c:choose>
@@ -121,7 +120,7 @@
 						</p>
 						<c:choose>
 							<c:when test="${ !empty sessionScope.utilisateur }">
-								<a href=" <c:url value =" ServletAffichageProfilVendeur?nombre=${article.no_utilisateur} "/>" class="btn btn-primary">Profil du vendeur</a>
+								<a href=" <c:url value =" LeProfilVendeur?nombre=${article.no_utilisateur} "/>" class="btn btn-primary">Profil du vendeur</a>
 							</c:when>
 							<c:otherwise>
 								<p class="card-text"></p>
@@ -130,7 +129,9 @@
 					</div>
 				</div>
 			</c:forEach>
-
+			<c:if test="${utilisateur.administrateur}">
+				<a href="<c:url value ="Admin"/>" class="float"><i class="fas fa-user-cog my-float"></i></a>
+			</c:if>
 		</section>
 	</main>
 
