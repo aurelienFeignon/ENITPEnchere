@@ -11,7 +11,7 @@ import fr.eni.bo.Encheres;
 import fr.eni.utils.BusinessException;
 
 /**
- * Classe en charge faire les traitements sur la bd des encheres
+ * Classe en charge de faire les traitements sur la bd des encheres
  * 
  * @author aurel
  * @version TPENIEnchere - v1.0
@@ -23,6 +23,7 @@ public class EncheresDaoImpl implements EncheresDao {
 			+ "values(?,?,?,?)";
 	private static final String SELECT_ID = "select * from ENCHERES where no_enchere=?";
 	private static final String SELECT_HISTORIQUE_ARTICLE = "select * from ENCHERES where no_article=?";
+	private static final String SELECT_HISTORIQUE_ARTICLE_DECROISSANT = "select * from ENCHERES where no_article=? order by montant_enchere desc";
 	private static final String SELECT_ALL = "select * from ENCHERES";
 	private static final String UPDATE = "update ENCHERES Set date_enchere= ?, montant_enchere=?, no_article=?, no_utilisateur=? where no_enchere=?";
 
@@ -184,5 +185,28 @@ public class EncheresDaoImpl implements EncheresDao {
 		enchere.setNo_article(rs.getInt("no_article"));
 		enchere.setNo_utilisateur(rs.getInt("no_utilisateur"));
 		return enchere;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<Encheres> selectHistoriqueArticleDecroissant(int noArticle) throws BusinessException {
+		List<Encheres> encheres = new ArrayList<>();
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			PreparedStatement stm = cnx.prepareStatement(SELECT_HISTORIQUE_ARTICLE_DECROISSANT);
+			stm.setInt(1, noArticle);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				encheres.add(this.encheresConstructeur(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.ajouterErreur(CodesResultatDAL.CONNECTION_DAL);
+			throw businessException;
+		}
+
+		return encheres;
 	}
 }

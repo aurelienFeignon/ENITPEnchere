@@ -42,9 +42,18 @@ public interface EncheresDao extends GeneriqueDao<Encheres> {
 	 * Méthode en charge de selectionner toute les encheres faites sur un article
 	 * 
 	 * @param noArticle numero de l'article
-	 * @return une liste d'enchere
+	 * @return une liste d'enchere filtré
 	 * @throws BusinessException
 	 */
 	public List<Encheres> selectHistoriqueArticle(int noArticle) throws BusinessException;
 
+	/**
+	 * Méthode en charge de selectionner toute les encheres faites sur un article
+	 * dans l'ordre decroissant du montant des encheres
+	 * 
+	 * @param noArticle numero de l'article
+	 * @return une liste d'enchere filtré
+	 * @throws BusinessException
+	 */
+	public List<Encheres> selectHistoriqueArticleDecroissant(int noArticle) throws BusinessException;
 }
