@@ -28,8 +28,11 @@
 				<label> <input type="checkbox" name="memorisation" checked> Se souvenir de moi </label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit" value="Connexion">Connexion</button>
+			<a href="PageNouveauMotDePasse">Mot de passe oublié</a>
 			<p class="mt-5 mb-3 text-muted">&copy; ENI-Encheres-2021</p>
 		</form>
+		
+		
 		<c:if test="${!empty erreurs}">
 			<div class="alert alert-danger row" role="alert">
 				<strong>Erreur!</strong>
@@ -41,7 +44,6 @@
 			</div>
 		</c:if>
 	</main>
-
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap-4.4.1.js"></script>

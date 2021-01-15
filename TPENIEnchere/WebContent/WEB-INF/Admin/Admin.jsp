@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Page Administrateur</title>
 <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
 </head>
 
 <body>
@@ -52,6 +54,8 @@
 	    </div>
 	    <button type="submit" class="btn btn-primary">Créer une catégorie</button>
 	</form>
+	
+	<%@ include file="../affichage/FooterInclusion.jsp"%>
 	
 </body>
 

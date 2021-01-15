@@ -7,7 +7,7 @@ import fr.eni.bo.Article;
 import fr.eni.utils.BusinessException;
 
 /**
- * Interface en charge de la gestion en bd des article
+ * Classe en charge de la gestion en bd des article
  * 
  * @author aurel
  * @version TPENIEnchere - v1.0
