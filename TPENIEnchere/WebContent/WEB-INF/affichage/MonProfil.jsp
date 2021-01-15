@@ -15,7 +15,7 @@
 <%@ include file="HeaderInclusion.jsp" %>
 
 <main>
-<h1 clas="text-center mt-5 mb-5">Informations du profil </h1>
+<h1 class="text-center mt-5 mb-5">Informations du profil </h1>
 
 <div class="container">
 		<ul class="list-group mt-5 mb-5">
