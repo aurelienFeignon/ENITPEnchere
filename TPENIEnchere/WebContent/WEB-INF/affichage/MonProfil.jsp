@@ -31,12 +31,14 @@
 		</ul>
 </div>
 <div class="text-center">
+<div class="btn-group" role="group" aria-label="groupe boutons">
 <form class="container" action="<c:url value =" ModifierSonProfil "/>" method="get">
 		<button type="submit" class="btn btn-primary">Modifier</button>
 </form>
 <form class="container" action="<c:url value =" VersAchatCredits "/>" method="get">
-		<button type="submit" class="btn btn-primary">Achat de crédit</button>
+		<button type="submit" class="btn btn-danger">Achat de crédit</button>
 </form>
+</div>
 </div>
 </main>
 

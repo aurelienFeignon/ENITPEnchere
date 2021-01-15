@@ -12,7 +12,7 @@
 </head>
 <body>
 <%@ include file="HeaderInclusion.jsp"%>
-<h1>Acheter des crédits</h1>
+<h1>Achat de crédits</h1>
 <main>
 		<div class="container">
 		<p class="mt-5 text-center">1 crédit = 1 euro</p>
@@ -24,14 +24,10 @@
 		<input type="number" name="credits"  id="credits">
 </div>
 </div>	
-		<div class="form-row mt-5 text-center">
-    	<div class="form-group col-12">
-		<label>Montant en euros : ${credits} </label>
-		</div>
-		</div>
+		
 		<div class="text-center mt-5">
-		<input type="hidden" name="id" value="${sessionScope.utilisateur.no_utilisateur}"> 
-		<input type="submit" value="Acheter" class="btn btn-primary" >
+		<input type="hidden" name="id" value="${utilisateur.no_utilisateur}"> 
+		<input type="submit" value="Acheter" class="btn btn-danger" >
 		</div>
 		</form>
 

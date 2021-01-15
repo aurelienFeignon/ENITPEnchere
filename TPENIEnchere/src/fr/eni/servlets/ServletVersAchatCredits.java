@@ -21,13 +21,14 @@ public class ServletVersAchatCredits extends HttpServlet {
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession(false);
-		int identifiant = (int)session.getAttribute("identifiant");
+		
+		
+		int utilisateurId = Integer.parseInt(request.getSession(false).getAttribute("utilisateurId").toString());
 		
 		Utilisateur utilisateur = new Utilisateur();
 		UtilisateurManageur utilisateurManageur = new UtilisateurManageur();
 		try {
-			utilisateur = utilisateurManageur.selectId(identifiant);
+			utilisateur = utilisateurManageur.selectId(utilisateurId);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
