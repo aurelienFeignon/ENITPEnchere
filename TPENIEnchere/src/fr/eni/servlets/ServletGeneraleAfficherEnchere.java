@@ -31,7 +31,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 	private LocalDate localDate = LocalDate.now();
 	private boolean nonDebutee = false;
        
-	// attention = ajouter datedebut = date du jour
+	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//récupération idArticle
@@ -42,7 +42,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		Utilisateur User = (Utilisateur) session.getAttribute("utilisateur");
 		int idUser = User.getNo_utilisateur();
 		
-		//recuperation infos article
+		//recuperation infos de l'article
 		Article article = new Article();
 		ArticleManageur articleManageur = new ArticleManageur();
 		
