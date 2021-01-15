@@ -27,7 +27,7 @@
 					<c:if test="${!empty enchere }">
 						<c:out value="${enchere.montant_enchere}" /> par <c:out value="${encherisseur.pseudo}" />
 					</c:if>
-				    <c:if test="${empty enchere}">Il n'y a pas eu d'enchere</c:if>
+				    <c:if test="${empty enchere}">Il n'y a pas eu d'enchere</c:if> 
 				</li>
 				<li class="list-group-item">Mise à prix : <c:out value="${article.prix_initial}" /></li>
 				<li class="list-group-item">Fin de l'enchère : <c:out value="${article.date_fin_encheres}" /></li>
@@ -56,7 +56,7 @@
 				
 				<c:forEach var="enchere" items="${listEncheres}">
 				<h5 class="card-title">Détails de l'enchere : </h5>
-				<ul class="mb-5">
+				<ul class="mb-5">         
 				<li class="row"> Numéro de l'encherisseur : <c:out value="${enchere.no_utilisateur}"/><a href="http://localhost:8080/TPENIEnchere/LeProfilVendeur?nombre=${enchere.no_utilisateur}" class="btn btn-primary ml-4"> Accéder au profil</a></li>
 				<li class="row mb-3"> Montant de l'enchère : <c:out value="${enchere.montant_enchere}"/></li>
 				<li class="row">Date de l'enchère : <c:out value="${enchere.date_enchere}"/></li>
