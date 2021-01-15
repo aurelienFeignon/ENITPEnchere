@@ -1,5 +1,13 @@
 package fr.eni.bll;
 
+/**
+ * Classe des constantes d'erreurs lié au differente verification sur les class
+ * de la bll
+ * 
+ * @author aurel
+ * @version TPENIEnchere - v1.0
+ * @date 15 janv. 2021 - 12:44:13
+ */
 public class CodeResultatBll {
 
 	public static final int PSEUDO_INVALIDE = 20000;
@@ -29,6 +37,5 @@ public class CodeResultatBll {
 	public static final int NO_ARTICLE_INVALIDE = 20024;
 	public static final int MONTANT_INVALIDE = 20025;
 	public static final int ENCHERE_INFERIEUR_PRIX_DE_VENTE = 20026;
-	
 
 }
