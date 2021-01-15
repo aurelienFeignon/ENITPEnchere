@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.UtilisateurManageur;
 import fr.eni.bo.Utilisateur;
@@ -19,7 +20,15 @@ public class ServletVersMonProfil extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//empecher l'accées a une personne non connecté
-
+		/* Récupération de la session depuis la requête */
+        HttpSession session = request.getSession();
+        /*
+         * Si l'objet utilisateur n'existe pas dans la session en cours, alors
+         * l'utilisateur n'est pas connecté.
+         */
+        if ( session.getAttribute("utilisateurId").equals(null) ) {
+            response.sendRedirect("Accueil");
+        }
 		
 		// sert a l'affichage dynamique des credits
 
