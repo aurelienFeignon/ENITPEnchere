@@ -9,24 +9,11 @@ import fr.eni.dal.DAOFactory;
 import fr.eni.utils.BusinessException;
 
 /**
- * Classe en charge d'acceder methode de la dal
+ * Classe en charge d'acceder methode de la dal lié au categorie
  * 
  * @author aurel
  * @version TPENIEnchere - v1.0
  * @date 14 janv. 2021 - 16:24:29
- */
-/**
- * Classe en charge
- * @author aurel
- * @version TPENIEnchere - v1.0
- * @date 14 janv. 2021 - 16:30:08
- */
-/**
- * Classe en charge
- * 
- * @author aurel
- * @version TPENIEnchere - v1.0
- * @date 14 janv. 2021 - 16:30:10
  */
 public class CategoriesManageur {
 	private CategoriesDao categorieDao;
