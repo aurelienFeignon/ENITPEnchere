@@ -34,6 +34,9 @@
 <form class="container" action="<c:url value =" ModifierSonProfil "/>" method="get">
 		<button type="submit" class="btn btn-primary">Modifier</button>
 </form>
+<form class="container" action="<c:url value =" VersAchatCredits "/>" method="get">
+		<button type="submit" class="btn btn-primary">Achat de crédit</button>
+</form>
 </div>
 </main>
 

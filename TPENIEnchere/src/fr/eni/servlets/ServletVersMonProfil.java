@@ -18,6 +18,9 @@ public class ServletVersMonProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//empecher l'accées a une personne non connecté
+
+		
 		// sert a l'affichage dynamique des credits
 
 		int utilisateurId = Integer.parseInt(request.getSession(false).getAttribute("utilisateurId").toString());

@@ -21,7 +21,7 @@
 
 	<main>
 
-		<h1 class="row">Liste des Enchères</h1>
+		<h1>Liste des Enchères</h1>
 
 		<section>
 			<h2 class="col-sm-12 d-flex justify-content-center">Filtres</h2>
