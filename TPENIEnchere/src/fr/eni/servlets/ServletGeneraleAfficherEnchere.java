@@ -42,7 +42,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		Utilisateur User = (Utilisateur) session.getAttribute("utilisateur");
 		int idUser = User.getNo_utilisateur();
 		
-		//recuperation infos de l'article
+		//recuperation infos de l'article 
 		Article article = new Article();
 		ArticleManageur articleManageur = new ArticleManageur();
 		
