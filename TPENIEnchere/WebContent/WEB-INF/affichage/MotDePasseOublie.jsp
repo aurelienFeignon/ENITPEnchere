@@ -18,6 +18,7 @@
 
 	<h1>Envoyer une demande de nouveau mot de passe à l'administrateur</h1>
 <div class="d-flex justify-content-center">
+<!--  formulaire d'envoie vers une adresse mail -->
 	<form action="mailto:administrateur@eni-enchere.test" 
 		  enctype="text/plain">
 		Pseudo:<br> <input type="text" name="nom" class="form-group col-md-6"><br> 
