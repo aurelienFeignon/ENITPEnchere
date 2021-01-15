@@ -56,7 +56,7 @@
 				
 				<c:forEach var="enchere" items="${listEncheres}">
 				<h5 class="card-title">Détails de l'enchere : </h5>
-				<ul class="mb-5">
+				<ul class="mb-5">         
 				<li class="row"> Numéro de l'encherisseur : <c:out value="${enchere.no_utilisateur}"/><a href="http://localhost:8080/TPENIEnchere/LeProfilVendeur?nombre=${enchere.no_utilisateur}" class="btn btn-primary ml-4"> Accéder au profil</a></li>
 				<li class="row mb-3"> Montant de l'enchère : <c:out value="${enchere.montant_enchere}"/></li>
 				<li class="row">Date de l'enchère : <c:out value="${enchere.date_enchere}"/></li>

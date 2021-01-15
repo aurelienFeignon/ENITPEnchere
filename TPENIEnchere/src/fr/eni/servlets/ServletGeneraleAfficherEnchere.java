@@ -95,8 +95,13 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 	//récupération infos enchere + encherisseur SI ENCHERE
 		Encheres enchere = null;
 		Utilisateur encherisseur = new Utilisateur();
+		Utilisateur encherisseurs = new Utilisateur();
+	
+		int no_encherisseur;
 		EnchereManageur enchereManageur= new EnchereManageur();
 		List<Encheres> listEncheres= new ArrayList<>();
+				
+				
 		
 		try {
 			listEncheres = enchereManageur.selectHistoriqueArticleDecroissant(idArticle);
@@ -113,6 +118,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
+		
 		
 		request.setAttribute("listEncheres", listEncheres);
 		request.setAttribute("enchere", enchere);
@@ -207,4 +213,7 @@ public class ServletGeneraleAfficherEnchere extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
-}
+	
+	}
+	
+
