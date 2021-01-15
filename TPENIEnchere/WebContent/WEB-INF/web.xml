@@ -112,4 +112,12 @@
     <servlet-name>AchatCredits</servlet-name>
     <url-pattern>/AchatCredits</url-pattern>
   </servlet-mapping>
+  <servlet>
+  <servlet-name>MotDePasseOublie</servlet-name>
+    <jsp-file>/WEB-INF/affichage/MotDePasseOublie.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MotDePasseOublie</servlet-name>
+    <url-pattern>/PageNouveauMotDePasse</url-pattern>
+  </servlet-mapping>
 </web-app>
